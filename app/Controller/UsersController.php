@@ -1,0 +1,206 @@
+<?php
+
+// app/Controller/UsersController.php
+class UsersController extends AppController {
+
+    public $components = array(
+        'Auth' => array(
+            'loginRedirect' => '/',
+            'logoutRedirect' => '/'
+        )
+    );
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('add', 'login', 'edit', 'view');
+    }
+
+    public function login() {
+
+        if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
+                return $this->redirect($this->Auth->redirectUrl());
+            } else {
+                $this->Session->setFlash('Pseudo ou mot de passe invalide. Veuillez réessayer SVP', 'default', array( 'class' => 'message message--bad' ));
+            }
+        }
+    }
+
+    public function logout() {
+
+      $this->Session->destroy();
+
+      return $this->redirect($this->Auth->logout());
+
+    }
+
+    public function index() {
+        $this->User->recursive = 0;
+        $this->set('users', $this->paginate());
+    }
+
+    public function view($id = null) {
+        $this->User->id = $id;
+        if (!$this->User->exists()) {
+            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+        }
+        $this->set('user', $this->User->read(null, $id));
+    }
+
+    public function collection($id = null) {
+
+        $this->loadModel('Book');
+
+        $this->User->id = $this->Auth->user('id');
+        if (!$this->User->exists()) {
+            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+        }
+
+        $user = $this->User->read(null, $id);
+
+        $collection = $this->Book->find(
+            'all',
+            array(
+                'joins' => $this->Book->joinUser,
+                'conditions' => array('User.id' => $this->User->id),
+                'order' => array('Book.title' => 'asc')
+            )
+        );
+
+        $this->set(compact('user', 'collection'));
+    }
+
+    public function articles($id = null) {
+
+        $this->loadModel('Article');
+
+        $this->User->id = $this->Auth->user('id');
+        if (!$this->User->exists()) {
+            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+        }
+
+        $user = $this->User->read(null, $id);
+
+        $articles = $this->Article->find(
+            'all',
+            array(
+                'conditions' => array('draft' => 0, 'User.id' => $this->User->id),
+                'order' => array('Article.title' => 'asc')
+            )
+        );
+
+        $this->set(compact('user', 'articles'));
+    }
+
+    public function drafts($id = null) {
+
+        $this->loadModel('Article');
+
+        $this->User->id = $this->Auth->user('id');
+        if (!$this->User->exists()) {
+            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+        }
+
+        $user = $this->User->read(null, $id);
+
+        $drafts = $this->Article->find(
+            'all',
+            array(
+                'conditions' => array('draft' => 1, 'User.id' => $this->User->id),
+                'order' => array('Article.title' => 'asc')
+            )
+        );
+
+        $this->set(compact('user', 'drafts'));
+    }
+
+    public function add() {
+
+        if ($this->request->is('post')) {
+            $this->User->create();
+            if ($this->User->save($this->request->data)) {
+                if ($this->Auth->login()) {
+                    return $this->redirect($this->Auth->redirectUrl());
+                }
+            } else {
+                $this->Session->setFlash('Votre compte n’a pas pu être créé. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
+            }
+        }
+    }
+
+    public function editInformations($id = null) {
+
+        $this->User->id = $this->Auth->user('id');
+
+        if (!$this->User->exists()) {
+            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+        }
+
+        if ($this->request->is('post') || $this->request->is('put')) {
+
+            if ($this->User->save($this->request->data)) {
+
+                $this->Session->write('Auth', $this->User->read(null, $this->Auth->user('id')));
+                $this->Session->setFlash('Vos données ont été éditées', 'default', array( 'class' => 'message message--good'));
+                return $this->redirect(array('action' => 'editInformations'));
+            } else {
+                $this->Session->setFlash('Vos données n’ont pu être été éditées. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
+            }
+        } else {
+            $this->request->data = $this->User->read(null, $id);
+            unset($this->request->data['User']['password']);
+        }
+    }
+
+    public function editPassword($id = null) {
+
+        $this->User->id = $this->Auth->user('id');
+        if (!$this->User->exists()) {
+            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+        }
+
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->User->save($this->request->data)) {
+                $this->Session->write('Auth', $this->User->read(null, $this->Auth->user('id')));
+                $this->Session->setFlash('Votre mot de passe a été édité', 'default', array( 'class' => 'message message--good' ));
+                return $this->redirect(array('action' => 'editPassword'));
+            } else {
+                $this->Session->setFlash('Votre mot de passe n’a pas pu être été édité. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
+            }
+        } else {
+            $this->request->data = $this->User->read(null, $id);
+            unset($this->request->data['User']['password']);
+        }
+    }
+
+    public function delete($id = null) {
+        // Avant 2.5, utilisez
+        // $this->request->onlyAllow('post');
+
+        $this->request->allowMethod('post');
+
+        $this->User->id = $id;
+        if (!$this->User->exists()) {
+            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+        }
+        if ($this->User->delete()) {
+            $this->Session->setFlash('Votre compte a été supprimé.', 'default', array( 'class' => 'message message--good'));
+            return $this->redirect(array('action' => 'index'));
+        }
+        $this->Session->setFlash('Votre compte n’a pu être supprimé.', 'default', array( 'class' => 'message message--bad' ));
+        return $this->redirect(array('action' => 'index'));
+    }
+
+    public function removeFromCollection() {
+
+        $this->loadModel('Book');
+
+        $book = $this->Book->findById($this->request->data['Book']['id']);
+
+        if ($this->request->is('post')) {
+            $this->Book->query('DELETE from yb_books_users WHERE book_id = "' . $this->request->data['Book']['id'] . '"AND user_id = "' . $this->request->data['User']['id'] . '"');
+            return $this->redirect(array('action' => 'collection'));
+        }
+    }
+
+}

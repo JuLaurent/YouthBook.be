@@ -1,0 +1,61 @@
+<?php if($this->Session->check('Auth.User.id')): ?>
+    <div class='user__left'>
+        <span class='user__avatar'>
+            <?php if($this->Session->read('Auth.User.avatar')) {
+                echo $this->Html->image('avatars/' . $this->Session->read('Auth.User.id') . '/thumb_' . $this->Session->read('Auth.User.avatar'), array('alt' => 'Votre avatar'));
+            }
+            else {
+                echo $this->Html->image('avatars/noAvatar.png', array('alt' => 'Avatar de substitution'));
+            }
+            ?>
+        </span>
+    </div>
+    <div class='user__right'>
+        <span class='user__username'>
+            Bonjour <?php echo $this->Session->read('Auth.User.username') ?>
+        </span>
+        <div class='user__actions'>
+            <span class='user__action action user__edit'>
+                <a href='<?php echo $this->Html->url( array( 'controller'=>'users', 'action'=>'collection' ) ) ?>' title='Aller à la page de ma collection de livres' class='action__link<?php if($this->params['controller'] == 'users') echo ' action__active' ?>'>
+                    <span class="fa fa-user"></span>
+                </a>
+            </span>
+            <span class='user__action action user__book-create'>
+                <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'add' ) ) ?>' title='Ajouter un livre' class='action__edit<?php if($this->params['controller'] == 'books' && ($this->params['action'] == 'add' || $this->params['action'] == 'addWithIsbn' || $this->params['action'] == 'addWithoutIsbn')) echo ' action__active' ?>'>
+                    <span class="fa fa-book"></span>
+                </a>
+            </span>
+            <span class='user__action action user__article-create'>
+                <a href='<?php echo $this->Html->url( array( 'controller'=>'articles', 'action'=>'addStepOne' ) ) ?>' title='Ajouter un article' class='action__edit<?php if($this->params['controller'] == 'articles' && ($this->params['action'] == 'addStepOne' || $this->params['action'] == 'addStepTwo' || $this->params['action'] == 'addStepThree')) echo ' action__active' ?>'>
+                    <span class="fa fa-file-text"></span>
+                </a>
+            </span>
+            <span class='user__action action user__logout'>
+                <a href='<?php echo $this->Html->url( array( 'controller'=>'users', 'action'=>'logout' ) ) ?>' title='Se déconnecter' class='action__edit'>
+                    <span class="fa fa-sign-out"></span>
+                </a>
+            </span>
+        </div>
+
+    </div>
+<?php else: ?>
+    <div class='user__buttons double-button'>
+        <span class='user__login user__button double-button__button'>
+            <?php echo $this->Html->link(
+                    'Se connecter',
+                    array('controller' => 'users', 'action' => 'login'),
+                    array('title' => 'Aller à la page de connexion')
+                );
+            ?>
+        </span> <!--
+        --> <span class='user__add user__button double-button__button'>
+            <?php echo $this->Html->link(
+                    'Créer un compte',
+                    array('controller' => 'users', 'action' => 'add'),
+                    array('title' => 'Aller à la page de création de compte')
+                );
+            ?>
+        </span>
+    </div>
+
+<?php endif; ?>
