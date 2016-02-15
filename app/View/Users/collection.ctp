@@ -1,7 +1,7 @@
 <?php
 
     $this->assign('title', 'Collection');
-    $this->assign('description', 'Collection de livres');
+    $this->assign('description', 'Ma collection de livres');
 
 ?>
 

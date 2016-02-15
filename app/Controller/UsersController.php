@@ -70,6 +70,28 @@ class UsersController extends AppController {
         $this->set(compact('user', 'collection'));
     }
 
+    public function books($id = null) {
+
+        $this->loadModel('Book');
+
+        $this->User->id = $this->Auth->user('id');
+        if (!$this->User->exists()) {
+            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+        }
+
+        $user = $this->User->read(null, $id);
+
+        $books = $this->Book->find(
+            'all',
+            array(
+                'conditions' => array('Book.creator_id' => $this->User->id),
+                'order' => array('Book.title' => 'asc')
+            )
+        );
+
+        $this->set(compact('user', 'books'));
+    }
+
     public function articles($id = null) {
 
         $this->loadModel('Article');
@@ -189,6 +211,20 @@ class UsersController extends AppController {
         }
         $this->Session->setFlash('Votre compte n’a pu être supprimé.', 'default', array( 'class' => 'message message--bad' ));
         return $this->redirect(array('action' => 'index'));
+    }
+
+    public function addToCollection() {
+
+        $this->loadModel('Book');
+
+        $book = $this->Book->findById($this->request->data['Book']['id']);
+        $this->Book->id = $book['Book']['id'];
+
+        if ($this->request->is('post')) {
+            if ($this->Book->save($this->request->data)) {
+                return $this->redirect(array('action' => 'books'));
+            }
+        }
     }
 
     public function removeFromCollection() {
