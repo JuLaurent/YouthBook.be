@@ -109,3 +109,11 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+CakePlugin::load('DebugKit');
+CakePlugin::load('Localized');
+CakePlugin::load('Upload');
+CakePlugin::load('GoogleAPI');
+CakePlugin::load('SocialShare');
+CakePlugin::load('Wysiwyg');
+CakePlugin::load('Brownie', array('bootstrap' => true, 'routes' => true));
