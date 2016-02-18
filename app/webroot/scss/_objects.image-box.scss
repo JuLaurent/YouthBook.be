@@ -1,0 +1,289 @@
+.image-box__information {
+    display: block;
+    width: 100%;
+    position: absolute;
+    color:white;
+    background-color: $darkGreen;
+    opacity: 0.4;
+}
+
+.image-box__date {
+    top: 0;
+}
+
+.image-box__title {
+    bottom: 0;
+}
+
+.image-box__types {
+    position: absolute;
+    left:0;
+    top:0;
+}
+
+.image-box__type {
+    display: inline-block;
+    padding: 0.4em;
+    background-color: $darkGreen;
+    color: white;
+    opacity: 0.9;
+    text-transform: uppercase;
+}
+
+.image-box--highlighted-review {
+    width: $dixSeizieme;
+    height: 350px;
+    float: left;
+    overflow:hidden;
+    position: relative;
+
+    &:hover .image-box__information {
+        opacity: 0.9;
+    }
+}
+
+.image-box--highlighted-articles {
+    width: $dixSeizieme;
+    float: left;
+}
+
+.image-box__highlighted-article {
+    width: $cinqSeizieme;
+    height: 160px;
+    margin: $gutter/4;
+    float: left;
+    overflow:hidden;
+    position: relative;
+
+    &:hover .image-box__information {
+        opacity: 0.9;
+    }
+}
+
+.image-box__cover {
+    width: $deuxSeizieme;
+    height: 200px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+
+    + .image-box__cover {
+        margin-left: $gutter;
+    }
+
+    &:hover .image-box__information {
+        opacity: 0.9;
+    }
+}
+
+.image-box__article {
+    width: $quatreSeizieme;
+    height: 175px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+
+    + .image-box__article {
+        margin-left: $gutter;
+    }
+
+    &:hover .image-box__information {
+        opacity: 0.9;
+    }
+}
+
+.image-box__type--highlighted-review{
+    font-size: 20px;
+}
+
+.image-box__type--highlighted-article {
+    font-size: 14px;
+}
+
+.image-box__information--highlighted-review {
+    padding: $gutter/2;
+    font-size: 20px;
+}
+
+.image-box__information--highlighted-article {
+    padding: $gutter/4;
+    font-size: 16px;
+}
+
+.image-box__information--cover {
+    padding: $gutter/4;
+    font-size: 14px;
+}
+
+.image-box__author--highlighted-review {
+    font-size: 16px;
+}
+
+.image-box__author--highlighted-article {
+    font-size: 14px;
+}
+
+@media screen and (max-width: 1280px) {
+
+    .image-box--highlighted-review {
+        width: $mDixSeizieme;
+        height: 100%;
+    }
+
+    .image-box__image--highlighted-review {
+        height: 100%;
+    }
+
+
+    .image-box--highlighted-articles {
+        width: $mDixSeizieme;
+    }
+
+    .image-box__highlighted-article {
+        width: $mHuitSeizieme;
+        height: 100%;
+        margin: $mGutter/4;
+    }
+
+    .image-box__image--highlighted-article {
+        height: 100%;
+    }
+
+    .image-box__information--highlighted-article {
+        padding: $gutter/4;
+        font-size: 14px;
+    }
+
+    .image-box__author--highlighted-article {
+        font-size: 12px;
+    }
+
+    .image-box__cover {
+        width: $mDeuxSeizieme;
+        height: 100%;
+
+        + .image-box__cover {
+            margin-left: $mGutter;
+        }
+    }
+
+    .image-box__information--cover {
+        font-size: 12px;
+    }
+
+    .image-box__article {
+        width: $mQuatreSeizieme;
+        height: 100%;
+
+        + .image-box__article {
+            margin-left: $mGutter;
+        }
+    }
+}
+
+@media screen and (max-width: 960px) {
+
+    .image-box--highlighted-review {
+        width: $mSeizeSeizieme;
+        float: none;
+    }
+
+
+    .image-box--highlighted-articles {
+        width: $mSeizeSeizieme;
+    }
+
+    .image-box__highlighted-article {
+        width: $mHuitSeizieme + $mGutter / 2;
+        margin: 0;
+    }
+
+    .image-box__information--highlighted-article {
+        padding: $gutter / 4;
+        font-size: 14px;
+    }
+
+    .image-box__author--highlighted-article {
+        font-size: 12px;
+    }
+
+    .image-box__cover {
+        width: 25%;
+
+        + .image-box__cover {
+            margin-left: 0;
+        }
+    }
+
+    .image-box__article {
+        width: $mHuitSeizieme + $mGutter / 2;
+
+        + .image-box__article {
+            margin-left: 0;
+        }
+    }
+
+    .image-box__information--cover {
+        font-size: 14px;
+    }
+
+    .image-box__information {
+        opacity: 0.9;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    .image-box__highlighted-article {
+        width: $mSeizeSeizieme;
+        float: none;
+    }
+
+    .image-box__information--highlighted-article {
+        font-size: 14px;
+    }
+
+    .image-box__author--highlighted-article {
+        font-size: 12px;
+    }
+
+    .image-box__type--highlighted-review{
+        font-size: 16px;
+    }
+    .image-box__information--highlighted-review {
+        font-size: 16px;
+    }
+    .image-box__author--highlighted-review {
+        font-size: 14px;
+    }
+
+    .image-box__information--cover {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .image-box__article {
+        width: $mSeizeSeizieme;
+        float: none;
+    }
+
+    .image-box__cover {
+        width: $mHuitSeizieme + $mGutter / 2;
+    }
+
+    .image-box__information--cover {
+        font-size: 14px;
+    }
+
+    .image-box__type--highlighted-review{
+        font-size: 14px;
+    }
+    .image-box__information--highlighted-review {
+        font-size: 14px;
+    }
+    .image-box__author--highlighted-review {
+        font-size: 12px;
+    }
+}

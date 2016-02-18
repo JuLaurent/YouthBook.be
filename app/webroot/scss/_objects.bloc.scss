@@ -1,0 +1,9 @@
+.bloc {
+    margin-bottom: $gutter;
+}
+
+@media screen and (max-width: 960px) {
+    .bloc--padding {
+        padding: 0 $mGutter;
+    }
+}

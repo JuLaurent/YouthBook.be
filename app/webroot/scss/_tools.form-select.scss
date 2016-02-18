@@ -1,0 +1,9 @@
+@mixin form-select($color1, $color2){
+	select {
+		color:$color1;
+		background-color: $color2;
+		width:100%;
+		border:1px solid $color1;	
+	}
+	
+}

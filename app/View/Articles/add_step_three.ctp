@@ -34,8 +34,7 @@
 
                 <?php echo $this->Form->create('Article', array('enctype' => 'multipart/form-data', 'novalidate' => true));
                     echo $this->Form->input('title', array('label' => 'Titre*', 'class' => 'input-text input-text--article'));
-                    echo $this->Form->input('Article.Book', array('label' => 'Livre(s)*', 'multiple' => true, 'class' => 'form-select form-select--article'));
-                    echo ('<p class=\'form__information\'>Pour sélectionner plusieurs titres, maintenez la touche « ctrl ».</p>');
+                    echo $this->Form->input('Article.Book', array('label' => 'Livre(s)*', 'multiple' => true, 'class' => 'form-select form-select--article', 'data-placeholder' => 'Sélectionnez un ou plusieurs livres'));
                     for($i = 0 ; $i < $this->Session->read('currentSessionData')['Article']['number_of_pages'] ; $i++) {
                         echo $this->Wysiwyg->input('ArticlePage.' . $i . '.content', array('label' => 'Page ' . ($i + 1) . '*', 'class' => 'form-textarea form-textarea--article wysiwyg'));
                         echo $this->Form->input('ArticlePage.' . $i . '.page_number', array('type' => 'hidden', 'value' => $i + 1));

@@ -19,7 +19,7 @@ gulp.task('scss-compile', function() {
 
 gulp.task('compress', function() {
     return gulp.src('./app/webroot/js/production/*.js')
-    //.pipe(uglify())
+    .pipe(uglify())
     .pipe(concat('main.js'))
     .pipe(gulp.dest('./app/webroot/js'));
 });

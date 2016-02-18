@@ -1,0 +1,22 @@
+.about__bloc {
+    width: $dixSeizieme;
+}
+
+@media screen and (max-width: 1280px) {
+    .about__bloc {
+       width: $mDouzeSeizieme;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .about__bloc {
+       width: $mSeizeSeizieme;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .about__bloc {
+        text-align: justify;
+        text-justify: inter-word;
+    }
+}

@@ -1,0 +1,291 @@
+.form {
+    width: $dixSeizieme;
+}
+
+.form--article {
+    width: $seizeSeizieme;
+}
+
+.input, .form__bloc {
+    @include clear-float();
+    margin: 0.5em 0;
+}
+
+.form label, .form__span {
+    display: block;
+    box-sizing: border-box;
+    width: $quatreSeizieme;
+    margin-right: $gutter;
+    padding: 0.5em 0;
+    float: left;
+    text-align: right;
+
+}
+
+.form__image {
+    float: left;
+}
+
+.input-text, .input-password, .input-number, .form-select  {
+
+    box-sizing: border-box;
+    width: $sixSeizieme;
+    padding: 0.5em;
+    border: 0;
+    border-bottom: 1px solid $green;
+    float: left;
+}
+
+.input-text--article, .input-number--article, .form-select--article, .input-checkbox--article  {
+    width: $douzeSeizieme;
+}
+
+.input-text--article {
+  width: $douzeSeizieme;
+}
+
+.input-file  {
+    box-sizing: border-box;
+    width: $sixSeizieme;
+    padding: 0.5em 0;
+    float: left;
+}
+
+.input-file--article  {
+    width: $douzeSeizieme;
+}
+
+.form textarea {
+    box-sizing: border-box;
+    width: $sixSeizieme;
+    padding: 0.5em;
+    height: 8em;
+    border: 0;
+    border-bottom: 1px solid $green;
+    float: left;
+}
+
+.select-date {
+    box-sizing: border-box;
+    width: $deuxSeizieme;
+    padding: 0.5em;
+    border: 0;
+    border-bottom: 1px solid $green;
+    float: left;
+
+    & + .select-date {
+        margin-left: $gutter;
+    }
+}
+
+.form-select[multiple='multiple'] {
+    height: $gutter * 4;
+}
+
+.submit  {
+
+    @include form-button( $darkGreen, white, $lightGreen);
+    width: 100%;
+    margin-top: 1em;
+
+}
+
+.form input[type="submit"]  {
+    margin-left: $quatreSeizieme + $gutter;
+    width: $sixSeizieme;
+}
+
+.form label[for='ArticleType'] {
+  height: 128px;
+}
+
+.checkbox {
+    padding-top:8px;
+    float: left;
+    width: $sixSeizieme;
+}
+
+.checkbox label {
+    display: inline-block;
+    width: auto;
+    padding: 0;
+    text-align: left;
+}
+
+.chosen-container {
+    padding: 0.5em 0;
+}
+
+.form--article .checkbox {
+    width: 100%;
+    padding-left: $quatreSeizieme + $gutter;
+}
+
+.form input[type="checkbox"] + label {
+    float: none;
+    margin: 0 0 0 $gutter / 4;
+}
+
+.form__information {
+    margin-left: $quatreSeizieme + $gutter;
+    color: $green;
+}
+
+@media screen and (max-width: 1280px) {
+    .form {
+        width: $mDouzeSeizieme;
+    }
+
+    .form--article {
+        width: $mSeizeSeizieme;
+    }
+
+    .form--right-part {
+        width: $mSeizeSeizieme;
+    }
+
+    .form label, .form__span {
+        width: $mSeptSeizieme;
+        margin-right: $mGutter;
+    }
+
+    .input-text, .input-password, .input-number, .form-select  {
+        width: $mNeufSeizieme;
+    }
+
+    .input-text--article, .input-number--article, .form-select--article, .input-checkbox--article  {
+        width: $mNeufSeizieme;
+    }
+
+    .input-text--article {
+      width: $mNeufSeizieme;
+    }
+
+    .input-file  {
+        width: $mNeufSeizieme;
+    }
+
+    .input-file--article  {
+        width: $mNeufSeizieme;
+    }
+
+    .form textarea {
+        width: $mNeufSeizieme;
+    }
+
+    .select-date {
+        width: $mTroisSeizieme;
+
+        & + .select-date {
+            margin-left: $mGutter;
+        }
+    }
+
+    .form input[type="submit"]  {
+        margin-left: $mSeptSeizieme + $mGutter;
+        width: $mNeufSeizieme;
+    }
+
+    .checkbox {
+        width: $mNeufSeizieme;
+    }
+
+    .form--article .checkbox {
+        width: 100%;
+        padding-left: $mSeptSeizieme + $mGutter;
+    }
+
+    .form__information {
+        margin-left: $mSeptSeizieme + $mGutter;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .form {
+        width: $mSeizeSeizieme;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .input, .form__bloc {
+        margin: $gutter 0;
+    }
+
+    .form label, .form__span {
+        width: $mSeizeSeizieme;
+        margin-right: 0;
+        float: none;
+        text-align: center;
+    }
+
+    .input-text, .input-password, .input-number, .form-select  {
+        width: $mSeizeSeizieme;
+        float: none;
+    }
+
+    .input-text--article, .input-number--article, .form-select--article, .input-checkbox--article  {
+        width: $mSeizeSeizieme;
+        float: none;
+    }
+
+    .input-text--article {
+      width: $mSeizeSeizieme;
+      float: none;
+    }
+
+    .input-file  {
+        width: $mSeizeSeizieme;
+        float: none;
+    }
+
+    .input-file--article  {
+        width: $mSeizeSeizieme;
+        float: none;
+    }
+
+    .form textarea {
+        width: $mSeizeSeizieme;
+        float: none;
+    }
+
+    .select-date {
+        width: $mQuatreDouzieme;
+
+        & + .select-date {
+            margin-left: $mGutter;
+        }
+    }
+
+    .form input[type="submit"]  {
+        width: $mSeizeSeizieme;
+        float: none;
+        margin-left: 0;
+    }
+
+    .form label[for='ArticleType'] {
+        height: auto;
+    }
+
+    .checkbox {
+        width: $mSeizeSeizieme;
+        float: none;
+    }
+
+    .checkbox label {
+        display: inline;
+        text-align: left;
+    }
+
+    .form--article .checkbox {
+        width: 100%;
+        width: $mSeizeSeizieme;
+        padding-left: 0;
+        float: none;
+    }
+
+    .form__information {
+        width: $mSeizeSeizieme;
+        margin-left: 0;
+        float: none;
+    }
+}

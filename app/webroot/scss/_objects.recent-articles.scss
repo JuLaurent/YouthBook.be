@@ -1,0 +1,110 @@
+.recent-articles {
+    width: $sixSeizieme;
+    margin-left: $gutter;
+    float: left;
+}
+
+.recent-article {
+    display: block;
+    width: 100%;
+    height: 20px;
+    font-size: 14px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.recent-article--sheet {
+    width: 100%;
+    height: auto;
+    font-size: 16px;
+}
+
+.recent-article__date {
+    margin-right: $gutter / 4;
+}
+
+.recent-article__types {
+    margin-right: $gutter / 4;
+}
+
+.recent-article__type {
+    text-transform: uppercase;
+    font-weight: $bold;
+
+    & + .recent-article__type:before {
+        content: '|';
+    }
+}
+
+.recent-article__author {
+    font-size: 12px;
+}
+
+.recent-article__author--sheet {
+    font-size: 14px;
+}
+
+.recent-articles__buttons {
+    margin-top: $gutter;
+}
+
+.recent-articles__button {
+    @include link-button (white, $darkGreen, $lightGreen);
+    display:block;
+    width: 100%;
+
+    & + .recent-articles__button {
+        margin-top: $gutter / 2;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .recent-articles {
+        width: $mSixSeizieme;
+        margin-left: $mGutter;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .recent-articles {
+        width: $mSeizeSeizieme;
+        margin-left: 0;
+        padding: $mGutter;
+    }
+
+    .recent-article {
+        font-size: 16px;
+        height: auto;
+        overflow: visible;
+        text-overflow: clip;
+        white-space: normal;
+    }
+
+    .recent-article__author {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .recent-article__item {
+      margin-bottom: $gutter / 4;
+    }
+
+    .recent-article {
+        font-size: 14px;
+    }
+
+    .recent-article__author {
+        font-size: 12px;
+    }
+
+    .recent-article--sheet {
+        font-size: 14px;
+        margin-top: $gutter / 4;
+    }
+
+    .recent-article__author--sheet {
+        font-size: 12px;
+    }
+}

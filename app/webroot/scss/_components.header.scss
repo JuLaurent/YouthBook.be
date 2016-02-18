@@ -1,0 +1,145 @@
+.header {
+    width: 100%;
+    color: $green;
+    position: relative;
+}
+
+.header__menu {
+    position: absolute;
+    background-color: $darkGreen;
+    width: 50px;
+    height: 50px;
+    box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
+    display: none;
+}
+
+.header__top {
+    width: 100%;
+    background-color: white;
+}
+
+.header__bottom {
+    width: 100%;
+    background-color: $darkGreen;
+    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.75);
+}
+
+.header__container {
+    width: $seizeSeizieme;
+    margin: 0 auto;
+}
+
+.header__logo {
+    width: $sixSeizieme;
+    margin-right: $gutter;
+    padding: 19px 0 18px 0;
+    float: left;
+}
+
+.header__user {
+    @include clear-float();
+    width: $dixSeizieme;
+    height: 110px;
+    padding: 19px 0 18px 0;
+    float: left;
+    text-align: right;
+}
+
+.header__nav {
+    width: $dixSeizieme;
+    float: left;
+    margin-right: $gutter;
+}
+
+.header__search {
+    width: $sixSeizieme;
+    height: 40px;
+    float: left;
+}
+
+@media screen and (max-width: 1280px) {
+    .header {
+        width: 100%;
+    }
+
+    .header__container {
+        width: $mSeizeSeizieme;
+        padding: 0 $gutter;
+    }
+
+    .header__logo {
+        width: $mHuitSeizieme;
+        margin-right: $mGutter;
+        padding: 19px 0 18px 0;
+        float: left;
+    }
+
+    .header__user {
+        width: $mHuitSeizieme;
+        height: 110px;
+        padding: 19px 0 18px 0;
+        float: left;
+    }
+
+    .header__nav {
+        width: $mDixSeizieme;
+        margin-right: $mGutter;
+    }
+
+    .header__search {
+        width: $mSixSeizieme;
+        float: left;
+    }
+}
+
+@media screen and (max-width: 960px) {
+
+    .header__container {
+        width: $mSeizeSeizieme;
+        padding: 0 $mGutter;
+    }
+
+    .bottom__container {
+        padding: 0;
+    }
+
+    .header__menu {
+        display: block;
+    }
+
+    .header__logo {
+        width: $mSeizeSeizieme;
+        text-align: center;
+        margin: 0 auto $gutter;
+        padding: $gutter * 3 0 0;
+        float: none;
+    }
+
+    .header__user {
+        width: $mSeizeSeizieme;
+        height: inherit;
+        float: none;
+        text-align: center;
+    }
+
+    .header__bottom {
+        display: none;
+        width: $mQuatorzeSeizieme;
+        position: absolute;
+        top:0;
+        z-index: 3;
+        overflow: auto;
+    }
+
+    .header__nav {
+        width: $mSeizeSeizieme;
+        margin-right: 0;
+        float: none;
+    }
+
+    .header__search {
+        width: $mSeizeSeizieme;
+        margin-top: $gutter;
+        float: none;
+    }
+}

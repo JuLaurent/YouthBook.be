@@ -1,0 +1,46 @@
+.nav__item-container {
+    display: block;
+    float: left;
+}
+
+.nav__item {
+    box-sizing: border-box;
+    display: block;
+    padding: 0.5em 0.5em;
+    font-size: 20px;
+    font-weight: $light;
+    color: white;
+
+    &:hover {
+        background-color: $lightGreen;
+        color: white;
+    }
+}
+
+.nav__active {
+    background-color: $green;
+}
+
+@media screen and (max-width: 1280px) {
+
+  .nav__item {
+      padding: 0.8em 0.5em;
+      font-size: 16px;
+      font-weight: $normal;
+
+  }
+}
+
+@media screen and (max-width: 960px) {
+
+    .nav__item-container {
+        float: none;
+    }
+
+    .nav__item {
+        font-size: 20px;
+        padding: 1em;
+        font-weight: $light;
+
+    }
+}

@@ -1,0 +1,32 @@
+.buttons {
+    text-align: center;
+    margin-bottom: $gutter;
+}
+
+.button {
+    @include link-button( white, $darkGreen, $lightGreen);
+    display: inline-block;
+    width: $troisSeizieme;
+
+    & + .button {
+        margin-left: $gutter;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .button {
+        display: block;
+        width: $mDouzeSeizieme;
+        margin: 0 auto;
+
+        & + .button {
+            margin: $gutter / 4 auto 0;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .button {
+        width: $mSeizeSeizieme;
+    }
+}

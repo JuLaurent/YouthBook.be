@@ -1,0 +1,30 @@
+.content {
+    box-sizing: border-box;
+    width: 100%;
+    // background-color: #E3E5E1;
+    padding: 1em 0 8em;
+}
+
+.content__container {
+    width: $seizeSeizieme + 2 * $gutter;
+    margin: 0 auto;
+    padding: $gutter;
+    background-color: white;
+}
+
+@media screen and (max-width: 1280px) {
+  .content {
+      padding: 1em 0 10em;
+  }
+
+    .content__container {
+        width: $mSeizeSeizieme;
+        padding: $mGutter;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .content__container {
+        padding: 0;
+    }
+}

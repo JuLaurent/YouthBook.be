@@ -1,0 +1,37 @@
+.left-nav {
+    float: left;
+    width: $quatreSeizieme;
+    margin-right: $gutter;
+}
+
+.left-nav__container {
+    display: block;
+}
+
+.left-nav__item {
+    display: block;
+    background-color: $darkGreen;
+    color: white;
+    font-weight: bold;
+    padding: 1em ;
+
+    &:hover {
+        background-color: $lightGreen;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .left-nav {
+        width: $mCinqSeizieme;
+        margin-right: $mGutter;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .left-nav {
+        width: $mSeizeSeizieme;
+        margin-right: 0;
+        margin-bottom: $gutter;
+        float: none;
+    }
+}

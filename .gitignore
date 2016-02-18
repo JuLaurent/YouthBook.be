@@ -12,7 +12,6 @@
 /node_modules
 /app/Plugin
 /app/Vendor
-/app/webroot/scss
 
 
 # IDE and editor specific files #

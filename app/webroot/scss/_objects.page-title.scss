@@ -1,0 +1,42 @@
+.page-title {
+    margin-bottom: 2em;
+    text-align: center;
+    color: $green;
+    position: relative;
+
+    &:before {
+        content: '';
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid $green;
+        text-align: center;
+        position: absolute;
+        top: 23px;
+        left: 0;
+        z-index: 1;
+    }
+}
+
+.page-title__item {
+    max-width: $douzeSeizieme;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0 1em;
+    background-color: white;
+    font-weight: $light;
+    position: relative;
+    z-index: 2;
+}
+
+@media screen and (max-width: 1280px) {
+    .page-title__item {
+        max-width: $mDouzeSeizieme;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .page-title__item {
+        max-width: $mSeizeSeizieme;
+    }
+}

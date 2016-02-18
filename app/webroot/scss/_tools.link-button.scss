@@ -1,0 +1,51 @@
+@mixin link-button( $color1, $color2, $color3 ){
+    box-sizing: border-box;
+
+	a {
+      box-sizing: border-box;
+      display: inline-block;
+      width: 100%;
+      padding:0.8em;
+      color:$color1;
+	    background-color:$color2;
+	    text-align: center;
+      box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
+
+      &:hover {
+          color: $color1;
+          background-color: $color3;
+          box-shadow: none;
+      }
+	}
+}
+
+@mixin link-circle-button( $color1, $color2, $color3 ){
+    box-sizing: border-box;
+
+  	a, input[type='submit'] {
+        box-sizing: border-box;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        padding:0.2em;
+        color: $color1;
+  	    background-color:$color2;
+  	    text-align: center;
+        border: 1px solid $color2;
+        border-radius: 50%;
+        box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
+
+        &.action__active {
+            background-color: $green;
+            border: 1px solid $green;
+            box-shadow: none;
+        }
+
+        &:hover {
+            color: $color1;
+            background-color: $color3;
+            border-color: $color3;
+            box-shadow: none;
+        }
+  	}
+}

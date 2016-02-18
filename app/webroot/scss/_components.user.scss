@@ -1,0 +1,224 @@
+.user__left {
+    float: left;
+    width: $sixSeizieme;
+    height: 100%;
+    margin-right: $gutter;
+    text-align: right;
+}
+
+.user__right {
+    float: left;
+    width: $quatreSeizieme;
+    text-align: left;
+}
+
+.user__avatar {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 73px;
+    height: 73px;
+    border: 1px solid white;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user__avatar--article {
+    width: 50px;
+    height: 50px;
+}
+
+.user__username {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 13px;
+}
+
+.user__action {
+    @include link-circle-button( white, $darkGreen, $lightGreen );
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+
+    & + .user__action {
+        margin-left: $gutter / 4;
+    }
+
+    & + .user__action--form {
+        margin-left: $gutter / 4;
+    }
+}
+
+.user__action--form {
+    .submit {
+        height: 100%;
+        margin: 0;
+    }
+}
+
+.user__action--collection {
+    margin-right: $gutter;
+}
+
+.user__action--input {
+    font-weight: $bold;
+}
+
+.user__buttons {
+    margin-top: 12px;
+}
+
+.user__button {
+    @include link-button(white, $darkGreen, $lightGreen);
+    width: $troisSeizieme;
+    display: inline-block;
+
+    & + .user__button {
+        margin-left: $gutter;
+    }
+
+}
+
+@media screen and (max-width: 1280px) {
+    .user__left {
+        width: $mQuatreSeizieme;
+        margin-right: $mGutter;
+    }
+
+    .user__right {
+        width: $mDouzeSeizieme;
+    }
+
+    .user__action {
+
+        & + .user__action {
+            margin-left: $mGutter / 2;
+        }
+    }
+
+    .user__button {
+        width: $mSixSeizieme;
+
+        & + .user__button {
+            margin-left: $mGutter;
+        }
+
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .user__left {
+        width: $mTroisSeizieme;
+        margin-right: $mGutter;
+        text-align: left;
+    }
+
+    .user__right {
+        width: $mTreizeSeizieme;
+    }
+
+    .user__avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .user__avatar--article {
+        width: 50px;
+        height: 50px;
+    }
+
+    .user__username {
+        display: block;
+        font-size: 24px;
+        margin-bottom: 13px;
+    }
+
+    .user__action {
+
+        & + .user__action {
+            margin-left: $mGutter / 4;
+        }
+    }
+
+    .user__button {
+        width: $mSixSeizieme;
+
+        & + .user__button {
+            margin-left: $mGutter;
+        }
+
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .user__left {
+        width: $mTroisSeizieme;
+        margin-right: $mGutter;
+    }
+
+    .user__right {
+        width: $mTreizeSeizieme;
+    }
+
+    .user__avatar {
+        width: auto;
+        height: auto;
+    }
+
+    .user__avatar--article {
+        width: 50px;
+        height: 50px;
+    }
+
+    .user__username {
+        font-size: 20px;
+        margin-bottom: $mGutter;
+    }
+
+    .user__action {
+
+        & + .user__action {
+            margin-left: $gutter / 2;
+        }
+    }
+
+    .user__button {
+        width: $mDouzeSeizieme;
+        float: none;
+
+        & + .user__button {
+            margin-left: 0;
+            margin-top:$mGutter;
+        }
+
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .user__left {
+        width: $mSeizeSeizieme;
+        margin-right: $mGutter;
+        text-align: center;
+    }
+
+    .user__right {
+        width: $mSeizeSeizieme;
+        text-align: center;
+    }
+
+    .user__username {
+        font-size: 20px;
+        margin-bottom: $mGutter;
+    }
+
+    .user__action {
+
+        & + .user__action {
+            margin-left: $gutter / 2;
+        }
+    }
+
+    .user__button {
+        width: $mSeizeSeizieme;
+
+    }
+}

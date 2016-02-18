@@ -1,0 +1,17 @@
+.right-part {
+    float: left;
+    width: $douzeSeizieme;
+}
+
+@media screen and (max-width: 1280px) {
+    .right-part {
+        width: $mOnzeSeizieme;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .right-part {
+        width: $mSeizeSeizieme;
+        float: none;
+    }
+}

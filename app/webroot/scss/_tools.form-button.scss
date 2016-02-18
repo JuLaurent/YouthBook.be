@@ -1,0 +1,20 @@
+@mixin form-button($color1, $color2, $color3 ){
+	box-sizing: border-box;
+	display:inline-block;
+	margin:1px;
+
+	input[type="button"], input[type="submit"]{
+		box-sizing:border-box;
+		padding:0.8em;
+    border: none;
+    box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
+    background-color: $color1;
+		color: $color2;
+	}
+
+	input[type="button"]:hover, input[type="submit"]:hover{
+		background-color: $color3;
+		color: $color2;
+		box-shadow: none;
+	}
+}

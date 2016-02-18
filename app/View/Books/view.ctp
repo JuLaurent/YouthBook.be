@@ -21,13 +21,13 @@
                       echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'books', 'action' => 'addToCollection'), 'class' => 'user__action user__action--form'));
                               echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
                               echo $this->Form->input('id', array('type' => 'hidden', 'value' => $book['Book']['id']));
-                      echo $this->Form->end( array('label' => '+', 'title' => 'Ajouter à ma liste de livres', 'class' => 'user__action--input user__action--add'));
+                      echo $this->Form->end( array('label' => '+', 'title' => 'Ajouter à ma collection de livres', 'class' => 'user__action--input user__action--add'));
                   }
                   else {
                       echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'books', 'action' => 'removeFromCollection'), 'class' => 'user__action user__action--form'));
                               echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
                               echo $this->Form->input('id', array('type' => 'hidden', 'value' => $book['Book']['id']));
-                      echo $this->Form->end( array('label' => '-', 'title' => 'Enlever de ma liste de livres', 'class' => 'user__action--input user__action--remove'));
+                      echo $this->Form->end( array('label' => '-', 'title' => 'Enlever de ma collection de livres', 'class' => 'user__action--input user__action--remove'));
                   }
               }
         ?>

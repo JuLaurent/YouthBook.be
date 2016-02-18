@@ -1,0 +1,38 @@
+.article-link__date {
+    margin-right: $gutter / 4;
+}
+
+.article-link__types {
+    margin-right: $gutter / 4;
+}
+
+.article-link__title--user {
+    margin-right: $gutter / 4;
+}
+
+.article-link__user {
+    margin-right: 0;
+}
+
+.article-link__type {
+    text-transform: uppercase;
+    font-weight: $bold;
+
+    & + .article-link__type:before {
+        content: '|';
+    }
+}
+
+.article-link__username {
+    font-size: 14px;
+}
+
+@media screen and (max-width: 700px) {
+    .article-link {
+        font-size: 14px;
+    }
+
+    .article-link__username {
+        font-size: 12px;
+    }
+}
