@@ -4,12 +4,16 @@
 }
 
 .button {
-    @include link-button( white, $darkGreen, $lightGreen);
+    @include link-button( $contrastColor, $darkMainColor, $lightMainColor);
     display: inline-block;
     width: $troisSeizieme;
 
     & + .button {
         margin-left: $gutter;
+    }
+
+    .submit {
+        margin-top: 0;
     }
 }
 

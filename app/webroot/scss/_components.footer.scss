@@ -2,17 +2,17 @@
     width: 100%;
     position: absolute;
     bottom: 0;
-    color: white;
-    background-color: $darkGreen;
+    color: $contrastColor;
+    background-color: $darkMainColor;
     text-align: center;
 }
 
 .footer__content {
-    display:block;
+    display: block;
     padding: $gutter / 2 0;
 }
 
 .footer__link {
-    color: white;
+    color: $contrastColor;
     text-decoration: underline;
 }

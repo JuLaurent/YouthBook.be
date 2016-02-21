@@ -18,6 +18,10 @@ class Book extends AppModel {
         )
     );
 
+    public $hasMany = array(
+        'Request'
+    );
+
     public $hasAndBelongsToMany = array(
         'Article',
         'User'

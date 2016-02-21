@@ -12,7 +12,10 @@ class User extends AppModel {
     );
 
     public $hasAndBelongsToMany = array(
-        'Book'
+        'Book',
+        'Request' => array(
+            'unique' => false
+        )
     );
 
     public $actsAs = array(

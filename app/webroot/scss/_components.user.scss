@@ -17,7 +17,7 @@
     display: inline-block;
     width: 73px;
     height: 73px;
-    border: 1px solid white;
+    border: 1px solid $contrastColor;
     border-radius: 50%;
     overflow: hidden;
 }
@@ -34,7 +34,7 @@
 }
 
 .user__action {
-    @include link-circle-button( white, $darkGreen, $lightGreen );
+    @include link-circle-button( $contrastColor, $darkMainColor, $lightMainColor );
     display: inline-block;
     width: 30px;
     height: 30px;
@@ -68,7 +68,7 @@
 }
 
 .user__button {
-    @include link-button(white, $darkGreen, $lightGreen);
+    @include link-button( $contrastColor, $darkMainColor, $lightMainColor );
     width: $troisSeizieme;
     display: inline-block;
 

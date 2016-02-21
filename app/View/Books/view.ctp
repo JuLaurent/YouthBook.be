@@ -124,7 +124,6 @@
                     <?php endforeach; ?>
                 </ol>
                 <div class='buttons'>
-
                     <span class='button'>
                         <?php echo $this->Html->link(
                                 'Voir toutes les critiques',
@@ -143,8 +142,24 @@
                     </span>
                 </div>
             <?php else: ?>
-                <p class='important'>Pas encore de critique ? Écrivez-là.</p>
+                <p class='important'>Pas encore de critique ?</p>
                 <div class='buttons'>
+                    <?php if( $requestedByUser != true ): ?>
+                        <?php
+                            echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'requests', 'action' => 'add'), 'class' => 'button'));
+                                echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
+                                echo $this->Form->input('book_id', array('type' => 'hidden', 'value' => $book['Book']['id']));
+                            echo $this->Form->end(array('label' => 'Faire une requête', 'class' => 'button--submit'));
+                        ?>
+                    <?php else: ?>
+                        <?php
+                            echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'requests', 'action' => 'delete'), 'class' => 'button'));
+                                echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
+                                echo $this->Form->input('book_id', array('type' => 'hidden', 'value' => $book['Book']['id']));
+                            echo $this->Form->end(array('label' => 'Annuler la requête', 'class' => 'button--submit'));
+                        ?>
+                    <?php endif; ?>
+
                     <span class='button'>
                         <?php echo $this->Html->link(
                                 'Écrire une critique',

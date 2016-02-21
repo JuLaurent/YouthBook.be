@@ -32,7 +32,7 @@
     width: $sixSeizieme;
     padding: 0.5em;
     border: 0;
-    border-bottom: 1px solid $green;
+    border-bottom: 1px solid $mainColor;
     float: left;
 }
 
@@ -61,7 +61,7 @@
     padding: 0.5em;
     height: 8em;
     border: 0;
-    border-bottom: 1px solid $green;
+    border-bottom: 1px solid $mainColor;
     float: left;
 }
 
@@ -70,7 +70,7 @@
     width: $deuxSeizieme;
     padding: 0.5em;
     border: 0;
-    border-bottom: 1px solid $green;
+    border-bottom: 1px solid $mainColor;
     float: left;
 
     & + .select-date {
@@ -82,12 +82,10 @@
     height: $gutter * 4;
 }
 
-.submit  {
-
-    @include form-button( $darkGreen, white, $lightGreen);
+.submit {
+    @include form-button( $darkMainColor, $contrastColor, $lightMainColor);
     width: 100%;
     margin-top: 1em;
-
 }
 
 .form input[type="submit"]  {
@@ -128,7 +126,7 @@
 
 .form__information {
     margin-left: $quatreSeizieme + $gutter;
-    color: $green;
+    color: $mainColor;
 }
 
 @media screen and (max-width: 1280px) {

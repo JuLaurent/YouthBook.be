@@ -1,5 +1,5 @@
 .bloc-title {
-    color: $green;
+    color: $mainColor;
     margin-bottom: $gutter / 4;
 
     h3 {
@@ -15,7 +15,7 @@
         display: block;
         width: $unSeizieme + $gutter;
         margin-bottom: $gutter;
-        border-top: 3px solid $green;
+        border-top: 3px solid $mainColor;
     }
 }
 

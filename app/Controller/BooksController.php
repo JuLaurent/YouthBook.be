@@ -48,6 +48,7 @@ class BooksController extends AppController {
     public function view($slug = null) {
 
         $this->loadModel('Article');
+        $this->loadModel('Request');
         $this->loadModel('Type');
 
         if (!$slug) {
@@ -90,7 +91,22 @@ class BooksController extends AppController {
             throw new NotFoundException(__('Ce livre n’apparait pas dans la base de données.'));
         }
 
-      $this->set(compact('book', 'latestReviews', 'latestArticles', 'inUserCollection'));
+        $request = $this->Request->findByBookId($book['Book']['id']);
+
+        $requestedByUser = false;
+
+        if(!empty($request)) {
+            foreach( $request['User'] as $user ) {
+
+                $requestedByUser = in_array( $this->Session->read('Auth.User.id'), $user );
+
+                if( $requestedByUser == true ) {
+                    break;
+                }
+            }
+        }
+
+      $this->set(compact('book', 'latestReviews', 'latestArticles', 'inUserCollection', 'requestedByUser'));
     }
 
     public function articles($slug1 = null, $slug2 = null) {

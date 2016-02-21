@@ -9,7 +9,7 @@
     width: $seizeSeizieme + 2 * $gutter;
     margin: 0 auto;
     padding: $gutter;
-    background-color: white;
+    background-color: $contrastColor;
 }
 
 @media screen and (max-width: 1280px) {

@@ -9,16 +9,16 @@
 }
 
 .character__link {
-    color: $darkGreen;
+    color: $darkMainColor;
     font-size: 1.2em;
     font-weight: $bold;
 
 
     &:hover {
-        color: $lightGreen;
+        color: $lightMainColor;
     }
 }
 
 .character__active {
-  color: $green;
+  color: $mainColor;
 }

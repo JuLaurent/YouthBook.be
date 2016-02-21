@@ -50,7 +50,7 @@
 }
 
 .recent-articles__button {
-    @include link-button (white, $darkGreen, $lightGreen);
+    @include link-button ( $contrastColor, $darkMainColor, $lightMainColor );
     display:block;
     width: 100%;
 

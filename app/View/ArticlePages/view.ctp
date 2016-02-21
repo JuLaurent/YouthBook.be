@@ -95,7 +95,7 @@
                     <div class='side__action'>
                         <?php echo $this->Form->create('Article', array('url' => array('controller' => 'articles', 'action' => 'delete'), 'onsubmit' => 'return confirm("Êtes-vous sûr de vouloir supprimer ce brouillon ?");', 'class' => 'side__form')); ?>
                             <?php echo $this->Form->input('id', array('type' => 'hidden', 'value' => $articlePage['Article']['id'])); ?>
-                        <?php echo $this->Form->end(__('Supprimer le brouillon')); ?>
+                        <?php echo $this->Form->end(array('label' => 'Supprimer l’article', 'class' => 'button--submit')); ?>
                     </div>
                 </div>
             <?php elseif($articlePage['Article']['draft'] == 0 && ($articlePage['Article']['User']['id'] == $this->Session->read('Auth.User.id') || $this->Session->read('Auth.User.role') == 'administrateur' || $this->Session->read('Auth.User.role') == 'moderateur')): ?>
@@ -111,7 +111,7 @@
                     <div class='side__action'>
                         <?php echo $this->Form->create('Article', array('url' => array('controller' => 'articles', 'action' => 'delete'), 'onsubmit' => 'return confirm("Êtes-vous sûr de vouloir supprimer ce brouillon ?");', 'class' => 'side__form')); ?>
                             <?php echo $this->Form->input('id', array('type' => 'hidden', 'value' => $articlePage['Article']['id'])); ?>
-                        <?php echo $this->Form->end(__('Supprimer l’article')); ?>
+                        <?php echo $this->Form->end(array('label' => 'Supprimer l’article', 'class' => 'button--submit')); ?>
                     </div>
                 </div>
             <?php endif; ?>

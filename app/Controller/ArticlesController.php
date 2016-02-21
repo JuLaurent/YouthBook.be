@@ -254,13 +254,11 @@ class ArticlesController extends AppController {
             throw new MethodNotAllowedException();
         }
 
-
         if ($this->Article->delete($this->request->data['Article']['id'], false)) {
             $this->ArticlePage->deleteAll(array('article_id' => $this->request->data['Article']['id']), false);
             return $this->redirect(array('controller' => 'dynamicPages', 'action' => 'home'));
         }
         else {
-            // $this->Flash->error(__('L’article n’a pa pu être supprimé'));
             return $this->redirect(array('controller' => 'dynamicPages', 'action' => 'home'));
         }
     }

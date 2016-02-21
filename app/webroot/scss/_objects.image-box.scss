@@ -2,9 +2,9 @@
     display: block;
     width: 100%;
     position: absolute;
-    color:white;
-    background-color: $darkGreen;
-    opacity: 0.4;
+    color: $contrastColor;
+    background-color: $darkMainColor;
+    opacity: 0.6;
 }
 
 .image-box__date {
@@ -24,8 +24,8 @@
 .image-box__type {
     display: inline-block;
     padding: 0.4em;
-    background-color: $darkGreen;
-    color: white;
+    background-color: $darkMainColor;
+    color: $contrastColor;
     opacity: 0.9;
     text-transform: uppercase;
 }

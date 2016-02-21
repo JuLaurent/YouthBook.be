@@ -8,19 +8,19 @@
 
 .error-message {
     margin-left: $quatreSeizieme + $gutter;
-    color: $red;
+    color: $errorColor;
 }
 
 .message--warning {
-    color: $orange;
+    color: $warningColor;
 }
 
 .message--bad {
-    color: $red;
+    color: $errorColor;
 }
 
 .message--good {
-    color: $green;
+    color: $mainColor;
 }
 
 @media screen and (max-width: 1280px) {
