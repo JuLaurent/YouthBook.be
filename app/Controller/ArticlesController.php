@@ -83,7 +83,6 @@ class ArticlesController extends AppController {
         $verif3 = in_array ( '2' , $this->Session->read('currentSessionData')['Article']['Type'] );
         $verif4 = in_array ( '4' , $this->Session->read('currentSessionData')['Article']['Type'] );
 
-
         $access = true;
 
         if( !$this->Session->read('currentSessionData')['Article']['Type'] ) {
@@ -163,11 +162,19 @@ class ArticlesController extends AppController {
 
     public function post($id = null) {
 
+        $this->loadModel('Request');
+
         $article = $this->Article->findById($this->request->data['Article']['id']);
+
+        $request = $this->Request->findByBookId($article['Book'][0]['id']);
 
         if ($this->request->is('post') || $this->request->is('put')) {
 
             if ($this->Article->save($this->request->data)) {
+
+                if (!empty($request)) {
+                    $this->Request->save( array( 'Request' => array( 'id' => $request['Request']['id'], 'done' => 1, 'article_id' => $article['Article']['id'] )));
+                }
 
                 $newArticle = $this->Article->findById($article['Article']['id']);
                 return $this->redirect(array('controller' => 'articlePages', 'action' => 'view', 'slug1' => $newArticle['Article']['id'], 'slug2' => $newArticle['Article']['slug'], 'slug3' => '1'));

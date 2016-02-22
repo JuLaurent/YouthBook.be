@@ -39,7 +39,12 @@
                     }
                     else{
                         if($verif1 == true && !($verif3 == true || $verif4 == true)) {
-                            echo $this->Form->input('Article.Book', array('type' => 'select', 'label' => 'Livre*', 'class' => 'form-select form-select--article', 'data-placeholder' => 'Sélectionnez un ou plusieurs livres'));
+                            if( !empty($this->Session->read( 'currentSessionData' )['Article']['Book'] )) {
+                                echo $this->Form->input('Article.Book', array('type' => 'select', 'label' => 'Livre*', 'value' => $this->Session->read( 'currentSessionData' )['Article']['Book'][0], 'class' => 'form-select form-select--article'));
+                            }
+                            else {
+                                echo $this->Form->input('Article.Book', array('type' => 'select', 'label' => 'Livre*', 'class' => 'form-select form-select--article'));
+                            }
                         }
                         else {
                             echo $this->Form->input('title', array('label' => 'Titre*', 'class' => 'input-text input-text--article'));

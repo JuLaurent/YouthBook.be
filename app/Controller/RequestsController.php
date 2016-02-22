@@ -11,7 +11,34 @@ class RequestsController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add', 'login', 'edit', 'view');
+    }
+
+    public function index() {
+
+        //$this->loadModel('Article');
+        //$this->loadModel('Type');
+
+        $notDoneRequests = $this->Request->find(
+            'all',
+            array(
+                'conditions' => array('Request.done' => 0),
+                'order' => array('Request.modified' => 'desc')
+            )
+        );
+
+        $doneRequests = $this->Request->find(
+            'all',
+            array(
+                'recursive' => 2,
+                'conditions' => array('Request.done' => 1),
+                'order' => array('Request.modified' => 'desc')
+            )
+        );
+
+        //$types = $this->Article->Type->find('list');
+
+        $this->set(compact('notDoneRequests', 'doneRequests'));
+
     }
 
     public function add() {

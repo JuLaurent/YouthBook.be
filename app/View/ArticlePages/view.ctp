@@ -72,7 +72,6 @@
                       <?php endfor; ?>
                 </div>
             <?php endif; ?>
-
         </div>
 
         <div class='article__side side'>

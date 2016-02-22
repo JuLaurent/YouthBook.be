@@ -5,6 +5,7 @@ class Request extends AppModel {
     public $name = 'Request';
 
     public $belongsTo = array(
+        'Article',
         'Book'
     );
 

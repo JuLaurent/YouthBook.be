@@ -20,11 +20,11 @@
 
         <div class="form">
             <p class='alert-message'>Les champs marqué d’un astérisque (*) sont obligatoires.</p>
-            <?php echo $this->Form->create('Article', array('novalidate' => true)); ?>
-                <?php
+            <?php
+                echo $this->Form->create('Article', array('novalidate' => true));
                     echo $this->Form->input('Article.Type', array('type' => 'select', 'multiple' => 'checkbox', 'label' => 'Type(s)*'));
-                ?>
-            <?php echo $this->Form->end(__('Continuer'));?>
+                echo $this->Form->end(__('Continuer'));
+            ?>
         </div>
     </div>
 

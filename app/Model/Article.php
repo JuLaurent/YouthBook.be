@@ -4,6 +4,10 @@ class Article extends AppModel {
 
     public $name = 'Article';
 
+    public $hasOne = array(
+        'Request'
+    );
+
     public $hasMany = array(
         'ArticlePage'
     );
