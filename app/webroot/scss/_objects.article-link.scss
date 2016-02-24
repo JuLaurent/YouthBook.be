@@ -16,7 +16,7 @@
 
 .article-link__type {
     text-transform: uppercase;
-    font-weight: $bold;
+    font-family: $bold;
 
     & + .article-link__type:before {
         content: '|';

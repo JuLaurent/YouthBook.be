@@ -60,7 +60,6 @@ class User extends AppModel {
             'same' => array(
                 'rule'          => array('compareFields', 'password', 'confirm_password'),
                 'message'       => 'Le mot de passe n’est pas identique.',
-                'allowEmpty'    => true
             )
         ),
         'mail' => array(

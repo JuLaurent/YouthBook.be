@@ -30,7 +30,7 @@
 
 .recent-article__type {
     text-transform: uppercase;
-    font-weight: $bold;
+    font-family: $bold;
 
     & + .recent-article__type:before {
         content: '|';

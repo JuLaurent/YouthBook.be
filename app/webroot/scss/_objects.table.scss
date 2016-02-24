@@ -1,0 +1,18 @@
+.table {
+    width: 100%;
+}
+
+.table__head {
+    width: $troisSeizieme;
+    font-size: 20px;
+    font-family: $normal;
+    text-align: left;
+}
+
+.table__head--book-title {
+    width: $septSeizieme;
+}
+
+.table__data--button {
+    padding: 1em 0;
+}
