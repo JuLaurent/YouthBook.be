@@ -10,7 +10,7 @@
 
     <div class='page-title'><h2 class='beta page-title__item'>Les requêtes</h2></div>
 
-    <section>
+    <section class='bloc bloc--padding'>
         <div class='bloc-title'><h3>Les requêtes non accomplies</h3></div>
 
         <?php if( !empty($notDoneRequests) ): ?>
@@ -81,7 +81,7 @@
 
     </section>
 
-    <section>
+    <section class='bloc bloc--padding'>
         <div class='bloc-title'><h3>Les requêtes accomplies</h3></div>
 
         <ul>
