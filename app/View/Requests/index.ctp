@@ -23,52 +23,34 @@
                     <th class='table__head'>&nbsp;</th>
                 </tr>
                 <?php foreach( $notDoneRequests as $request ): ?>
-                    <?php if( count($request['User']) == 1 ): ?>
-                        <tr class='table__row table__row--data'>
-                            <td class='table__data'>
-                                <?php echo $this->Html->link(
-                                    $request['Book']['title'],
-                                    array('controller' => 'books', 'action' => 'view', 'slug' => $request['Book']['slug']),
-                                    array('title' => 'Voir la fiche du livre' . $request['Book']['title'], 'class' => 'link'));
-                                ?>
-                            </td>
-                            <td class='table__data'><?php echo $request['User']['0']['username'] ?></td>
-                            <td class='table__data'><?php echo $this->Time->format('d/m/Y', $request['Request']['modified']) ?></td>
-                            <td class='table__data table__data--button'>
-                                <?php
-                                    echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'articles', 'action' => 'addStepOne'), 'class' => 'button button--100'));
-                                        echo $this->Form->input('Article.Type.0', array('type' => 'hidden', 'value' => '1'));
-                                        echo $this->Form->input('Article.Book.0', array('type' => 'hidden', 'value' => $request['Book']['id']));
-                                    echo $this->Form->end(array('label' => 'Accepter la requête', 'class' => 'button--submit'));
-                                ?>
-                            </td>
-                        </tr>
-                    <?php else: ?>
-                        <tr class='table__row table__row--data'>
-                            <td rowspan='<?php echo count($request['User']) ?>' class='table__data'>
-                                <?php echo $this->Html->link(
-                                    $request['Book']['title'],
-                                    array('controller' => 'books', 'action' => 'view', 'slug' => $request['Book']['slug']),
-                                    array('title' => 'Voir la fiche du livre' . $request['Book']['title'], 'class' => 'link'));
-                                ?>
-                            </td>
-                            <td class='table__data'><?php echo $request['User']['0']['username'] ?></td>
-                            <td rowspan='<?php echo count($request['User']) ?>' class='table__data'><?php echo $this->Time->format('d/m/Y', $request['Request']['modified']) ?></td>
-                            <td rowspan='<?php echo count($request['User']) ?>' class='table__data table__data--button'>
-                                <?php
-                                    echo $this->Form->create('Article', array('novalidate' => true, 'url' => array('controller' => 'articles', 'action' => 'addStepOne'), 'class' => 'button button--100'));
-                                        echo $this->Form->input('Article.Type.0', array('type' => 'hidden', 'value' => '1'));
-                                        echo $this->Form->input('Article.Book.0', array('type' => 'hidden', 'value' => $request['Book']['id']));
-                                    echo $this->Form->end(array('label' => 'Accepter la requête', 'class' => 'button--submit'));
-                                ?>
-                            </td>
-                        </tr>
-                        <?php for( $i = 1 ; $i < count($request['User']) ; $i++ ): ?>
-                            <tr>
-                                <td class='table__data'><?php echo $request['User'][$i]['username'] ?></td>
-                            </tr>
-                        <?php endfor; ?>
-                    <?php endif; ?>
+                    <tr class='table__row table__row--data'>
+                        <td class='table__data' data-head='Titre du livre'>
+                            <?php echo $this->Html->link(
+                                $request['Book']['title'],
+                                array('controller' => 'books', 'action' => 'view', 'slug' => $request['Book']['slug']),
+                                array('title' => 'Voir la fiche du livre' . $request['Book']['title'], 'class' => 'link'));
+                            ?>
+                        </td>
+                        <td class='table__data' data-head='Demandé par'>
+                            <?php echo $request['User']['0']['username'] ?>
+                            <?php
+                                if( count($request['User']) > 1 ) {
+                                    for( $i = 1 ; $i < count($request['User']) ; $i++ ) {
+                                        echo ', ' . $request['User'][$i]['username'];
+                                    }
+                                }
+                            ?>
+                        </td>
+                        <td class='table__data' data-head='Dernière requête'><?php echo $this->Time->format('d/m/Y', $request['Request']['modified']) ?></td>
+                        <td class='table__data table__data--button'>
+                            <?php
+                                echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'articles', 'action' => 'addStepOne'), 'class' => 'button button--100'));
+                                    echo $this->Form->input('Article.Type.0', array('type' => 'hidden', 'value' => '1'));
+                                    echo $this->Form->input('Article.Book.0', array('type' => 'hidden', 'value' => $request['Book']['id']));
+                                echo $this->Form->end(array('label' => 'Accepter la requête', 'class' => 'button--submit'));
+                            ?>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
 
             </table>

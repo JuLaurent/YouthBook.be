@@ -1,3 +1,6 @@
+AddDefaultCharset "utf-8"
+AddType application/x-font-woff2 .woff2
+
 <IfModule mod_rewrite.c>
 	RewriteEngine on
 	RewriteRule ^$ app/webroot/ [L]
