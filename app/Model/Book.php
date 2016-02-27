@@ -1,34 +1,26 @@
 <?php
-
 class Book extends AppModel {
-
     public $name = 'Book';
-
     public $actsAs = array(
         'Upload.Upload' => array(
             'cover' => array(
                 'path' => '{ROOT}webroot{DS}img{DS}covers{DS}',
                 'thumbnailMethod' => 'php',
                 'thumbnailSizes' => array(
-                    'smallHR' => '252x400',
-                    'small' => '126x200',
-                    'normalHR' => '564x880',
-                    'normal' => '282x440',
+                    'small' => '252x400',
+                    'normal' => '564x880',
                 ),
                 'deleteOnUpdate' => 'true'
             )
         )
     );
-
     public $hasMany = array(
         'Request'
     );
-
     public $hasAndBelongsToMany = array(
         'Article',
         'User'
     );
-
     public $joinUser = array(
         array(
             'table' => 'yb_books_users',
@@ -47,7 +39,6 @@ class Book extends AppModel {
             )
         )
     );
-
     public $validate = array(
         'isbn' => array(
             'required' => array(
@@ -132,36 +123,26 @@ class Book extends AppModel {
             )
         )
     );
-
     public function beforeSave($options = array()) {
-
         if (isset($this->data[$this->alias]['title'])) {
             $this->data[$this->alias]['slug'] = Inflector::slug($this->data[$this->alias]['title'], '-');
         }
-
         return true;
     }
-
     public function uniqueIsbn($field) {
-
         $field = key($field);
-
         $books = $this->find('all');
         $isOk = true;
-
         foreach($books as $book){
             if($book['Book']['isbn10'] == $this->data[$this->alias][$field] || $book['Book']['isbn13'] == $this->data[$this->alias][$field]) {
                 $isOk = false;
             }
         }
-
         return $isOk;
     }
-
     /* public function similarText($field){
         $books = $this->find('all');
         $isOk = true;
-
         foreach($books as $book){
             similar_text ( $book['Book']['title'] , $field['title'], $percent );
             debug($percent);

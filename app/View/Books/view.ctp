@@ -16,20 +16,21 @@
         <span class='user__action'><?php echo $this->SocialShare->fa('gplus', null,  array( 'title' => 'Partager via Google +')); ?></span>
         <span class='user__action'><?php echo $this->SocialShare->fa('twitter', null,  array( 'title' => 'Partager via Twitter')); ?></span>
 
-        <?php if($this->Session->check('Auth.User.id')) {
-                  if($inUserCollection == false) {
-                      echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'books', 'action' => 'addToCollection'), 'class' => 'user__action user__action--form'));
-                              echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
-                              echo $this->Form->input('id', array('type' => 'hidden', 'value' => $book['Book']['id']));
-                      echo $this->Form->end( array('label' => '+', 'title' => 'Ajouter à ma collection de livres', 'class' => 'user__action--input user__action--add'));
-                  }
-                  else {
-                      echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'books', 'action' => 'removeFromCollection'), 'class' => 'user__action user__action--form'));
-                              echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
-                              echo $this->Form->input('id', array('type' => 'hidden', 'value' => $book['Book']['id']));
-                      echo $this->Form->end( array('label' => '-', 'title' => 'Enlever de ma collection de livres', 'class' => 'user__action--input user__action--remove'));
-                  }
-              }
+        <?php
+            if($this->Session->check('Auth.User.id')) {
+                if($inUserCollection == false) {
+                    echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'books', 'action' => 'addToCollection'), 'class' => 'user__action user__action--form'));
+                            echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
+                            echo $this->Form->input('id', array('type' => 'hidden', 'value' => $book['Book']['id']));
+                    echo $this->Form->end( array('label' => '+', 'title' => 'Ajouter à ma collection de livres', 'class' => 'user__action--input user__action--add'));
+                }
+                else {
+                    echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'books', 'action' => 'removeFromCollection'), 'class' => 'user__action user__action--form'));
+                            echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
+                            echo $this->Form->input('id', array('type' => 'hidden', 'value' => $book['Book']['id']));
+                    echo $this->Form->end( array('label' => '-', 'title' => 'Enlever de ma collection de livres', 'class' => 'user__action--input user__action--remove'));
+                }
+            }
         ?>
     </div>
 
@@ -144,21 +145,20 @@
             <?php else: ?>
                 <p class='important'>Pas encore de critique ?</p>
                 <div class='buttons'>
-                    <?php if( $requestedByUser != true ): ?>
-                        <?php
+                    <?php
+                        if($requestedByUser != true && $this->Session->check('Auth.User.id')) {
                             echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'requests', 'action' => 'add'), 'class' => 'button'));
                                 echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
                                 echo $this->Form->input('book_id', array('type' => 'hidden', 'value' => $book['Book']['id']));
                             echo $this->Form->end(array('label' => 'Faire une requête', 'class' => 'button--submit'));
-                        ?>
-                    <?php else: ?>
-                        <?php
+                        }
+                        else if($this->Session->check('Auth.User.id')) {
                             echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'requests', 'action' => 'delete'), 'class' => 'button'));
                                 echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
                                 echo $this->Form->input('book_id', array('type' => 'hidden', 'value' => $book['Book']['id']));
                             echo $this->Form->end(array('label' => 'Annuler la requête', 'class' => 'button--submit'));
-                        ?>
-                    <?php endif; ?>
+                        }
+                    ?>
 
                     <span class='button'>
                         <?php echo $this->Html->link(

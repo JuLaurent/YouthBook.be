@@ -30,13 +30,14 @@
             <?php if( $articlePage['ArticlePage']['page_number'] == 1 ): ?>
                 <div class='article__user message'>
                     <span class='user__avatar user__avatar--article article__avatar'>
-                        <?php if($articlePage['Article']['User']['avatar']) {
-                            echo $this->Html->image('avatars/' . $articlePage['Article']['User']['id'] . '/small_' . $articlePage['Article']['User']['avatar'], array('alt' => 'Votre avatar', 'srcset' => $this->webroot . 'img/avatars/' . $articlePage['Article']['User']['id'] . '/small_' . $articlePage['Article']['User']['avatar'] . ' 1x, ' . $this->webroot . 'img/avatars/' . $articlePage['Article']['User']['id'] . '/smallHR_' . $articlePage['Article']['User']['avatar'] . ' 2x', 'width' => '48', 'height' => '48'));
-                        }
-                        else {
-                            echo $this->Html->image('avatars/small_noAvatar.png', array('alt' => 'Avatar de substitution', 'srcset' => $this->webroot . 'img/avatars/small_noAvatar.png 1x, ' . $this->webroot . 'img/avatars/smallHR_noAvatar.png 2x', 'width' => '48', 'height' => '48'));
-                        }
-                        ?>
+                          <?php
+                              if($articlePage['Article']['User']['avatar']) {
+                                  echo $this->Html->image('avatars/' . $articlePage['Article']['User']['id'] . '/small_' . $articlePage['Article']['User']['avatar'], array('alt' => 'Votre avatar', 'srcset' => $this->webroot . 'img/avatars/' . $articlePage['Article']['User']['id'] . '/small_' . $articlePage['Article']['User']['avatar'] . ' 1x, ' . $this->webroot . 'img/avatars/' . $articlePage['Article']['User']['id'] . '/smallHR_' . $articlePage['Article']['User']['avatar'] . ' 2x', 'width' => '48', 'height' => '48'));
+                              }
+                              else {
+                                  echo $this->Html->image('avatars/small_noAvatar.png', array('alt' => 'Avatar de substitution', 'srcset' => $this->webroot . 'img/avatars/small_noAvatar.png 1x, ' . $this->webroot . 'img/avatars/smallHR_noAvatar.png 2x', 'width' => '48', 'height' => '48'));
+                              }
+                          ?>
                     </span>
                     <span class='article__username'>
                         Publiée par <?php echo $articlePage['Article']['User']['username'] ?> le <?php echo $this->Time->format('d/m/Y', $articlePage['Article']['created']) ?>
