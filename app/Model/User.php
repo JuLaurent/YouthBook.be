@@ -24,7 +24,10 @@ class User extends AppModel {
                 'path' => '{ROOT}webroot{DS}img{DS}avatars{DS}',
                 'thumbnailMethod' => 'php',
                 'thumbnailSizes' => array(
-                    'thumb' => '100x100',
+                    'thumbHR' => '142x142',
+                    'thumb' => '71x71',
+                    'smallHR' => '96x96',
+                    'small' => '48x48'
                 ),
                 'deleteOnUpdate' => 'true'
             )

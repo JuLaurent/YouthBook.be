@@ -1,12 +1,13 @@
 <?php if($this->Session->check('Auth.User.id')): ?>
     <div class='user__left'>
         <span class='user__avatar'>
-            <?php if($this->Session->read('Auth.User.avatar')) {
-                echo $this->Html->image('avatars/' . $this->Session->read('Auth.User.id') . '/thumb_' . $this->Session->read('Auth.User.avatar'), array('alt' => 'Votre avatar'));
-            }
-            else {
-                echo $this->Html->image('avatars/noAvatar.png', array('alt' => 'Avatar de substitution'));
-            }
+            <?php
+                if($this->Session->read('Auth.User.avatar')) {
+                    echo $this->Html->image('avatars/' . $this->Session->read('Auth.User.id') . '/thumb_' . $this->Session->read('Auth.User.avatar'), array('alt' => 'Votre avatar', 'srcset' => $this->webroot . 'img/avatars/' . $this->Session->read('Auth.User.id') . '/thumb_' . $this->Session->read('Auth.User.avatar') . ' 1x, ' . $this->webroot . 'img/avatars/' . $this->Session->read('Auth.User.id') . '/thumbHR_' . $this->Session->read('Auth.User.avatar') . ' 2x', 'width' => '71', 'height' => '71'));
+                }
+                else {
+                    echo $this->Html->image('avatars/noAvatar.png', array('alt' => 'Avatar de substitution', 'srcset' => $this->webroot . 'img/avatars/thumb_noAvatar.png 1x, ' . $this->webroot . 'img/avatars/thumbHR_noAvatar.png 2x', 'width' => '71', 'height' => '71'));
+                }
             ?>
         </span>
     </div>

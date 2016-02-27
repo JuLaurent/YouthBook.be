@@ -10,8 +10,10 @@ class Book extends AppModel {
                 'path' => '{ROOT}webroot{DS}img{DS}covers{DS}',
                 'thumbnailMethod' => 'php',
                 'thumbnailSizes' => array(
-                    'small' => '252x400',
-                    'normal' => '564x880',
+                    'smallHR' => '252x400',
+                    'small' => '126x200',
+                    'normalHR' => '564x880',
+                    'normal' => '282x440',
                 ),
                 'deleteOnUpdate' => 'true'
             )

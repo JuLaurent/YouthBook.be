@@ -81,9 +81,12 @@ class Article extends AppModel {
                 'path' => '{ROOT}webroot{DS}img{DS}articlesThumbnails{DS}',
                 'thumbnailMethod' => 'php',
                 'thumbnailSizes' => array(
-                    'big' => '1500x700',
+                    'bigHR' => '1500x700',
+                    'big' => '750x350',
                     'normal' => '720x320',
-                    'small' => '564x350'
+                    'normalHR' => '360x160',
+                    'smallHR' => '564x350',
+                    'small' => '282x175'
                 ),
                 'deleteOnUpdate' => 'true'
             )
