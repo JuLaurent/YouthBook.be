@@ -83,8 +83,8 @@ class Article extends AppModel {
                 'thumbnailSizes' => array(
                     'bigHR' => '1500x700',
                     'big' => '750x350',
-                    'normal' => '720x320',
-                    'normalHR' => '360x160',
+                    'normalHR' => '720x320',
+                    'normal' => '360x160',
                     'smallHR' => '564x350',
                     'small' => '282x175'
                 ),

@@ -1,7 +1,7 @@
 <header class="header">
     <span class='header__menu menu'>
         <?php echo $this->Html->link(
-                $this->Html->image('icons/menu.svg', array('alt' => 'Menu déroulant')),
+                $this->Html->image('icons/menu.svg', array('alt' => 'Menu déroulant', 'width' => '50', 'height' => '50')),
                 '#',
                 array('title' => 'Menu déroulant', 'escape' => false, 'class' => 'menu__link')
             );
@@ -11,7 +11,7 @@
         <div class="header__container clearfix">
             <div class="header__logo">
                 <?php echo $this->Html->link(
-                        $this->Html->image('icons/logoV1.1.1.svg', array('alt' => 'Logo YouthBook.be')),
+                        $this->Html->image('icons/logoV1.1.1.svg', array('alt' => 'Logo YouthBook.be', 'width' => '438', 'height' => '73')),
                         '/',
                         array('title' => 'Aller à la page d’accueil', 'escape' => false)
                     );
