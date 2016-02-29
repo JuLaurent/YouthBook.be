@@ -16,17 +16,16 @@
         <section class='image-box image-box--highlighted-review'>
             <div class='bloc-title hidden'><h4>Critique à la une</h3></div>
 
-
             <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $highlightedReview['Article']['id'], 'slug2' => $highlightedReview['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de la critique <?php echo $highlightedReview['Article']['title'] ?>' class='image-box__link'>
                 <div class='image-box__image image-box__image--highlighted-review'>
                     <?php
                         if( $highlightedReview['Article']['thumbnail'] ) {
-                            echo $this->Html->image('articlesThumbnails/' . $highlightedReview['Article']['id'] . '/big_' . $highlightedReview['Article']['thumbnail'], array('alt' => 'Thumbnail de l’article' . $highlightedReview['Article']['title']));
+                            echo $this->Html->image('articlesThumbnails/' . $highlightedReview['Article']['id'] . '/big_' . $highlightedReview['Article']['thumbnail'], array('alt' => 'Thumbnail de l’article' . $highlightedReview['Article']['title'], 'srcset' => $this->webroot . 'img/articlesThumbnails/' . $highlightedReview['Article']['id'] . '/big_' . $highlightedReview['Article']['thumbnail'] . ' 1x, ' . $this->webroot . 'img/articlesThumbnails/' . $highlightedReview['Article']['id'] . '/bigHR_' . $highlightedReview['Article']['thumbnail'] . ' 2x', 'width' => '750', 'height' => '350'));
                         }
                         else {
-                            echo $this->Html->image('articlesThumbnails/noThumbnailBig.png', array('alt' => 'Couverture de substitution'));
-                        } ?>
-
+                            echo $this->Html->image('articlesThumbnails/big_noThumbnail.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/articlesThumbnails/big_noThumbnail.png 1x, ' . $this->webroot . 'img/articlesThumbnails/bigHR_noThumbnail.png 2x', 'width' => '750', 'height' => '350'));
+                        }
+                    ?>
                 </div>
                 <div class='image-box__types'>
                     <?php foreach($highlightedReview['Type'] as $type): ?>
@@ -80,10 +79,10 @@
                       <div class='image-box__image image-box__image--highlighted-article'>
                           <?php
                               if( $article['Article']['thumbnail'] ) {
-                                  echo $this->Html->image('articlesThumbnails/' . $article['Article']['id'] . '/normal_' . $article['Article']['thumbnail'], array('alt' => 'Thumbnail de l’article' . $article['Article']['title']));
+                                  echo $this->Html->image('articlesThumbnails/' . $article['Article']['id'] . '/normal_' . $article['Article']['thumbnail'], array('alt' => 'Thumbnail de l’article' . $article['Article']['title'], 'srcset' => $this->webroot . 'img/articlesThumbnails/' . $article['Article']['id'] . '/normal_' . $article['Article']['thumbnail'] . ' 1x, ' . $this->webroot . 'img/articlesThumbnails/' . $article['Article']['id'] . '/normalHR_' . $article['Article']['thumbnail'] . ' 2x', 'width' => '360', 'height' => '160'));
                               }
                               else {
-                                  echo $this->Html->image('articlesThumbnails/noThumbnailNormal.png', array('alt' => 'Couverture de substitution'));
+                                  echo $this->Html->image('articlesThumbnails/normal_noThumbnail.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/articlesThumbnails/normal_noThumbnail.png 1x, ' . $this->webroot . 'img/articlesThumbnails/normalHR_noThumbnail.png 2x', 'width' => '360', 'height' => '160'));
                               } ?>
 
                       </div>
@@ -161,10 +160,10 @@
                         <div class='image-box__image image-box__image--cover'>
                             <?php
                                 if( $book['Book']['cover'] ) {
-                                    echo $this->Html->image('covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'], array('alt' => 'Couverture du livre ' . $book['Book']['title']));
+                                    echo $this->Html->image('covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'], array('alt' => 'Couverture du livre ' . $book['Book']['title'], 'srcset' => $this->webroot . 'img/covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'] . ' 1x, ' . $this->webroot . 'img/covers/' . $book['Book']['id'] . '/smallHR_' . $book['Book']['cover'] . ' 2x', 'width' => '126', 'height' => '200'));
                                 }
                                 else {
-                                    echo $this->Html->image('covers/noCoverSmall.png', array('alt' => 'Couverture de substitution'));
+                                    echo $this->Html->image('covers/noCoverSmall.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/covers/small_noCover.png 1x, ' . $this->webroot . 'img//covers/smallHR_noCover.png 2x', 'width' => '126', 'height' => '200'));
                                 } ?>
 
                         </div>

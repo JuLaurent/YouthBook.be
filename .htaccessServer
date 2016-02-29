@@ -1,6 +1,12 @@
 AddDefaultCharset "utf-8"
 AddType application/x-font-woff2 .woff2
 
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|xml|gz|svg)$">
+    Header append Vary: Accept-Encoding
+  </FilesMatch>
+</IfModule>
+
 <IfModule mod_rewrite.c>
 	RewriteEngine on
 	RewriteRule ^$ app/webroot/ [L]
@@ -21,5 +27,5 @@ AddType application/x-font-woff2 .woff2
 	ExpiresByType application/x-javascript "access plus 1 month"
 	ExpiresByType application/x-shockwave-flash "access plus 1 month"
 	ExpiresByType image/x-icon "access plus 1 year"
-	ExpiresDefault "access plus 2 days"
+	ExpiresDefault "access plus 1 week"
 </IfModule>

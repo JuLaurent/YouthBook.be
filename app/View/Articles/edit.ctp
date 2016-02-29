@@ -22,7 +22,6 @@
                     if($verif1 == true && ($verif2 == true || $verif3 == true || $verif4 == true) || $verif1 == false) {
                         echo $this->Form->input('title', array('label' => 'Titre*', 'class' => 'input-text input-text--article'));
                         echo $this->Form->input('Book', array('label' => 'Livre(s)*', 'class' => 'form-select form-select--article'));
-                        echo ('<p class=\'form__information\'>Pour sélectionner plusieurs titres, maintenez la touche « ctrl ».</p>');
                     }
                     if( $article['Article']['number_of_pages'] > '1' ) {
                         for($i = 0 ; $i < $article['Article']['number_of_pages'] ; $i++) {

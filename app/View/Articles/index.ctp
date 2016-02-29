@@ -18,10 +18,10 @@
                         <div class='image-box__image'>
                             <?php
                                 if( $article['Article']['thumbnail'] ) {
-                                    echo $this->Html->image('articlesThumbnails/' . $article['Article']['id'] . '/small_' . $article['Article']['thumbnail'], array('alt' => 'Thumbnail de l’article' . $article['Article']['title']));
+                                    echo $this->Html->image('articlesThumbnails/' . $article['Article']['id'] . '/small_' . $article['Article']['thumbnail'], array('alt' => 'Thumbnail de l’article' . $article['Article']['title'], 'srcset' => $this->webroot . 'img/articlesThumbnails/' . $article['Article']['id'] . '/small_' . $article['Article']['thumbnail'] . ' 1x, ' . $this->webroot . 'img/articlesThumbnails/' . $article['Article']['id'] . '/smallHR_' . $article['Article']['thumbnail'] . ' 2x', 'width' => '282', 'height' => '175'));
                                 }
                                 else {
-                                    echo $this->Html->image('articlesThumbnails/noThumbnailSmall.png', array('alt' => 'Couverture de substitution'));
+                                    echo $this->Html->image('articlesThumbnails/noThumbnailSmall.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/articlesThumbnails/small_noThumbnail.png 1x, ' . $this->webroot . 'img/articlesThumbnails/smallHR_noThumbnail.png 2x', 'width' => '282', 'height' => '175'));
                                 } ?>
 
                         </div>
