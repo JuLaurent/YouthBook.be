@@ -161,10 +161,6 @@
         ],
         toolbar: 'insertfile undo redo | styleselect | bold italic | bullist numlist outdent indent | link image',
         style_formats: [
-                {title: 'Headers', items: [
-                    {title: 'Heading 1', block: 'h3'},
-                    {title: 'Heading 2', block: 'h4'},
-                ]},
 
                 {title: 'Inline', items: [
                     {title: 'Bold', inline: 'b', icon: 'bold'},
@@ -180,12 +176,6 @@
                     {title: 'Blockquote', block: 'blockquote'},
                     {title: 'Div', block: 'div'},
                     {title: 'Pre', block: 'pre'}
-                ]},
-                {title: 'Alignment', items: [
-                    {title: 'Left', block: 'div', styles : {textAlign : 'left'}, icon: 'alignleft'},
-                    {title: 'Center', block: 'div', styles : {textAlign : 'center'}, icon: 'aligncenter'},
-                    {title: 'Right', block: 'div', styles : {textAlign : 'right'}, icon: 'alignright'},
-                    {title: 'Justify', block: 'div', styles : {textAlign : 'justify'}, icon: 'alignjustify'}
                 ]}
             ],
         imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
