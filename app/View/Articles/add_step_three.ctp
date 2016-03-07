@@ -32,22 +32,23 @@
                     </div>
                 </div>
 
-                <?php echo $this->Form->create('Article', array('enctype' => 'multipart/form-data', 'novalidate' => true));
-                    echo $this->Form->input('title', array('label' => 'Titre*', 'class' => 'input-text input-text--article'));
-                    echo $this->Form->input('Article.Book', array('label' => 'Livre(s)*', 'multiple' => true, 'class' => 'form-select form-select--article', 'data-placeholder' => 'Sélectionnez un ou plusieurs livres'));
-                    for($i = 0 ; $i < $this->Session->read('currentSessionData')['Article']['number_of_pages'] ; $i++) {
-                        echo $this->Wysiwyg->input('ArticlePage.' . $i . '.content', array('label' => 'Page ' . ($i + 1) . '*', 'class' => 'form-textarea form-textarea--article wysiwyg'));
-                        echo $this->Form->input('ArticlePage.' . $i . '.page_number', array('type' => 'hidden', 'value' => $i + 1));
-                    }
-                    if($verif1 == true) {
-                        echo $this->Form->input('rating', array('label' => 'Appréciation (sur 5)*', 'min' => '0', 'max' => '5', 'placeholder' => '0', 'class' => 'input-number input-number--article'));
-                    }
-                    if( $this->Session->read('Auth.User.role') == 'administrateur' ) {
-                        echo $this->Form->input('highlighted', array('label' => 'Mise en évidence', 'input-number input-number--article'));
-                        echo $this->Form->input('thumbnail', array('type' => 'file', 'label' => 'Thumbnail (au format png, jpeg ou gif)', 'class' => 'input-file input-file--article'));
-                    }
-                    echo $this->Form->input('draft', array('type' => 'hidden', 'value' => 1));
-                    echo $this->Form->input('user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
+                <?php
+                    echo $this->Form->create('Article', array('enctype' => 'multipart/form-data', 'novalidate' => true));
+                        echo $this->Form->input('title', array('label' => 'Titre*', 'class' => 'input-text input-text--article'));
+                        echo $this->Form->input('Article.Book', array('label' => 'Livre(s)*', 'multiple' => true, 'class' => 'form-select form-select--article', 'data-placeholder' => 'Sélectionnez un ou plusieurs livres'));
+                        for($i = 0 ; $i < $this->Session->read('currentSessionData')['Article']['number_of_pages'] ; $i++) {
+                            echo $this->Wysiwyg->input('ArticlePage.' . $i . '.content', array('label' => 'Page ' . ($i + 1) . '*', 'class' => 'form-textarea form-textarea--article wysiwyg'));
+                            echo $this->Form->input('ArticlePage.' . $i . '.page_number', array('type' => 'hidden', 'value' => $i + 1));
+                        }
+                        if($verif1 == true) {
+                            echo $this->Form->input('rating', array('label' => 'Appréciation (sur 5)*', 'min' => '0', 'max' => '5', 'placeholder' => '0', 'class' => 'input-number input-number--article'));
+                        }
+                        if( $this->Session->read('Auth.User.role') == 'administrateur' ) {
+                            echo $this->Form->input('highlighted', array('label' => 'Mise en évidence', 'input-number input-number--article'));
+                            echo $this->Form->input('thumbnail', array('type' => 'file', 'label' => 'Thumbnail (au format png, jpeg ou gif)', 'class' => 'input-file input-file--article'));
+                        }
+                        echo $this->Form->input('draft', array('type' => 'hidden', 'value' => 1));
+                        echo $this->Form->input('user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
                     echo $this->Form->end(__('Ajouter aux brouillons'));
                 ?>
 

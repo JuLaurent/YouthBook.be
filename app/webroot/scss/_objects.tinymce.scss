@@ -3,18 +3,44 @@
     float: left;
 }
 
+.form--comment .mce-tinymce {
+    width: $huitSeizieme - 2px;
+    float: left;
+}
+
 .form--article iframe {
     height: 400px !important;
+}
+
+.form--comment iframe {
+    height: 200px !important;
+}
+
+.form--article #mceu_17 {
+    display: none;
+}
+
+.form--comment #mceu_13 {
+    display: none;
 }
 
 @media screen and (max-width: 1280px) {
     .form--article .mce-tinymce {
         width: $mNeufSeizieme - 0.4%;
     }
+
+    .form--comment .mce-tinymce {
+        width: $mNeufSeizieme - 0.4%;
+    }
 }
 
 @media screen and (max-width: 700px) {
     .form--article .mce-tinymce {
+        width: $mSeizeSeizieme - 0.4%;
+        float: none;
+    }
+
+    .form--comment .mce-tinymce {
         width: $mSeizeSeizieme - 0.4%;
         float: none;
     }

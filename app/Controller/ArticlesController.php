@@ -1,7 +1,7 @@
 <?php
 
 class ArticlesController extends AppController {
-    public $helpers = array('Html', 'Form', 'Wysiwyg.Wysiwyg' => array('editor' => 'Tinymce'));
+    public $helpers = array('Wysiwyg.Wysiwyg' => array('editor' => 'Tinymce'));
 
     public $components = array(
         'Auth'

@@ -94,6 +94,9 @@
 @media screen and (max-width: 960px) {
     .article__content {
         width: $mSeizeSeizieme;
+        margin-bottom: $gutter;
+        padding-bottom: $gutter;
+        border-bottom: 1px solid $mainColor;
         float: none;
     }
 

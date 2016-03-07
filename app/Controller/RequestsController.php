@@ -2,13 +2,6 @@
 
 class RequestsController extends AppController {
 
-    public $components = array(
-        'Auth' => array(
-            'loginRedirect' => '/',
-            'logoutRedirect' => '/'
-        )
-    );
-
     public function beforeFilter() {
         parent::beforeFilter();
     }

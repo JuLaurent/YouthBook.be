@@ -9,7 +9,8 @@ class Article extends AppModel {
     );
 
     public $hasMany = array(
-        'ArticlePage'
+        'ArticlePage',
+        'Comment'
     );
 
     public $belongsTo = array(

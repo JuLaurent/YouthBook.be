@@ -39,6 +39,6 @@ class AppController extends Controller {
             'Brownie.BrwPanel'
         );
 
-    public $helpers = array('SocialShare.SocialShare');
+    public $helpers = array('Html', 'Form', 'SocialShare.SocialShare');
 
 }

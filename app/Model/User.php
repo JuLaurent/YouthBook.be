@@ -8,7 +8,8 @@ class User extends AppModel {
     public $name = 'User';
 
     public $hasMany = array(
-        'Article'
+        'Article',
+        'Comment'
     );
 
     public $hasAndBelongsToMany = array(

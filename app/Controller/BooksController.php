@@ -1,7 +1,6 @@
 <?php
 
 class BooksController extends AppController {
-    public $helpers = array('Html', 'Form');
 
     public $components = array(
         'Auth',
@@ -183,7 +182,8 @@ class BooksController extends AppController {
                 $newBook = $this->Book->findByTitle($this->request->data['Book']['title']);
 
                 return $this->redirect(array('action' => 'view', 'slug' => $newBook['Book']['slug']));
-            } else {
+            }
+            else {
                 $this->Session->setFlash('Le livre n’a pas pu être ajouté. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
             }
         }
@@ -226,10 +226,12 @@ class BooksController extends AppController {
 
                 return $this->redirect(array('action' => 'view', 'slug' => $newBook['Book']['slug']));
 
-            } else {
+            }
+            else {
                 $this->Session->setFlash('La fiche n’a pas pu être été éditée. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
             }
-        } else {
+        }
+        else {
             $this->request->data = $this->Book->read(null, $book['Book']['id']);
         }
     }

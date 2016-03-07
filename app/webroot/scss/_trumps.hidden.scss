@@ -1,3 +1,6 @@
 .hidden {
-	display:none;
+		position: absolute;
+		left: 0;
+		top: -99999px; 
+		overflow: hidden;
 }

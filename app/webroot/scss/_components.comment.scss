@@ -1,0 +1,33 @@
+.comment {
+    width: 100%;
+    margin-bottom: $gutter;
+    padding-bottom: $gutter / 2;
+    border-bottom: 1px solid $mainColor;
+}
+
+.comment__avatar {
+    float: left;
+    margin-right: $gutter;
+}
+
+.comment__info {
+    float: left;
+}
+
+.comment__avatar {
+  float: left;
+}
+
+.comment__username {
+    display: block;
+    font-size: 14px;
+}
+
+.comment__date {
+    display: block;
+    font-size: 14px;
+}
+
+.comment__content {
+    margin-top: $gutter / 4;
+}

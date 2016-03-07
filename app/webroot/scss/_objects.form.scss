@@ -6,6 +6,10 @@
     width: $seizeSeizieme;
 }
 
+.form--comment {
+    width: $douzeSeizieme;
+}
+
 .input, .form__bloc {
     @include clear-float();
     margin: 0.5em 0;
@@ -135,6 +139,10 @@
     }
 
     .form--article {
+        width: $mSeizeSeizieme;
+    }
+
+    .form--comment {
         width: $mSeizeSeizieme;
     }
 
