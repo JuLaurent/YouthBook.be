@@ -41,8 +41,9 @@
 
 	Router::connect('articlePages/view/:slug1/:slug2/:slug3', array('controller' => 'articlePages', 'action' => 'view'));
 
-	Router::connect('articlePages/users/collection', array('controller' => 'users', 'action' => 'index'));
+	Router::connect('users/collection', array('controller' => 'users', 'action' => 'index'));
 
+	Router::connect('comments/index/:slug1/:slug2', array('controller' => 'comments', 'action' => 'index'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

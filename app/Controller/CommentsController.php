@@ -3,6 +3,19 @@
 class CommentsController extends AppController {
     public $helpers = array('Wysiwyg.Wysiwyg' => array('editor' => 'Tinymce'));
 
+    public function index($slug1 = null) {
+
+        $comments = $this->Comment->find(
+            'all',
+            array(
+                'conditions' => array('Comment.article_id' => $slug1),
+                'order' => array('Comment.created' => 'desc')
+            )
+        );
+
+        $this->set(compact('comments'));
+    }
+
     public function add() {
 
         $this->loadModel('Article');

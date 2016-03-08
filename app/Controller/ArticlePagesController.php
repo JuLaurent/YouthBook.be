@@ -28,13 +28,25 @@ class ArticlePagesController extends AppController {
           )
       );
 
-      if($articlePage['ArticlePage']['page_number'] == $articlePage['Article']['number_of_pages']) {
+      if( $articlePage['ArticlePage']['page_number'] == $articlePage['Article']['number_of_pages'] ) {
           $comments = $this->Comment->find(
+              'all',
+              array(
+                  'limit' => 5,
+                  'conditions' => array('Comment.article_id' => $slug1),
+                  'order' => array('Comment.created' => 'desc')
+              )
+          );
+
+          $allComments = $this->Comment->find(
               'all',
               array(
                   'conditions' => array('Comment.article_id' => $slug1)
               )
           );
+
+          $numberOfComments = count( $allComments );
+
       }
       else {
           $comments = array();
@@ -45,7 +57,7 @@ class ArticlePagesController extends AppController {
           throw new NotFoundException(__('Cet article n’apparait pas dans la base de données.'));
       }
 
-      $this->set(compact('articlePage', 'comments'));
+      $this->set(compact('articlePage', 'comments', 'numberOfComments'));
 
     }
 
