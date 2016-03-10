@@ -89,7 +89,7 @@
                         <dd class='sheet__description'>Inconnu</dd>
                     <?php endif; ?>
                 </dl>
-                <?php if($book['Book']['creator_id'] == $this->Session->read('Auth.User.id') || $this->Session->read('Auth.User.role') == 'administrateur' || $this->Session->read('Auth.User.role') == 'modérateur'): ?>
+                <?php if( $book['Book']['creator_id'] == $this->Session->read('Auth.User.id') || $this->Session->read('Auth.User.role') == 'administrateur' || $this->Session->read('Auth.User.role') == 'modérateur' ): ?>
                     <div class='buttons'>
                         <span class='button'>
                             <?php echo $this->Html->link(

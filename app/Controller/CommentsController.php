@@ -39,35 +39,28 @@ class CommentsController extends AppController {
         }
     }
 
-    /*public function delete() {
+    public function delete() {
+        $comment = $this->Comment->findById($this->request->data['Comment']['id']);
 
-        $this->loadModel('Book');
-
-        if ($this->request->is('get')) {
-            throw new MethodNotAllowedException();
+        if (!$comment) {
+            throw new NotFoundException(__('Ce commentaire n’existe pas.'));
         }
 
-        $request = $this->Request->findByBookId($this->request->data['Request']['book_id']);
+        $this->Comment->id = $comment['Comment']['id'];
 
-        $book = $this->Book->findById($this->request->data['Request']['book_id']);
+        if ($this->request->is('post') || $this->request->is('put')) {
 
-        if($this->request->is('post')) {
-            if( count($request['User']) > 1 ) {
-                if ($this->Request->query('DELETE from yb_requests_users WHERE request_id = "' . $request['Request']['id'] . '"AND user_id = "' . $this->request->data['User']['id'] . '"')) {
-                    return $this->redirect(array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']));
-                }
-                else {
-                    return $this->redirect(array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']));
-                }
+            if ($this->Comment->save($this->request->data)) {
+
+                return $this->redirect($this->referer());
+
             }
             else {
-                if ($this->Request->delete($request['Request']['id'], false)) {
-                    return $this->redirect(array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']));
-                }
-                else {
-                    return $this->redirect(array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']));
-                }
+                $this->Session->setFlash('Le commentaire n’a pas pu été supprimé. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
             }
         }
-    }*/
+        else {
+            $this->request->data = $this->Comment->read(null, $comment['Comment']['id']);
+        }
+    }
 }

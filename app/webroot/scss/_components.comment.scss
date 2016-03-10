@@ -3,6 +3,17 @@
     margin-bottom: $gutter;
     padding-bottom: $gutter / 2;
     border-bottom: 1px solid $mainColor;
+    position: relative;
+}
+
+.comment__form {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.comment__delete {
+   transform: rotate(45deg);
 }
 
 .comment__avatar {

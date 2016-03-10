@@ -12,6 +12,7 @@
 /node_modules
 /app/Plugin
 /app/Vendor
+/app/webroot/css
 
 
 # IDE and editor specific files #
