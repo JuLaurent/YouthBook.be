@@ -84,6 +84,18 @@
                     <div class='comments'>
                         <? foreach( $comments as $comment ): ?>
                             <div class='comment'>
+                                <div class='comment__actions'>
+
+                                    <?php
+                                        if( ( ( $comment['Comment']['user_id'] == $this->Session->read('Auth.User.id') && ( $this->Session->read('Auth.User.role') == 'administrateur' || $this->Session->read('Auth.User.role') == 'modérateur' ) ) || ( $comment['Comment']['user_id'] == $this->Session->read('Auth.User.id') || $this->Session->read('Auth.User.role') == 'administrateur' || $this->Session->read('Auth.User.role') == 'modérateur' ) ) && $comment['Comment']['deleted'] == 0 ) {
+                                            echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'delete'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form'));
+                                                echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id']));
+                                                echo $this->Form->input('content', array('type' => 'hidden', 'value' => '<p class=\'message message--bad\'>Ce commentaire a été supprimé</p>'));
+                                                echo $this->Form->input('deleted', array('type' => 'hidden', 'value' => true));
+                                            echo $this->Form->end( array( 'label' => 'Supprimer ce commentaire', 'title' => 'Supprimer ce commentaire', 'class' => 'user__action--input comment__delete'));
+                                        }
+                                    ?>
+                                </div>
                                 <div class='clearfix'>
                                     <span class='user__avatar user__avatar--article comment__avatar'>
                                         <?php

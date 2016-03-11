@@ -6,14 +6,18 @@
     position: relative;
 }
 
-.comment__form {
+.comment__actions {
     position: absolute;
     top: 0;
     right: 0;
 }
 
 .comment__delete {
-   transform: rotate(45deg);
+    background-image: url("../img/icons/delete.svg");
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -999999px;
 }
 
 .comment__avatar {
