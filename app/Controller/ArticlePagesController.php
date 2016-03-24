@@ -33,8 +33,8 @@ class ArticlePagesController extends AppController {
               'all',
               array(
                   'limit' => 5,
-                  'conditions' => array('Comment.article_id' => $slug1),
-                  'order' => array('Comment.created' => 'desc')
+                  'conditions' => array('Comment.article_id' => $slug1, 'Comment.deleted' => '0'),
+                  'order' => array('Comment.number_of_likes' => 'desc')
               )
           );
 

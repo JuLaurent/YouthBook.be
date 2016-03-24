@@ -23,7 +23,11 @@
     padding: 0.5em 0;
     float: left;
     text-align: right;
+}
 
+.form--comment label {
+    width: $deuxSeizieme;
+    text-align: left;
 }
 
 .form__image {
@@ -153,6 +157,10 @@
     .form label, .form__span {
         width: $mSeptSeizieme;
         margin-right: $mGutter;
+    }
+
+    .form--comment label, .form__span {
+        width: $mTroisSeizieme;
     }
 
     .input-text, .input-password, .input-number, .form-select  {

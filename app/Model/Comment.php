@@ -8,4 +8,8 @@ class Comment extends AppModel {
         'Article',
         'User'
     );
+
+    public $hasMany = array(
+        'Like'
+    );
 }

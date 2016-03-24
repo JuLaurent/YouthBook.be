@@ -15,6 +15,35 @@
                     <? foreach( $comments as $comment ): ?>
                         <div class='comment'>
                             <div class='comment__actions'>
+                                <?php if( $comment['Comment']['deleted'] == 0 ): ?>
+                                    <span><?php echo $comment['Comment']['number_of_likes'] ?></span>
+                                    <?php
+                                        $likedByUser = false;
+                                        foreach( $comment['Like'] as $like ) {
+                                            $likedByUser = in_array( $this->Session->read('Auth.User.id'), $like );
+
+                                            if( $likedByUser = in_array( $this->Session->read('Auth.User.id'), $like ) == true ) {
+                                                break;
+                                            }
+                                        }
+                                        if( $likedByUser == true ) {
+                                            echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'dislike'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form'));
+                                                echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id']));
+                                                echo $this->Form->input('number_of_likes', array('type' => 'hidden', 'value' => $comment['Comment']['number_of_likes'] - 1));
+                                                echo $this->Form->input('Like.0.comment_id', array('type' => 'hidden', 'value' => $comment['Comment']['id']));
+                                                echo $this->Form->input('Like.0.user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
+                                            echo $this->Form->end( array( 'label' => 'Ne plus aimer ce commentaire', 'title' => 'Ne plus aimer ce commentaire', 'class' => 'user__action--input comment__icon comment__dislike'));
+                                        }
+                                        else {
+                                            echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'like'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form'));
+                                                echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id']));
+                                                echo $this->Form->input('number_of_likes', array('type' => 'hidden', 'value' => $comment['Comment']['number_of_likes'] + 1));
+                                                echo $this->Form->input('Like.0.comment_id', array('type' => 'hidden', 'value' => $comment['Comment']['id']));
+                                                echo $this->Form->input('Like.0.user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
+                                            echo $this->Form->end( array( 'label' => 'Aimer ce commentaire', 'title' => 'Aimer ce commentaire', 'class' => 'user__action--input comment__icon comment__like'));
+                                        }
+                                    ?>
+                                <?php endif; ?>
                                 <?php
                                     if( ( ( $comment['Comment']['user_id'] == $this->Session->read('Auth.User.id') && ( $this->Session->read('Auth.User.role') == 'administrateur' || $this->Session->read('Auth.User.role') == 'modérateur' ) ) || ( $comment['Comment']['user_id'] == $this->Session->read('Auth.User.id') || $this->Session->read('Auth.User.role') == 'administrateur' || $this->Session->read('Auth.User.role') == 'modérateur' ) ) && $comment['Comment']['deleted'] == 0 ) {
                                         echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'delete'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form'));

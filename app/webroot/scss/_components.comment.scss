@@ -7,17 +7,30 @@
 }
 
 .comment__actions {
+    width: $quatreSeizieme;
     position: absolute;
     top: 0;
     right: 0;
+    text-align: right;
 }
 
-.comment__delete {
-    background-image: url("../img/icons/delete.svg");
+.comment__icon {
     background-size: 15px;
     background-repeat: no-repeat;
     background-position: center;
     text-indent: -999999px;
+}
+
+.comment__delete {
+    background-image: url("../img/icons/delete.svg");
+}
+
+.comment__like {
+    background-image: url("../img/icons/like.svg");
+}
+
+.comment__dislike {
+    background-image: url("../img/icons/dislike.svg");
 }
 
 .comment__avatar {
@@ -45,4 +58,13 @@
 
 .comment__content {
     margin-top: $gutter / 4;
+}
+
+@media screen and (max-width: 480px) {
+    .comment__actions {
+        width: $mSeizeSeizieme;
+        margin: $gutter / 2 0;
+        position: relative;
+        text-align: center;
+    }
 }
