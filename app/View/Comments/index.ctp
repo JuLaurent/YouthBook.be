@@ -16,11 +16,13 @@
                         <div class='comment'>
                             <div class='comment__actions'>
                                 <?php if( $comment['Comment']['deleted'] == 0 ): ?>
-                                    <span><?php echo $comment['Comment']['number_of_likes'] ?></span>
+                                    <span class='comment__number-of-likes'>
+                                        <span><?php echo $comment['Comment']['number_of_likes'] ?></span>
+                                        <span class='comment__like-icon'><?php echo $this->Html->image('icons/number-of-likes.svg', array('alt' => 'Avatar de substitution', 'width' => '25', 'height' => '25')); ?></span>
+                                    </span>
                                     <?php
                                         $likedByUser = false;
                                         foreach( $comment['Like'] as $like ) {
-                                            $likedByUser = in_array( $this->Session->read('Auth.User.id'), $like );
 
                                             if( $likedByUser = in_array( $this->Session->read('Auth.User.id'), $like ) == true ) {
                                                 break;

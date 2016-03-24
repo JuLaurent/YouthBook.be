@@ -102,7 +102,10 @@
                                 </div>
                                 <div class='comment__actions'>
                                     <?php if( $comment['Comment']['deleted'] == 0 ): ?>
-                                        <span><?php echo $comment['Comment']['number_of_likes'] ?></span>
+                                        <span class='comment__number-of-likes'>
+                                            <span><?php echo $comment['Comment']['number_of_likes'] ?></span>
+                                            <span class='comment__like-icon'><?php echo $this->Html->image('icons/number-of-likes.svg', array('alt' => 'Avatar de substitution', 'width' => '25', 'height' => '25')); ?></span>
+                                        </span>
                                         <?php
                                             $likedByUser = false;
                                             foreach( $comment['Like'] as $like ) {
@@ -112,7 +115,7 @@
                                                     break;
                                                 }
                                             }
-                                            if( $likedByUser == true ) {
+                                            if( $likedByUser == true && $this->Session->check('Auth.User.id') ) {
                                                 echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'dislike'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form'));
                                                     echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id']));
                                                     echo $this->Form->input('number_of_likes', array('type' => 'hidden', 'value' => $comment['Comment']['number_of_likes'] - 1));
@@ -120,7 +123,7 @@
                                                     echo $this->Form->input('Like.0.user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
                                                 echo $this->Form->end( array( 'label' => 'Ne plus aimer ce commentaire', 'title' => 'Ne plus aimer ce commentaire', 'class' => 'user__action--input comment__icon comment__dislike'));
                                             }
-                                            else {
+                                            elseif( $this->Session->check('Auth.User.id') ) {
                                                 echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'like'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form'));
                                                     echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id']));
                                                     echo $this->Form->input('number_of_likes', array('type' => 'hidden', 'value' => $comment['Comment']['number_of_likes'] + 1));

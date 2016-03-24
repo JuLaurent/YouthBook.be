@@ -14,6 +14,15 @@
     text-align: right;
 }
 
+.comment__number-of-likes {
+    color: $mainColor;
+}
+
+.comment__like-icon {
+    display: inline-block;
+    width: $gutter / 2;
+}
+
 .comment__icon {
     background-size: 15px;
     background-repeat: no-repeat;
