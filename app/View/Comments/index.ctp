@@ -52,7 +52,7 @@
                                             echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id']));
                                             echo $this->Form->input('content', array('type' => 'hidden', 'value' => '<p class=\'message message--bad\'>Ce commentaire a été supprimé</p>'));
                                             echo $this->Form->input('deleted', array('type' => 'hidden', 'value' => true));
-                                        echo $this->Form->end( array( 'label' => 'Supprimer ce commentaire', 'title' => 'Supprimer ce commentaire', 'class' => 'user__action--input comment__delete'));
+                                        echo $this->Form->end( array( 'label' => 'Supprimer ce commentaire', 'title' => 'Supprimer ce commentaire', 'class' => 'user__action--input comment__icon comment__delete'));
                                     }
                                 ?>
                             </div>
