@@ -11,7 +11,7 @@
     <div class="page-title"><h2 class='beta page-title__item'>Ajouter un article - étape 1</h2></div>
 
     <div class='bloc bloc--padding'>
-        <?php echo $this->Session->flash(); ?>
+        <?php echo $this->Flash->render(); ?>
 
         <div class='alert-message message--warning'>
             <p>Attention, assurez-vous que le ou les livres dont l’article parle sont répertoriés sur le site.</p>

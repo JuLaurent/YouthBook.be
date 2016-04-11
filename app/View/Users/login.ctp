@@ -17,7 +17,7 @@
 
         <?php else: ?>
 
-            <?php echo $this->Session->flash(); ?>
+            <?php echo $this->Flash->render(); ?>
 
             <div class="form bloc">
 

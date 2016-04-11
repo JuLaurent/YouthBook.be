@@ -13,7 +13,7 @@
 
     <div class='bloc bloc--padding'>
 
-        <?php echo $this->Session->flash(); ?>
+        <?php echo $this->Flash->render(); ?>
 
         <div class="form form--right-part">
 

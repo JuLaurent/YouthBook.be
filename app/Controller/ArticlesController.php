@@ -62,7 +62,7 @@ class ArticlesController extends AppController {
                 return $this->redirect(array('action' => 'addStepTwo'));
             }
             else {
-                $this->Session->setFlash('Vous n’avez sélectionné de type. Veuillez en sélectionner au moins un SVP', 'default', array( 'class' => 'message message--bad' ));
+                $this->Flash->error('Vous n’avez sélectionné de type. Veuillez en sélectionner au moins un SVP');
             }
         }
     }
@@ -108,7 +108,7 @@ class ArticlesController extends AppController {
                     return $this->redirect(array('action' => 'addStepThree'));
                 }
                 else {
-                    $this->Session->setFlash('Vous n’avez pas entré un nombre de pages. Veuillez en entrer un SVP', 'default', array( 'class' => 'message message--bad' ));
+                    $this->Flash->error('Vous n’avez pas entré un nombre de pages. Veuillez en entrer un SVP', 'default', array( 'class' => 'message message--bad' ));
                 }
             }
             else {
@@ -117,7 +117,7 @@ class ArticlesController extends AppController {
                     return $this->redirect(array('controller' => 'users', 'action' => 'drafts'));
                 }
                 else {
-                    $this->Session->setFlash('L’article n’a pas pu être ajouté. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
+                    $this->Flash->error('L’article n’a pas pu être ajouté. Veuillez réessayer SVP.');
                 }
             }
         }
@@ -155,7 +155,7 @@ class ArticlesController extends AppController {
                 $this->Session->delete('currentSessionData');
                 return $this->redirect(array('controller' => 'users', 'action' => 'drafts'));
             } else {
-                $this->Session->setFlash('L’article n’a pas pu être ajouté. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
+                $this->Flash->error('L’article n’a pas pu être ajouté. Veuillez réessayer SVP.');
             }
         }
     }
@@ -246,7 +246,7 @@ class ArticlesController extends AppController {
                 return $this->redirect(array('controller' => 'articlePages', 'action' => 'view', 'slug1' => $newArticle['Article']['id'], 'slug2' => $newArticle['Article']['slug'], 'slug3' => '1'));
 
             } else {
-                $this->Session->setFlash('L’article n’a pas pu être été édité. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
+                $this->Flash->error('L’article n’a pas pu être été édité. Veuillez réessayer SVP.');
             }
         } else {
             $this->request->data = $this->Article->read(null, $article['Article']['id']);

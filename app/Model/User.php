@@ -10,11 +10,13 @@ class User extends AppModel {
     public $hasMany = array(
         'Article',
         'Comment',
-        'Like'
+        'Like',
+        'Message'
     );
 
     public $hasAndBelongsToMany = array(
         'Book',
+        'Conversation',
         'Request' => array(
             'unique' => false
         )

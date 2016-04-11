@@ -35,10 +35,11 @@ class AppController extends Controller {
     public $components =
         array(
             'DebugKit.Toolbar',
+            'Flash',
             'Session',
             'Brownie.BrwPanel'
         );
 
-    public $helpers = array('Html', 'Form', 'SocialShare.SocialShare');
+    public $helpers = array('Html', 'Flash', 'Form', 'SocialShare.SocialShare');
 
 }

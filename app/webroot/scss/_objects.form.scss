@@ -101,6 +101,10 @@
     width: $sixSeizieme;
 }
 
+.form--comment input[type="submit"]  {
+    margin-left: $deuxSeizieme + $gutter;
+}
+
 .form label[for='ArticleType'] {
   height: 128px;
 }
@@ -198,6 +202,10 @@
     .form input[type="submit"]  {
         margin-left: $mSeptSeizieme + $mGutter;
         width: $mNeufSeizieme;
+    }
+
+    .form--comment input[type="submit"]  {
+        margin-left: $mTroisSeizieme + $mGutter;
     }
 
     .checkbox {

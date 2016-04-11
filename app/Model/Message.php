@@ -1,23 +1,19 @@
 <?php
 
-class Comment extends AppModel {
+class Message extends AppModel {
 
-    public $name = 'Comment';
+    public $name = 'Message';
 
     public $belongsTo = array(
-        'Article',
+        'Conversation',
         'User'
-    );
-
-    public $hasMany = array(
-        'Like'
     );
 
     public $validate = array(
         'content' => array(
             'required' => array(
                 'rule'          => array('notBlank'),
-                'message'       => 'Un commentaire est requis.'
+                'message'       => 'Un message est requis.'
             )
         )
     );

@@ -31,7 +31,7 @@
             </span>
         </div>
 
-        <?php echo $this->Session->flash(); ?>
+        <?php echo $this->Flash->render(); ?>
 
         <div class="form">
             <p class='alert-message'>Les champs marqué d’un astérisque (*) sont obligatoires.</p>

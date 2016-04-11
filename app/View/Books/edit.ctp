@@ -15,7 +15,7 @@
 
         <?php if($this->Session->read('Auth.User.id') == $book['Book']['creator_id'] || $this->Session->read('Auth.User.role') == 'administrateur' || $this->Session->read('Auth.User.role') == 'modérateur'): ?>
 
-            <?php echo $this->Session->flash(); ?>
+            <?php echo $this->Flash->render(); ?>
 
             <div class="form">
 

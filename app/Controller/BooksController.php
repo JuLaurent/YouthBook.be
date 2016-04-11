@@ -164,11 +164,11 @@ class BooksController extends AppController {
                     return $this->redirect(array('action' => 'addWithoutIsbn'));
                 }
                 else {
-                    $this->Session->setFlash('Aucun livre ne correspond à cet ISBN. Veuillez corriger l’erreur SVP.', 'default', array( 'class' => 'message message--bad' ));
+                    $this->Flash->error('Aucun livre ne correspond à cet ISBN. Veuillez corriger l’erreur SVP.');
                 }
             }
             else {
-                $this->Session->setFlash('Il y a un problème avec l’ISBN entré. Veuillez corriger l’erreur SVP.', 'default', array( 'class' => 'message message--bad' ));
+                $this->Flash->error('Il y a un problème avec l’ISBN entré. Veuillez corriger l’erreur SVP.');
             }
         }
     }
@@ -184,7 +184,7 @@ class BooksController extends AppController {
                 return $this->redirect(array('action' => 'view', 'slug' => $newBook['Book']['slug']));
             }
             else {
-                $this->Session->setFlash('Le livre n’a pas pu être ajouté. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
+                $this->Flash->error('Le livre n’a pas pu être ajouté. Veuillez réessayer SVP.');
             }
         }
     }
@@ -228,7 +228,7 @@ class BooksController extends AppController {
 
             }
             else {
-                $this->Session->setFlash('La fiche n’a pas pu être été éditée. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
+                $this->Flash->error('La fiche n’a pas pu être été éditée. Veuillez réessayer SVP.');
             }
         }
         else {

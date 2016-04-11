@@ -3,7 +3,11 @@
 class CommentsController extends AppController {
     public $helpers = array('Wysiwyg.Wysiwyg' => array('editor' => 'Tinymce'));
 
-    public function index($slug1 = null) {
+    public function index($slug1 = null, $slug2 = null) {
+
+        if(!$slug1 && !$slug2) {
+            throw new NotFoundException(__('Cette page n’existe pas.'));
+        }
 
         $comments = $this->Comment->find(
             'all',
@@ -13,19 +17,14 @@ class CommentsController extends AppController {
             )
         );
 
+        if(!$comments) {
+            throw new NotFoundException(__('Cette page n’existe pas.'));
+        }
+
         $this->set(compact('comments'));
     }
 
     public function add() {
-
-        /* $this->loadModel('Article');
-
-        $article = $this->Article->find(
-            'first',
-            array(
-                'conditions' => array('Article.id' => $this->request->data['Comment']['article_id']),
-            )
-        ); */
 
         if ($this->request->is('post')) {
             $this->Comment->create();
@@ -34,7 +33,8 @@ class CommentsController extends AppController {
                 return $this->redirect($this->referer());
             }
             else {
-                $this->Session->setFlash('Le commentaire n’a pas pu être publié. Veuillez réessayer SVP', 'default', array( 'class' => 'message message--bad' ));
+                $this->Flash->error('Le commentaire n’a pas pu être publié. Veuillez réessayer SVP');
+                // return $this->redirect($this->referer());
             }
         }
     }
@@ -56,7 +56,7 @@ class CommentsController extends AppController {
 
             }
             else {
-                $this->Session->setFlash('Le commentaire n’a pas pu été supprimé. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
+                $this->Flash->error('Le commentaire n’a pas pu été supprimé. Veuillez réessayer SVP.');
             }
         }
         else {
@@ -82,7 +82,7 @@ class CommentsController extends AppController {
 
             }
             else {
-                $this->Session->setFlash('Le like n’a pas pu être ajouté. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
+                $this->Flash->error('Le like n’a pas pu être ajouté. Veuillez réessayer SVP.');
             }
         }
         else {
@@ -112,7 +112,7 @@ class CommentsController extends AppController {
 
             }
             else {
-                $this->Session->setFlash('Le like n’a pas pu être ajouté. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
+                $this->Flash->error('Le like n’a pas pu être ajouté. Veuillez réessayer SVP.');
             }
         }
         else {

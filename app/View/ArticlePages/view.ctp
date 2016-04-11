@@ -173,9 +173,9 @@
                     <div class="form form--comment">
                         <?php
                             echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'add'), 'novalidate' => true));
+                                echo $this->Wysiwyg->input('Comment.content', array('label' => 'Commentaire*', 'class' => 'form-textarea form-textarea--article wysi2'));
                                 echo $this->Form->input('article_id', array('type' => 'hidden', 'value' => $articlePage['Article']['id']));
                                 echo $this->Form->input('user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
-                                echo $this->Wysiwyg->input('Comment.content', array('label' => 'Commentaire*', 'class' => 'form-textarea form-textarea--article wysi2'));
                             echo $this->Form->end(__('Publier le commentaire'));
                         ?>
                     </div>

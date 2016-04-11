@@ -21,7 +21,7 @@ class UsersController extends AppController {
             if ($this->Auth->login()) {
                 return $this->redirect($this->Auth->redirectUrl());
             } else {
-                $this->Session->setFlash('Pseudo ou mot de passe invalide. Veuillez réessayer SVP', 'default', array( 'class' => 'message message--bad' ));
+                $this->Flash->error('Pseudo ou mot de passe invalide. Veuillez réessayer SVP');
             }
         }
     }
@@ -145,7 +145,7 @@ class UsersController extends AppController {
                     return $this->redirect($this->Auth->redirectUrl());
                 }
             } else {
-                $this->Session->setFlash('Votre compte n’a pas pu être créé. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
+                $this->Flash->error('Votre compte n’a pas pu être créé. Veuillez réessayer SVP.');
             }
         }
     }
@@ -163,10 +163,10 @@ class UsersController extends AppController {
             if ($this->User->save($this->request->data)) {
 
                 $this->Session->write('Auth', $this->User->read(null, $this->Auth->user('id')));
-                $this->Session->setFlash('Vos données ont été éditées', 'default', array( 'class' => 'message message--good'));
+                $this->Flash->success('Vos données ont été éditées');
                 return $this->redirect(array('action' => 'editInformations'));
             } else {
-                $this->Session->setFlash('Vos données n’ont pu être été éditées. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
+                $this->Flash->error('Vos données n’ont pu être été éditées. Veuillez réessayer SVP.');
             }
         } else {
             $this->request->data = $this->User->read(null, $id);
@@ -184,10 +184,10 @@ class UsersController extends AppController {
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->User->save($this->request->data)) {
                 $this->Session->write('Auth', $this->User->read(null, $this->Auth->user('id')));
-                $this->Session->setFlash('Votre mot de passe a été édité', 'default', array( 'class' => 'message message--good' ));
+                $this->Flash->success('Votre mot de passe a été édité');
                 return $this->redirect(array('action' => 'editPassword'));
             } else {
-                $this->Session->setFlash('Votre mot de passe n’a pas pu être été édité. Veuillez réessayer SVP.', 'default', array( 'class' => 'message message--bad' ));
+                $this->Flash->error('Votre mot de passe n’a pas pu être été édité. Veuillez réessayer SVP.');
             }
         } else {
             $this->request->data = $this->User->read(null, $id);
