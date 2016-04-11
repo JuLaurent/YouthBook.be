@@ -42,4 +42,23 @@ class AppController extends Controller {
 
     public $helpers = array('Html', 'Flash', 'Form', 'SocialShare.SocialShare');
 
+    public function beforeFilter() {
+        parent::beforeFilter();
+
+        if( $this->Session->read('errors') ) {
+            $this->request->data = $this->Session->read('data');
+            $this->Session->delete('data');
+
+            foreach( $this->Session->read('errors') as $model => $errors ){
+                $this->loadModel($model);
+                $this->$model->validationErrors = $errors;
+            }
+
+            $this->Flash->error($this->Session->read('flash'));
+
+            $this->Session->delete('errors');
+            $this->Session->delete('flash');
+        }
+    }
+
 }

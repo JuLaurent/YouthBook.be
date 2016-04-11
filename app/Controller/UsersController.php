@@ -164,7 +164,8 @@ class UsersController extends AppController {
 
                 $this->Session->write('Auth', $this->User->read(null, $this->Auth->user('id')));
                 $this->Flash->success('Vos données ont été éditées');
-                return $this->redirect(array('action' => 'editInformations'));
+                // return $this->redirect(array('action' => 'editInformations'));
+                return $this->redirect($this->referer());
             } else {
                 $this->Flash->error('Vos données n’ont pu être été éditées. Veuillez réessayer SVP.');
             }
@@ -185,7 +186,8 @@ class UsersController extends AppController {
             if ($this->User->save($this->request->data)) {
                 $this->Session->write('Auth', $this->User->read(null, $this->Auth->user('id')));
                 $this->Flash->success('Votre mot de passe a été édité');
-                return $this->redirect(array('action' => 'editPassword'));
+                // return $this->redirect(array('action' => 'editPassword'));
+                return $this->redirect($this->referer());
             } else {
                 $this->Flash->error('Votre mot de passe n’a pas pu être été édité. Veuillez réessayer SVP.');
             }

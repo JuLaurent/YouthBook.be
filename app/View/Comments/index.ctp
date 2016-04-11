@@ -78,8 +78,9 @@
             </div>
 
             <section>
-
                 <div class='bloc-title'><h3>Ajouter un commentaire</h3></div>
+
+                <?php echo $this->Flash->render(); ?>
 
                 <?php if( $this->Session->check('Auth.User.id') ): ?>
                     <div class="form form--comment">

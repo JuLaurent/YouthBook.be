@@ -33,8 +33,11 @@ class CommentsController extends AppController {
                 return $this->redirect($this->referer());
             }
             else {
-                $this->Flash->error('Le commentaire n’a pas pu être publié. Veuillez réessayer SVP');
-                // return $this->redirect($this->referer());
+                $this->Session->write('errors.Comment', $this->Comment->validationErrors);
+                $this->Session->write('data', $this->request->data);
+                $this->Session->write('flash', 'Le commentaire n’a pas pu être publié. Veuillez réessayer SVP.');
+
+                return $this->redirect($this->referer());
             }
         }
     }
