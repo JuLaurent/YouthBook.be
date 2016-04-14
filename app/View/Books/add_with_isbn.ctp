@@ -5,7 +5,6 @@
 
 ?>
 
-
 <section>
 
     <div class="page-title"><h2 class='beta page-title__item'>Ajouter un livre</h2></div>

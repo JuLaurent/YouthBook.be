@@ -48,8 +48,8 @@
     width: $douzeSeizieme;
 }
 
-.input-text--article {
-  width: $douzeSeizieme;
+.input-text--comment, .form-select--comment {
+    width: $dixSeizieme;
 }
 
 .input-file  {
@@ -175,6 +175,10 @@
         width: $mNeufSeizieme;
     }
 
+    .input-text--comment, .form-select--comment {
+        width: $mTreizeSeizieme;
+    }
+
     .input-text--article {
       width: $mNeufSeizieme;
     }
@@ -247,7 +251,10 @@
 
     .input-text--article, .input-number--article, .form-select--article, .input-checkbox--article  {
         width: $mSeizeSeizieme;
-        float: none;
+    }
+
+    .input-text--comment, .form-select--comment {
+        width: $mSeizeSeizieme;
     }
 
     .input-text--article {

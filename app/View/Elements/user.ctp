@@ -21,6 +21,11 @@
                     <span class="fa fa-user"></span>
                 </a>
             </span>
+            <span class='user__action action user__edit'>
+                <a href='<?php echo $this->Html->url( array( 'controller'=>'conversations', 'action'=>'index' ) ) ?>' title='Aller à la page de mes conversations' class='action__link<?php if($this->params['controller'] == 'conversations' && $this->params['action'] == 'index') echo ' action__active' ?>'>
+                    <span class="fa fa-comments"></span>
+                </a>
+            </span>
             <span class='user__action action user__book-create'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'add' ) ) ?>' title='Ajouter un livre' class='action__edit<?php if($this->params['controller'] == 'books' && ($this->params['action'] == 'add' || $this->params['action'] == 'addWithIsbn' || $this->params['action'] == 'addWithoutIsbn')) echo ' action__active' ?>'>
                     <span class="fa fa-book"></span>
