@@ -45,6 +45,8 @@
 
 	Router::connect('comments/index/:slug1/:slug2', array('controller' => 'comments', 'action' => 'index'));
 
+	Router::connect('conversations/view/:slug', array('controller' => 'conversations', 'action' => 'view'));
+
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.
