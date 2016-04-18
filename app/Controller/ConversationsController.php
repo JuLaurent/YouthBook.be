@@ -70,6 +70,31 @@ class ConversationsController extends AppController {
         }
     }
 
+    public function addMessage() {
+
+        $conversation = $this->Conversation->findById($this->request->data['Conversation']['id']);
+
+        if (!$conversation) {
+            throw new NotFoundException(__('Cette conversation n’apparait pas dans la base de données.'));
+        }
+
+        $this->Conversation->id = $conversation['Conversation']['id'];
+
+        if ( $this->request->is('post') || $this->request->is('put') ) {
+
+            if ($this->Conversation->saveAll($this->request->data)) {
+                return $this->redirect($this->referer());
+            }
+            else {
+                $this->Session->write('errors.Conversation', $this->Conversation->validationErrors);
+                $this->Session->write('data', $this->request->data);
+                $this->Session->write('flash', 'Le message n’a pas pu être publié. Veuillez réessayer SVP.');
+
+                return $this->redirect($this->referer());
+            }
+        }
+    }
+
     public function addSpeakers() {
         $this->loadModel('User');
 

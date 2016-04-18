@@ -44,10 +44,10 @@
 
             <div class="form form--comment">
                 <?php
-                    echo $this->Form->create('Message', array('url' => array('controller' => 'messages', 'action' => 'add'), 'novalidate' => true));
-                        echo $this->Wysiwyg->input('Message.content', array('label' => 'Message*', 'class' => 'form-textarea form-textarea--article wysi2'));
-                        echo $this->Form->input('conversation_id', array('type' => 'hidden', 'value' => $conversation['Conversation']['id']));
-                        echo $this->Form->input('user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
+                    echo $this->Form->create('Conversation', array('url' => array('controller' => 'conversations', 'action' => 'addMessage'), 'novalidate' => true));
+                        echo $this->Wysiwyg->input('Message.0.content', array('label' => 'Message*', 'class' => 'form-textarea form-textarea--article wysi2'));
+                        echo $this->Form->input('Message.0.user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
+                        echo $this->Form->input('id', array('type' => 'hidden', 'value' => $conversation['Conversation']['id']));
                     echo $this->Form->end(__('Envoyer le message'));
                 ?>
             </div>

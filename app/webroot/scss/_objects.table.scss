@@ -6,15 +6,26 @@
     border-bottom: 1px solid $mainColor;
 }
 
+.table__row--conversation:hover {
+    background-color: $darkMainColor;
+    color: white;
+    cursor: pointer;
+
+    a {
+        color :white;
+    }
+}
+
 .table__head {
     width: $quatreSeizieme;
+    padding: $gutter / 2 $gutter / 4;
     font-size: 20px;
     font-family: $normal;
     text-align: left;
 }
 
-.table__data--button {
-    padding: 1em 0;
+.table__data {
+    padding: $gutter / 2 $gutter / 4;
 }
 
 @media screen and (max-width: 1280px) {
@@ -29,17 +40,19 @@
     }
 
     .table__row--data {
-        border: none;
+        display: block;
+        padding: $gutter 0;
     }
 
     .table__data {
         display: block;
-        padding-left: $mSixSeizieme + $mGutter;
+        padding: 0 0 0 $mSixSeizieme + $mGutter;
         margin-bottom: 0.5em;
         position: relative;
 
         &:before {
             content: attr(data-head);
+            padding: 0 $mGutter / 2;
             position: absolute;
             left: 0;
             font-family: $bold;
@@ -48,7 +61,7 @@
 
     .table__data--button {
         padding: 0;
-        margin: $gutter / 4 0 $gutter;
+        margin-top: $gutter / 2;
     }
 }
 

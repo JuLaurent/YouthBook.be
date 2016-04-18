@@ -86,6 +86,10 @@
         }
     });
 
+    $( '.table__row--conversation' ).click(function(e) {
+        window.location = $(this).find('a').attr('href');
+    });
+
     $('.image-box__popup').magnificPopup({
       type: 'image',
       zoom: {
