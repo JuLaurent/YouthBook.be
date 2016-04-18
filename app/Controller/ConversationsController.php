@@ -57,7 +57,9 @@ class ConversationsController extends AppController {
 
         if ($this->request->is('post')) {
 
-            array_push($this->request->data['User']['User'], $this->Session->read('Auth.User.id'));
+            if( !empty( $this->request->data['User']['User'] ) ) {
+                array_push($this->request->data['User']['User'], $this->Session->read('Auth.User.id'));
+            }
 
             $this->Conversation->create();
 
@@ -65,7 +67,7 @@ class ConversationsController extends AppController {
                 return $this->redirect($this->referer());
             }
             else {
-                return $this->redirect($this->referer());
+                $this->Flash->error('La conversation n’a pas pu être créée. Veuillez réessayer SVP.');
             }
         }
     }

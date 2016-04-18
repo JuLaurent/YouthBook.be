@@ -164,8 +164,7 @@ class Article extends AppModel {
     				unset($this->data[$this->name][$model]);
     			}
     		}
-
-
+        
         return true;
     }
 }

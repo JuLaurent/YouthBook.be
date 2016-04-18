@@ -20,7 +20,7 @@
             <?php
                 echo $this->Form->create('Conversation', array('novalidate' => true));
                     echo $this->Form->input('title', array('label' => 'Titre*', 'class' => 'input-text input-text--comment'));
-                    echo $this->Form->input('User.User', array('label' => 'Interlocateur(s)*', 'multiple' => true, 'class' => 'form-select form-select--comment', 'data-placeholder' => 'Sélectionnez un ou plusieurs interlocateurs'));
+                    echo $this->Form->input('Conversation.User', array('label' => 'Interlocateur(s)*', 'multiple' => true, 'class' => 'form-select form-select--comment', 'data-placeholder' => 'Sélectionnez un ou plusieurs interlocateurs'));
                     echo $this->Wysiwyg->input('Message.0.content', array('label' => 'Message*', 'class' => 'form-textarea form-textarea--article wysi2'));
                     echo $this->Form->input('Message.0.user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
                 echo $this->Form->end(__('Créer la conversation'));
