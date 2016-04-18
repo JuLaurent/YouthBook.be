@@ -11,7 +11,8 @@ class User extends AppModel {
         'Article',
         'Comment',
         'Like',
-        'Message'
+        'Message',
+        'Saga'
     );
 
     public $hasAndBelongsToMany = array(

@@ -1,6 +1,9 @@
 <?php
+
 class Book extends AppModel {
+
     public $name = 'Book';
+
     public $actsAs = array(
         'Upload.Upload' => array(
             'cover' => array(
@@ -16,13 +19,20 @@ class Book extends AppModel {
             )
         )
     );
+
     public $hasMany = array(
         'Request'
     );
+
+    public $belongsTo = array(
+        'Saga'
+    );
+
     public $hasAndBelongsToMany = array(
         'Article',
         'User'
     );
+
     public $joinUser = array(
         array(
             'table' => 'yb_books_users',
@@ -41,7 +51,7 @@ class Book extends AppModel {
             )
         )
     );
-    
+
     public $validate = array(
         'isbn' => array(
             'required' => array(
