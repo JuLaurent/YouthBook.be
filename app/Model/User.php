@@ -23,6 +23,25 @@ class User extends AppModel {
         )
     );
 
+    public $joinConversation = array(
+        array(
+            'table' => 'yb_conversations_users',
+            'alias' => 'ConversationUser',
+            'type' => 'inner',
+            'conditions' => array(
+                'User.id = ConversationUser.user_id'
+            )
+        ),
+        array(
+            'table' => 'yb_conversations',
+            'alias' => 'Conversation',
+            'type' => 'inner',
+            'conditions' => array(
+                'ConversationUser.conversation_id = Conversation.id'
+            )
+        )
+    );
+
     public $actsAs = array(
         'Upload.Upload' => array(
             'avatar' => array(

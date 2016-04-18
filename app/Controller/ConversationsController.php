@@ -3,6 +3,15 @@
 class ConversationsController extends AppController {
     public $helpers = array('Wysiwyg.Wysiwyg' => array('editor' => 'Tinymce'));
 
+    public $components = array(
+        'Auth'
+    );
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->deny();
+    }
+
     public function index() {
 
         $conversations = $this->Conversation->find(
@@ -19,6 +28,7 @@ class ConversationsController extends AppController {
     public function view($slug = null) {
 
         $this->loadModel('Message');
+        $this->loadModel('User');
 
         $conversation = $this->Conversation->findById($slug);
 
@@ -29,16 +39,37 @@ class ConversationsController extends AppController {
             )
         );
 
-        $users = $this->Conversation->User->find(
+        /*$users = $this->Conversation->User->find(
             'list',
             array(
                 'fields' => array('User.username'),
                 'conditions' => array('User.id !=' => $this->Session->read('Auth.User.id')),
                 'order' => array('User.username' => 'asc')
             )
+        );*/
+
+        $users = $this->User->find(
+            'all',
+            array(
+                'recursive' => -1,
+                'joins' => $this->User->joinConversation,
+                'conditions' => array('Conversation.id' => $slug)
+            )
         );
 
-        $this->set(compact('conversation', 'messages', 'users'));
+        $access = false;
+
+        foreach( $users as $user ) {
+            if ( $this->Session->read('Auth.User.id') != null && in_array( $this->Session->read('Auth.User.id'), $user['User'] ) ) {
+                $access = true;
+            }
+        }
+
+        if ( $access == false ) {
+            throw new NotFoundException(__('Vous ne pouvez pas avoir accès à cette conversation.'));
+        }
+
+        $this->set(compact('conversation', 'messages', 'access'));
     }
 
     public function add() {
@@ -57,8 +88,8 @@ class ConversationsController extends AppController {
 
         if ($this->request->is('post')) {
 
-            if( !empty( $this->request->data['User']['User'] ) ) {
-                array_push($this->request->data['User']['User'], $this->Session->read('Auth.User.id'));
+            if( !empty( $this->request->data['Conversation']['User'] ) ) {
+                array_push($this->request->data['Conversation']['User'], $this->Session->read('Auth.User.id'));
             }
 
             $this->Conversation->create();

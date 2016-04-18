@@ -16,9 +16,9 @@
 ?>
 <h2><?php echo $message; ?></h2>
 <p class="error">
-	<strong><?php echo __d('cake', 'Error'); ?>: </strong>
+	<strong><?php echo __d('cake', 'Erreur'); ?>: </strong>
 	<?php printf(
-		__d('cake', 'The requested address %s was not found on this server.'),
+		__d('cake', 'Vous ne pouvez accéder à l’adresse entrée %s '),
 		"<strong>'{$url}'</strong>"
 	); ?>
 </p>

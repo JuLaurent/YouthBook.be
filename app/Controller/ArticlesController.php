@@ -202,28 +202,28 @@ class ArticlesController extends AppController {
         $verif3 = false;
         $verif4 = false;
 
-        foreach($article['Type'] as $type) {
-            if( in_array ( 'critique', $type ) ) {
+        foreach( $article['Type'] as $type ) {
+            if ( in_array ( 'critique', $type ) ) {
                 $verif1 = true;
             }
-            else if( in_array ( 'dossier', $type ) ) {
+            else if ( in_array ( 'dossier', $type ) ) {
                 $verif2 = true;
             }
-            else if( in_array ( 'news', $type ) ) {
+            else if ( in_array ( 'news', $type ) ) {
                 $verif3 = true;
             }
-            else if( in_array ( 'produit dérivé', $type ) ) {
+            else if ( in_array ( 'produit dérivé', $type ) ) {
                 $verif4 = true;
             }
         }
 
-        if (!$article) {
+        if ( !$article ) {
             throw new NotFoundException(__('Cet article n’apparait pas dans la base de données.'));
         }
 
         $access = true;
 
-        if ($article['User']['id'] != $this->Session->read('Auth.User.id') && $this->Session->read('Auth.User.role') != 'administrateur' && $this->Session->read('Auth.User.role') != 'modérateur') {
+        if ( $article['User']['id'] != $this->Session->read('Auth.User.id') && $this->Session->read('Auth.User.role') != 'administrateur' && $this->Session->read('Auth.User.role') != 'modérateur' ) {
             $access = false;
         }
 
