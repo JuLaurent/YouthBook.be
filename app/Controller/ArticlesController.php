@@ -48,17 +48,43 @@ class ArticlesController extends AppController {
         $this->set(compact('type', 'lastArticles', 'articles'));
     }
 
+    public function addBeforeStepOne() {
+        if ($this->request->is('post')) {
+
+            if ($this->Article->saveAll($this->request->data, array('validate' => 'only'))){
+                $this->Session->write('currentSessionData', $this->request->data);
+                return $this->redirect(array('action' => 'addStepOne'));
+            }
+            else {
+                $this->Flash->error('Vous ne pouvez pas créer d’article. Veuillez réessayer SVP.');
+            }
+        }
+    }
+
     public function addStepOne() {
         $this->loadModel('Type');
 
-        $this->Session->delete('currentSessionData');
+        if( !empty( $this->Session->read('currentSessionData')['Article']['number_of_pages'] ) ) {
+            $this->Session->delete('currentSessionData.Article.number_of_pages');
+        }
+
+        if( !empty( $this->Session->read('currentSessionData')['Article']['Type'] ) ) {
+            $this->Session->delete('currentSessionData.Article.Type');
+        }
 
         $this->set('types', $this->Article->Type->find('list'));
 
         if ($this->request->is('post')) {
 
+            if ( !empty( $this->Session->read('currentSessionData') ) ) {
+                $currentSessionData = Hash::merge( (array) $this->Session->read('currentSessionData'), $this->request->data);
+            }
+            else {
+                $currentSessionData = $this->request->data;
+            }
+
             if ($this->Article->saveAll($this->request->data, array('validate' => 'only'))){
-                $this->Session->write('currentSessionData', $this->request->data);
+                $this->Session->write('currentSessionData', $currentSessionData);
                 return $this->redirect(array('action' => 'addStepTwo'));
             }
             else {

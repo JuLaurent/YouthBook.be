@@ -134,11 +134,11 @@
                         ?>
                     </span>
                     <span class='button'>
-                        <?php echo $this->Html->link(
-                                'Écrire une critique',
-                                array('controller' => 'articles', 'action' => 'addStepOne'),
-                                array('title' => 'Écrire une nouvelle critique')
-                            );
+                        <?php
+                            echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'articles', 'action' => 'addStepOne')));
+                                echo $this->Form->input('Article.Type.0', array('type' => 'hidden', 'value' => '1'));
+                                echo $this->Form->input('Article.Book.0', array('type' => 'hidden', 'value' => $book['Book']['id']));
+                            echo $this->Form->end(array('label' => 'Écrire une critique', 'class' => 'button--submit'));
                         ?>
                     </span>
                 </div>
@@ -161,11 +161,11 @@
                     ?>
 
                     <span class='button'>
-                        <?php echo $this->Html->link(
-                                'Écrire une critique',
-                                array('controller' => 'articles', 'action' => 'addStepOne'),
-                                array('title' => 'Écrire une nouvelle critique')
-                            );
+                        <?php
+                            echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'articles', 'action' => 'addStepOne')));
+                                echo $this->Form->input('Article.Type.0', array('type' => 'hidden', 'value' => '1'));
+                                echo $this->Form->input('Article.Book.0', array('type' => 'hidden', 'value' => $book['Book']['id']));
+                            echo $this->Form->end(array('label' => 'Écrire une critique', 'class' => 'button--submit'));
                         ?>
                     </span>
                 </div>
@@ -216,11 +216,10 @@
                 <p class='important'>Pas encore d'article ? Écrivez en un.</p>
                 <div class='buttons'>
                     <span class='button'>
-                        <?php echo $this->Html->link(
-                                'Écrire un article',
-                                array('controller' => 'articles', 'action' => 'addStepOne'),
-                                array('title' => 'Écrire un nouvel article')
-                            );
+                        <?php
+                            echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'articles', 'action' => 'addBeforeStepOne')));
+                                echo $this->Form->input('Article.Book.0', array('type' => 'hidden', 'value' => $book['Book']['id']));
+                            echo $this->Form->end(array('label' => 'Écrire un article', 'class' => 'button--submit'));
                         ?>
                     </span>
                 </div>

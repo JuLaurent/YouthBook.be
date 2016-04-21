@@ -40,15 +40,20 @@
                     else{
                         if($verif1 == true && !($verif3 == true || $verif4 == true)) {
                             if( !empty($this->Session->read( 'currentSessionData' )['Article']['Book'] )) {
-                                echo $this->Form->input('Article.Book', array('type' => 'select', 'label' => 'Livre*', 'value' => $this->Session->read( 'currentSessionData' )['Article']['Book'][0], 'class' => 'form-select form-select--article'));
+                                echo $this->Form->input('Article.Book', array('type' => 'select', 'label' => 'Livre*', 'value' => $this->Session->read( 'currentSessionData' )['Article']['Book'][0], 'class' => 'form-select form-select--article', 'data-placeholder' => 'Sélectionnez un livre'));
                             }
                             else {
-                                echo $this->Form->input('Article.Book', array('type' => 'select', 'label' => 'Livre*', 'class' => 'form-select form-select--article'));
+                                echo $this->Form->input('Article.Book', array('type' => 'select', 'label' => 'Livre*', 'class' => 'form-select form-select--article', 'data-placeholder' => 'Sélectionnez un livre'));
                             }
                         }
                         else {
                             echo $this->Form->input('title', array('label' => 'Titre*', 'class' => 'input-text input-text--article'));
-                            echo $this->Form->input('Article.Book', array('label' => 'Livre(s)*', 'multiple' => true, 'class' => 'form-select form-select--article'));
+                            if( !empty($this->Session->read( 'currentSessionData' )['Article']['Book'] )) {
+                                echo $this->Form->input('Article.Book', array('label' => 'Livre(s)*', 'multiple' => true, 'value' => $this->Session->read( 'currentSessionData' )['Article']['Book'][0], 'class' => 'form-select form-select--article', 'data-placeholder' => 'Sélectionnez un ou plusieurs livres'));
+                            }
+                            else {
+                                echo $this->Form->input('Article.Book', array('label' => 'Livre(s)*', 'multiple' => true, 'class' => 'form-select form-select--article', 'data-placeholder' => 'Sélectionnez un ou plusieurs livres'));
+                            }
                         }
                         echo $this->Wysiwyg->input('ArticlePage.0.content', array('label' => 'Contenu*', 'class' => 'form-textarea form-textarea--article wysiwyg'));
                         echo $this->Form->input('ArticlePage.0.page_number', array('type' => 'hidden', 'value' => '1'));
