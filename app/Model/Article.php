@@ -159,12 +159,12 @@ class Article extends AppModel {
         }
 
         foreach (array_keys($this->hasAndBelongsToMany) as $model){
-    			if(isset($this->data[$this->name][$model])){
-    				$this->data[$model][$model] = $this->data[$this->name][$model];
-    				unset($this->data[$this->name][$model]);
-    			}
+      			if(isset($this->data[$this->name][$model])){
+      				$this->data[$model][$model] = $this->data[$this->name][$model];
+      				unset($this->data[$this->name][$model]);
+      			}
     		}
-        
+
         return true;
     }
 }

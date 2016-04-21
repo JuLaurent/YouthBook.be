@@ -8,59 +8,65 @@ class SagasController extends AppController {
 
     public function index() {
 
-        //$this->loadModel('Article');
-        //$this->loadModel('Type');
-
-        $notDoneRequests = $this->Request->find(
+        $sagas = $this->Saga->find(
             'all',
             array(
-                'conditions' => array('Request.done' => 0),
-                'order' => array('Request.modified' => 'desc')
+                'order' => array('Saga.title' => 'asc')
             )
         );
 
-        $doneRequests = $this->Request->find(
+        $this->set(compact('sagas'));
+    }
+
+    public function view($slug = null) {
+
+        $this->loadModel('Book');
+
+        $saga = $this->Saga->findBySlug($slug);
+
+        $main = $this->Book->find(
             'all',
             array(
-                'recursive' => 2,
-                'conditions' => array('Request.done' => 1),
-                'order' => array('Request.modified' => 'desc')
+                'conditions' => array('Book.chronology' => 'main', 'Saga.slug' => $slug),
+                'order' => array('Book.title' => 'asc')
             )
         );
 
-        //$types = $this->Article->Type->find('list');
+        $spinoff = $this->Book->find(
+            'all',
+            array(
+                'conditions' => array('Book.chronology' => 'spinoff', 'Saga.slug' => $slug),
+                'order' => array('Book.title' => 'asc')
+            )
+        );
 
-        $this->set(compact('notDoneRequests', 'doneRequests'));
-
+        $this->set(compact('saga', 'main', 'spinoff'));
     }
 
     public function add() {
 
         $this->loadModel('Book');
 
-        $request = $this->Request->find(
-            'first',
+        $books = $this->Saga->Book->find(
+            'list',
             array(
-                'conditions' => array('Request.book_id' => $this->request->data['Request']['book_id']),
+                'conditions' => array('Book.saga_id' => null),
+                'order' => array('Book.title' => 'asc')
             )
         );
 
-        $book = $this->Book->findById($this->request->data['Request']['book_id']);
+        $this->set(compact('books'));
 
-        if( $request == '' ) {
-            if ($this->request->is('post')) {
-                if ($this->Request->save($this->request->data)) {
-                    return $this->redirect(array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']));
-                }
+        if ($this->request->is('post')) {
+            $this->Saga->create();
+            if ($this->Saga->saveAll($this->request->data)) {
+
+                $newSaga = $this->Saga->findByTitle($this->request->data['Saga']['title']);
+
+                return $this->redirect(array('action' => 'view', 'slug' => $newBook['Saga']['slug']));
             }
-        }
-        else {
-            $this->Request->id = $request['Request']['id'];
-
-            if ($this->request->is('post')) {
-                if ($this->Request->save($this->request->data)) {
-                    return $this->redirect(array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']));
-                }
+            else {
+                $this->Flash->error('La saga n’a pas pu être ajoutée. Veuillez réessayer SVP.');
             }
         }
     }
