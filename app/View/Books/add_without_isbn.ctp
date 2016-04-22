@@ -41,6 +41,7 @@
                     echo $this->Form->input('title', array('label' => 'Titre*', 'value' => $this->Session->read('book')['title'], 'class' => 'input-text'));
                     echo $this->Form->input('cover', array('type' => 'file', 'label' => 'Couverture (au format png, jpeg ou gif)', 'class' => 'input-file'));
                     echo $this->Form->input('chronology', array('options' => array('main' => 'Série principale', 'spinoff' => 'Spin-off'), 'label' => 'Chronologie*', 'class' => 'form-select'));
+                    echo $this->Form->input('saga_id', array('label' => 'Saga', 'class' => 'form-select', 'data-placeholder' => 'Sélectionnez une saga'));
                     echo $this->Form->input('pages', array('label' => 'Nombre de pages', 'value' => $this->Session->read('book')['pageCount'], 'class' => 'input-number'));
                     echo $this->Form->input('author', array('label' => 'Auteur(s)', 'value' => $this->Session->read('book')['authors'][0], 'class' => 'input-text'));
                     echo $this->Form->input('release_date', array(

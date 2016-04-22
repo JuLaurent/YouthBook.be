@@ -174,6 +174,15 @@ class BooksController extends AppController {
     }
 
     public function addWithoutIsbn() {
+
+        $sagas = $this->Book->Saga->find(
+            'list',
+            array(
+                'order' => array('Saga.title' => 'asc')
+            )
+        );
+        $this->set(compact('sagas'));
+
         if ($this->request->is('post')) {
             $this->Book->create();
             if ($this->Book->save($this->request->data)) {
@@ -191,6 +200,7 @@ class BooksController extends AppController {
 
     public function edit($slug = null) {
         $this->loadModel('Article');
+        $this->loadModel('Saga');
         $this->loadModel('Type');
 
         if (!$slug) {
@@ -203,13 +213,20 @@ class BooksController extends AppController {
             throw new NotFoundException(__('Ce livre n’apparait pas dans la base de données.'));
         }
 
+        $sagas = $this->Book->Saga->find(
+            'list',
+            array(
+                'order' => array('Saga.title' => 'asc')
+            )
+        );
+
         $access = true;
 
         if ($book['Book']['creator_id'] != $this->Session->read('Auth.User.id') && $this->Session->read('Auth.User.role') != 'administrateur' && $this->Session->read('Auth.User.role') != 'modérateur') {
             $access = false;
         }
 
-        $this->set(compact('book', 'access'));
+        $this->set(compact('book', 'sagas', 'access'));
 
         $this->Book->id = $book['Book']['id'];
 
@@ -217,12 +234,7 @@ class BooksController extends AppController {
 
             if ($this->Book->save($this->request->data)) {
 
-                $newBook = $this->Book->find(
-                    'first',
-                    array(
-                        'conditions' => array('Book.id' => $book['Book']['id']),
-                    )
-                );
+                $newBook = $this->Book->findById($book['Book']['id']);
 
                 return $this->redirect(array('action' => 'view', 'slug' => $newBook['Book']['slug']));
 

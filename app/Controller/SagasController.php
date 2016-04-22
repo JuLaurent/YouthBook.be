@@ -45,16 +45,6 @@ class SagasController extends AppController {
 
     public function add() {
 
-        $this->loadModel('Book');
-
-        $books = $this->Saga->Book->find(
-            'list',
-            array(
-                'conditions' => array('Book.saga_id' => null),
-                'order' => array('Book.title' => 'asc')
-            )
-        );
-
         $this->set(compact('books'));
 
         if ($this->request->is('post')) {
@@ -68,6 +58,47 @@ class SagasController extends AppController {
             else {
                 $this->Flash->error('La saga n’a pas pu être ajoutée. Veuillez réessayer SVP.');
             }
+        }
+    }
+
+    public function edit($slug = null) {
+        $this->loadModel('Book');
+
+        if (!$slug) {
+            throw new NotFoundException(__('Cette saga n’apparait pas dans la base de données.'));
+        }
+
+        $saga = $this->Saga->findBySlug($slug);
+
+        if (!$saga) {
+            throw new NotFoundException(__('Cette saga n’apparait pas dans la base de données.'));
+        }
+
+        $access = true;
+
+        if ($saga['Saga']['user_id'] != $this->Session->read('Auth.User.id') && $this->Session->read('Auth.User.role') != 'administrateur' && $this->Session->read('Auth.User.role') != 'modérateur') {
+            $access = false;
+        }
+
+        $this->set(compact('saga', 'access'));
+
+        $this->Saga->id = $saga['Saga']['id'];
+
+        if ($this->request->is('post') || $this->request->is('put')) {
+
+            if ($this->Saga->saveAll($this->request->data)) {
+
+                $newSaga = $this->Saga->findById( $saga['Saga']['id'] );
+
+                return $this->redirect(array('action' => 'view', 'slug' => $newSaga['Saga']['slug']));
+
+            }
+            else {
+                $this->Flash->error('La fiche n’a pas pu être été éditée. Veuillez réessayer SVP.');
+            }
+        }
+        else {
+            $this->request->data = $this->Saga->read(null, $saga['Saga']['id']);
         }
     }
 

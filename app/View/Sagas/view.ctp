@@ -43,18 +43,19 @@
         </section>
     <?php endif; ?>
 
-    <div>
-        <p class='important'>Il manque un livre à cette saga ?</p>
-        <div class='buttons'>
-            <span class='button'>
-                <?php echo $this->Html->link(
-                        'Ajoutez-le',
-                        array('controller' => 'books', 'action' => 'add'),
-                        array('title' => 'Aller à la page d’ajout de livre')
-                    );
-                ?>
-            </span>
+    <?php if( $saga['Saga']['user_id'] == $this->Session->read('Auth.User.id') || $this->Session->read('Auth.User.role') == 'administrateur' || $this->Session->read('Auth.User.role') == 'modérateur' ): ?>
+        <div>
+            <div class='buttons'>
+                <span class='button'>
+                    <?php echo $this->Html->link(
+                            'Modifier le titre',
+                            array('controller' => 'sagas', 'action' => 'edit', 'slug' => $saga['Saga']['slug']),
+                            array('title' => 'Aller à la page de modification de la saga')
+                        );
+                    ?>
+                </span>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
 
 </section>

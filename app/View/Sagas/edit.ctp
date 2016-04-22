@@ -1,13 +1,13 @@
 <?php
 
-    $this->assign('title', 'Ajouter saga');
-    $this->assign('description', 'Ajout d’une saga');
+    $this->assign('title', 'Modifier une saga');
+    $this->assign('description', 'Modification d’une saga');
 
 ?>
 
 <section>
 
-    <div class="page-title"><h2 class='beta page-title__item'>Ajouter une saga</h2></div>
+    <div class="page-title"><h2 class='beta page-title__item'>Modifier le titre</h2></div>
 
         <?php echo $this->Flash->render(); ?>
 
@@ -19,7 +19,7 @@
                     echo $this->Form->input('title', array('label' => 'Titre*', 'class' => 'input-text'));
                     echo $this->Form->input('user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
                 ?>
-            <?php echo $this->Form->end(__('Ajouter la saga'));?>
+            <?php echo $this->Form->end(__('Modifier le titre'));?>
         </div>
     </div>
 

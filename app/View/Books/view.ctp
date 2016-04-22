@@ -58,6 +58,20 @@
                     <?php else: ?>
                         <dd class='sheet__description'>Inconnu</dd>
                     <?php endif; ?>
+                    <dt class='sheet__term'>Saga</dt>
+                    <?php if($book['Saga']['title']): ?>
+                        <dd class='sheet__description'>
+                            <?php
+                                echo $this->Html->link(
+                                    $book['Saga']['title'],
+                                    array('controller' => 'sagas', 'action' => 'view', 'slug' => $book['Saga']['slug']),
+                                    array('title' => 'Aller à la page de la saga' . $book['Saga']['title'], 'class' => 'link')
+                                );
+                            ?>
+                        </dd>
+                    <?php else: ?>
+                        <dd class='sheet__description'>Inconnu</dd>
+                    <?php endif; ?>
                     <dt class='sheet__term'>Nombre de pages</dt>
                     <?php if($book['Book']['pages']): ?>
                         <dd class='sheet__description'><?php echo $book['Book']['pages'] ?></dd>

@@ -42,6 +42,7 @@
 	Router::connect('articlePages/view/:slug1/:slug2/:slug3', array('controller' => 'articlePages', 'action' => 'view'));
 
 	Router::connect('sagas/view/:slug', array('controller' => 'sagas', 'action' => 'view'));
+	Router::connect('sagas/edit/:slug', array('controller' => 'sagas', 'action' => 'edit'));
 
 	Router::connect('users/collection', array('controller' => 'users', 'action' => 'index'));
 
