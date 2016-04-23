@@ -1,5 +1,7 @@
 (function () {
 
+    $(document).foundation();
+
     $( window ).resize( function(e) {
 
         if( window.innerWidth > 960 ) {
