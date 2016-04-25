@@ -10,7 +10,7 @@
     <div class='page-title'><h2 class='beta page-title__item'>Commentaires de <?php echo $comments[0]['Article']['title'] ?></h2></div>
 
     <div class='clearfix bloc--comments'>
-        <div class='comments'>
+        <div class='bloc comments'>
             <? foreach( $comments as $comment ): ?>
                 <div class='comment'>
                     <div class='comment__actions'>

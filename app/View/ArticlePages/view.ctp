@@ -16,7 +16,7 @@
     </div>
     <div class='clearfix'>
         <div class='article__content'>
-            <div>
+            <div class='bloc'>
                 <?php if( $articlePage['Article']['number_of_pages'] > 1 ): ?>
                     <div class='pagination'>
                         <?php for($i = 1 ; $i <= $articlePage['Article']['number_of_pages'] ; $i++): ?>
@@ -76,7 +76,7 @@
 
             </div>
 
-            <section>
+            <section class='bloc'>
 
                 <div class='bloc-title'><h3>Les meilleurs commentaires</h3></div>
 
@@ -165,7 +165,7 @@
 
             </section>
 
-            <section>
+            <section class='bloc'>
 
                 <div class='bloc-title'><h3>Ajouter un commentaire</h3></div>
 

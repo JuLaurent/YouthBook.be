@@ -46,14 +46,14 @@
         ?>
     </head>
     <body>
-        <h1 class="hidden">YouthBook.be</h1>
+        <h1 class='hidden'>YouthBook.be</h1>
         <!-- <div class="container" id="container"> -->
 
             <?php echo $this->element('header'); ?>
 
-            <div class="content" id="content">
+            <div class='content'>
 
-                <div class="content__container clearfix">
+                <div class='content__container'>
 
                     <?php echo $this->fetch('content'); ?>
 

@@ -1,7 +1,5 @@
 (function () {
 
-    $(document).foundation();
-
     $( window ).resize( function(e) {
 
         if( window.innerWidth > 960 ) {
@@ -117,9 +115,8 @@
         selector: '.wysiwyg',
         language: 'fr_FR',
         plugins: [
-            'advlist autolink lists link image charmap preview anchor',
-            'searchreplace visualblocks code fullscreen',
-            'insertdatetime media contextmenu paste imagetools'
+            'lists link image',
+            'imagetools'
         ],
         toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
         style_formats: [
@@ -143,12 +140,6 @@
                     {title: 'Div', block: 'div'},
                     {title: 'Pre', block: 'pre'}
                 ]},
-                {title: 'Alignment', items: [
-                    {title: 'Left', block: 'div', styles : {textAlign : 'left'}, icon: 'alignleft'},
-                    {title: 'Center', block: 'div', styles : {textAlign : 'center'}, icon: 'aligncenter'},
-                    {title: 'Right', block: 'div', styles : {textAlign : 'right'}, icon: 'alignright'},
-                    {title: 'Justify', block: 'div', styles : {textAlign : 'justify'}, icon: 'alignjustify'}
-                ]}
             ],
         imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
         content_css: [
@@ -161,9 +152,8 @@
         selector: '.wysi2',
         language: 'fr_FR',
         plugins: [
-            'advlist autolink lists link image charmap preview anchor',
-            'searchreplace visualblocks code fullscreen',
-            'insertdatetime media contextmenu paste imagetools'
+            'lists link image',
+            'imagetools'
         ],
         toolbar: 'insertfile undo redo | styleselect | bold italic | bullist numlist outdent indent | link image',
         style_formats: [
@@ -175,13 +165,11 @@
                     {title: 'Strikethrough', inline: 'span', styles : {textDecoration : 'line-through'}, icon: 'strikethrough'},
                     {title: 'Superscript', inline: 'sup', icon: 'superscript'},
                     {title: 'Subscript', inline: 'sub', icon: 'subscript'},
-                    {title: 'Code', inline: 'code', icon: 'code'},
                 ]},
                 {title: 'Blocks', items: [
                     {title: 'Paragraph', block: 'p'},
                     {title: 'Blockquote', block: 'blockquote'},
                     {title: 'Div', block: 'div'},
-                    {title: 'Pre', block: 'pre'}
                 ]}
             ],
         imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
