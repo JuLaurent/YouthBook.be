@@ -10,6 +10,14 @@
 
     <div class='page-title'><h2 class='beta page-title__item'>Ajouter un article - étape 2</h2></div>
 
+    <div class='social-links social-links--left'>
+        <span class='user__action'>
+            <a href='<?php echo $this->Html->url( array( 'controller' => 'articles', 'action' => 'addStepOne' ) ) ?>' title='Revenir à l’étape 1'>
+                <span class="fa fa-arrow-left"></span>
+            </a>
+        </span>
+    </div>
+
     <div class='bloc bloc--padding'>
         <?php if( $access == true ): ?>
 
@@ -17,19 +25,6 @@
 
             <div class='form form--article'>
                 <p class='alert-message'>Les champs marqué d’un astérisque (*) sont obligatoires.</p>
-
-                <div>
-                    <div class='buttons'>
-                        <span class='button'>
-                            <?php echo $this->Html->link(
-                                    'Étape précédente',
-                                    array('controller' => 'articles', 'action' => 'addStepOne'),
-                                    array('title' => 'Aller à l’étape 1')
-                                );
-                            ?>
-                        </span>
-                    </div>
-                </div>
 
                 <?php echo $this->Form->create('Article', array('enctype' => 'multipart/form-data', 'novalidate' => true));
                     if($verif2 == true) {

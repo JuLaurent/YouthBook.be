@@ -9,6 +9,14 @@
 
     <div class='page-title'><h2 class='beta page-title__item'>Les <?php echo $slug2 ?> sur <?php echo $book['Book']['title'] ?></h2></div>
 
+    <div class='social-links social-links--left'>
+        <span class='user__action'>
+            <a href='<?php echo $this->Html->url( array( 'controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug'] ) ) ?>' title='Revenir à la fiche du livre <?php echo $book['Book']['title'] ?>'>
+                <span class="fa fa-arrow-left"></span>
+            </a>
+        </span>
+    </div>
+
     <div class='bloc bloc--padding'>
         <ul>
             <?php foreach($articles as $article): ?>
@@ -34,14 +42,6 @@
 
         <div>
             <div class='buttons'>
-                <span class='button'>
-                    <?php echo $this->Html->link(
-                            'Page précédente',
-                            array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']),
-                            array('title' => 'Revenir à la fiche du livre' . $book['Book']['title'])
-                        );
-                    ?>
-                </span>
                 <span class='button'>
                     <?php echo $this->Html->link(
                             'Écrire un article',
