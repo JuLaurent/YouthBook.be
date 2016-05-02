@@ -53,7 +53,7 @@
 
             <div class='content'>
 
-                <div class='content__container'>
+                <div class='content__container clearfix'>
 
                     <?php echo $this->fetch('content'); ?>
 

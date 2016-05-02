@@ -16,7 +16,7 @@
         <?php if( $collection != null ): ?>
             <ul class='collection'>
                 <?php foreach($collection as $book): ?>
-                    <li class='recent-article__item collection__item'>
+                    <li class='collection__item'>
                         <?php
                             echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'users', 'action' => 'removeFromCollection'), 'class' => 'user__action user__action--form user__action--collection'));
                                     echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));

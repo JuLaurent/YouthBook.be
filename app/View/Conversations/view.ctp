@@ -11,7 +11,7 @@
 
     <div class='page-title'><h2 class='beta page-title__item'><?php echo $conversation['Conversation']['title'] ?></h2></div>
 
-    <div class='clearfix bloc--comments'>
+    <div class='bloc bloc--padding bloc--comments clearfix'>
 
         <div class='comments'>
             <? foreach( $messages as $message ): ?>

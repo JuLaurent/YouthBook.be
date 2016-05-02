@@ -11,7 +11,7 @@
 
     <ul>
         <?php foreach($sagas as $saga): ?>
-            <li class='recent-article__item'>
+            <li class='recent-article recent-article--book'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'sagas', 'action'=>'view', 'slug' => $saga['Saga']['slug'] )) ?>' class='link'>
                     <?php echo $saga['Saga']['title'] ?>
                 </a>

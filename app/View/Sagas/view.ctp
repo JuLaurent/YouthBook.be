@@ -15,7 +15,7 @@
 
             <ul>
                 <?php foreach($main as $book): ?>
-                    <li class='recent-article__item'>
+                    <li class='recent-article recent-article--book'>
                         <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' class='link'>
                             <?php echo $book['Book']['title'] ?>
                         </a>
@@ -32,7 +32,7 @@
 
             <ul>
                 <?php foreach($spinoff as $book): ?>
-                    <li class='recent-article__item'>
+                    <li class='recent-article recent-article--book'>
                         <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' class='link'>
                             <?php echo $book['Book']['title'] ?>
                         </a>

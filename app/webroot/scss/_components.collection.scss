@@ -1,3 +1,11 @@
 .collection__item {
   margin-bottom: $gutter / 2;
 }
+
+@media screen and (max-width: 700px) {
+    .collection__item {
+      margin: $gutter / 2 0;
+      padding-bottom: $gutter / 2;
+      border-bottom: 1px dotted $mainColor;
+    }
+}

@@ -171,7 +171,7 @@
 
     .user__username {
         font-size: 20px;
-        margin-bottom: $mGutter;
+        margin-bottom: $gutter / 4;
     }
 
     .user__action {
@@ -187,7 +187,7 @@
 
         & + .user__button {
             margin-left: 0;
-            margin-top:$mGutter;
+            margin-top: $gutter / 4;
         }
 
     }
@@ -205,20 +205,11 @@
         text-align: center;
     }
 
-    .user__username {
-        font-size: 20px;
-        margin-bottom: $mGutter;
-    }
-
     .user__action {
-
-        & + .user__action {
-            margin-left: $gutter / 2;
-        }
+        margin: 0 $gutter / 4 $gutter / 2;
     }
 
     .user__button {
         width: $mSeizeSeizieme;
-
     }
 }

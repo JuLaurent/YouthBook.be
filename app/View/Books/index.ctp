@@ -36,15 +36,15 @@
     <section class='bloc bloc--padding'>
         <div class='bloc-title'><h3>Tous les livres</h3></div>
         <div class='pagination'>
-          <?php foreach($alphabet as $letter): ?>
-              <span class='pagination__character character'>
-                  <a  href='<?php echo($this->Html->url( array('controller' => 'books', 'action' => 'index', 'slug' => $letter))) ?>' title='Aller à la page des livres commençant par <?php echo($letter) ?>' class='<?php if($this->params['pass'][0] == $letter) echo('character__active ') ?>character__link'><?php echo($letter) ?></a>
-              </span>
-          <?php endforeach; ?>
-      </div>
+            <?php foreach($alphabet as $letter): ?>
+                <span class='pagination__character character'>
+                    <a  href='<?php echo($this->Html->url( array('controller' => 'books', 'action' => 'index', 'slug' => $letter))) ?>' title='Aller à la page des livres commençant par <?php echo($letter) ?>' class='<?php if($this->params['pass'][0] == $letter) echo('character__active ') ?>character__link'><?php echo($letter) ?></a>
+                </span>
+            <?php endforeach; ?>
+        </div>
         <ul>
             <?php foreach($books as $book): ?>
-                <li class='recent-article__item'>
+                <li class='recent-article recent-article--book'>
                     <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' class='link'>
                         <?php echo $book['Book']['title'] ?>
                     </a>
