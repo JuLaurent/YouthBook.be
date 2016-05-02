@@ -19,6 +19,7 @@
 
 .nav__active {
     background-color: $mainColor;
+    color: $contrastColor;
 }
 
 @media screen and (max-width: 1280px) {

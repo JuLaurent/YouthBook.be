@@ -2,6 +2,7 @@
     float: left;
     width: $quatreSeizieme;
     margin-right: $gutter;
+    border-right: 1px solid $mainColor;
 }
 
 .left-nav__container {
@@ -10,13 +11,14 @@
 
 .left-nav__item {
     display: block;
-    background-color: $darkMainColor;
-    color: $contrastColor;
+    color: $darkMainColor;
     font-family: $bold;
-    padding: 1em ;
+    padding: $gutter / 2 $gutter;
+    border-bottom: 1px dotted $mainColor;
 
     &:hover {
         background-color: $lightMainColor;
+        color: $contrastColor;
     }
 }
 
@@ -32,6 +34,7 @@
         width: $mSeizeSeizieme;
         margin-right: 0;
         margin-bottom: $gutter;
+        border-right: none;
         float: none;
     }
 }

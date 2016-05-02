@@ -3,16 +3,15 @@
 }
 
 .table__row--data {
-    border-bottom: 1px solid $mainColor;
+    border-bottom: 1px solid $darkMainColor;
 }
 
 .table__row--conversation:hover {
-    background-color: $darkMainColor;
-    color: white;
+    color: $lightMainColor;
     cursor: pointer;
 
     a {
-        color :white;
+        color: $lightMainColor;
     }
 }
 
