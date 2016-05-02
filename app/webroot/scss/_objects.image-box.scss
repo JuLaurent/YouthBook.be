@@ -4,7 +4,7 @@
     position: absolute;
     color: $contrastColor;
     background-color: $darkMainColor;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 .image-box__date {
@@ -50,7 +50,7 @@
 .image-box__highlighted-article {
     width: $cinqSeizieme;
     height: 160px;
-    margin: $gutter/4;
+    margin: $gutter / 4;
     float: left;
     overflow:hidden;
     position: relative;
