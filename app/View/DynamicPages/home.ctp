@@ -20,7 +20,7 @@
                 <div class='image-box__image image-box__image--highlighted-review'>
                     <?php
                         if( $highlightedReview['Article']['thumbnail'] ) {
-                            echo $this->Html->image('articlesThumbnails/' . $highlightedReview['Article']['id'] . '/big_' . $highlightedReview['Article']['thumbnail'], array('alt' => 'Thumbnail de l’article' . $highlightedReview['Article']['title'], 'srcset' => $this->webroot . 'img/articlesThumbnails/' . $highlightedReview['Article']['id'] . '/big_' . $highlightedReview['Article']['thumbnail'] . ' 1x, ' . $this->webroot . 'img/articlesThumbnails/' . $highlightedReview['Article']['id'] . '/bigHR_' . $highlightedReview['Article']['thumbnail'] . ' 2x', 'width' => '750', 'height' => '350'));
+                            echo $this->Html->image('articlesThumbnails/' . $highlightedReview['Article']['id'] . '/big_' . $highlightedReview['Article']['thumbnail'], array('alt' => 'Thumbnail de l’article' . $highlightedReview['Article']['title'], 'srcset' => $this->webroot . 'img/articlesThumbnails/' . $highlightedReview['Article']['id'] . '/big_' . $highlightedReview['Article']['thumbnail'] . ' 1x, ' . $this->webroot . 'img/articlesThumbnails/' . $highlightedReview['Article']['id'] . '/bigHR_' . $highlightedReview['Article']['thumbnail'] . ' 2x', 'width' => '750', 'height' => '404'));
                         }
                         else {
                             echo $this->Html->image('articlesThumbnails/big_noThumbnail.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/articlesThumbnails/big_noThumbnail.png 1x, ' . $this->webroot . 'img/articlesThumbnails/bigHR_noThumbnail.png 2x', 'width' => '750', 'height' => '350'));
@@ -43,11 +43,13 @@
 
                     <li class='recent-article__item'>
                         <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $review['Article']['id'], 'slug2' => $review['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de la critique <?php echo $review['Article']['title'] ?>' class='link'>
-                            <span class='recent-article recent-review'>
-                                <span class='recent-article__date'><?php echo $this->Time->format('d/m', $review['Article']['created']) ?></span>
-                                <span class='recent-article__title'><?php echo $review['Article']['title'] ?></span>
-                                <span class='recent-article__author'>par <?php echo $review['User']['username'] ?></span>
-                            </span>
+                            <div class='recent-article'>
+                                <div class='recent-article__title'><?php echo $review['Article']['title'] ?></div>
+                                <div class='recent-article__informations clearfix'>
+                                    <span class='recent-article__date'><?php echo $this->Time->format('d/m', $review['Article']['created']) ?></span>
+                                    <span class='recent-article__author'><?php echo $review['User']['username'] ?></span>
+                                </div>
+                            </div>
                         </a>
                     </li>
                 <?php endforeach; ?>
@@ -105,16 +107,18 @@
                 <?php foreach ($recentArticles as $article): ?>
                     <li class='recent-article__item'>
                         <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $article['Article']['id'], 'slug2' => $article['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de l’article <?php echo $article['Article']['title'] ?>' class='link'>
-                            <span class='recent-article'>
-                                <span class='recent-article__date'><?php echo $this->Time->format('d/m', $article['Article']['created']) ?></span>
-                                <span class='recent-article__types'>
-                                    <?php foreach($article['Type'] as $type): ?>
-                                        <span class='recent-article__type'><?php echo $type['name'] ?></span>
-                                    <?php endforeach; ?>
-                                </span>
-                                <span class='recent-article__title'><?php echo $article['Article']['title'] ?></span>
-                                <span class='recent-article__author'>par <?php echo $article['User']['username'] ?></span>
-                            </span>
+                            <div class='recent-article'>
+                                <div class='recent-article__title'><?php echo $article['Article']['title'] ?></div>
+                                <div class='recent-article__informations clearfix'>
+                                    <span class='recent-article__date'><?php echo $this->Time->format('d/m', $article['Article']['created']) ?></span>
+                                    <span class='recent-article__types'>
+                                        <?php foreach($article['Type'] as $type): ?>
+                                            <span class='recent-article__type'><?php echo $type['name'] ?></span>
+                                        <?php endforeach; ?>
+                                    </span>
+                                    <span class='recent-article__author'><?php echo $article['User']['username'] ?></span>
+                                </div>
+                            </div>
                         </a>
                     </li>
                 <?php endforeach; ?>

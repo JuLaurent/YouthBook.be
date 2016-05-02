@@ -21,7 +21,7 @@ class DynamicPagesController extends AppController {
         $recentReviews = $this->Article->find(
             'all',
             array(
-                'limit' => 10,
+                'limit' => 5,
                 'joins' => $this->Article->joinType,
                 'conditions' => array('Type.name' => 'critique', 'Article.draft' => 0),
                 'group' => array('Article.id'),
@@ -41,7 +41,7 @@ class DynamicPagesController extends AppController {
         $recentArticles = $this->Article->find(
             'all',
             array(
-                'limit' => 20,
+                'limit' => 10,
                 'joins' => $this->Article->joinType,
                 'conditions' => array('Article.draft' => 0, 'Type.name' => array('news', 'dossier', 'produit dérivé')),
                 'group' => array('Article.id'),

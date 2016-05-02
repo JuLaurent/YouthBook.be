@@ -7,8 +7,8 @@
 .recent-article {
     display: block;
     width: 100%;
-    height: 20px;
-    font-size: 14px;
+    margin: $gutter / 4 0;
+    border-bottom: 1px dotted $mainColor;
     overflow:hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -16,21 +16,35 @@
 
 .recent-article--sheet {
     width: 100%;
-    height: auto;
-    font-size: 16px;
+}
+
+.recent-article__title {
+    font-family: $bold;
+}
+
+.recent-article__title--sheet {
+    display: inline-block;
+    margin-right: $gutter / 2;
+}
+
+.recent-article__informations {
+    font-size: 14px;
+}
+
+.recent-article__informations--sheet {
+    display: inline-block;
 }
 
 .recent-article__date {
-    margin-right: $gutter / 4;
+    margin-right: $gutter / 2;
 }
 
 .recent-article__types {
-    margin-right: $gutter / 4;
+    margin-right: $gutter / 2;
 }
 
 .recent-article__type {
     text-transform: uppercase;
-    font-family: $bold;
 
     & + .recent-article__type:before {
         content: '|';
@@ -38,11 +52,7 @@
 }
 
 .recent-article__author {
-    font-size: 12px;
-}
-
-.recent-article__author--sheet {
-    font-size: 14px;
+    float: right;
 }
 
 .recent-articles__buttons {
@@ -64,6 +74,12 @@
         width: $mSixSeizieme;
         margin-left: $mGutter;
     }
+
+    .recent-article {
+        overflow: visible;
+        text-overflow: clip;
+        white-space: normal;
+    }
 }
 
 @media screen and (max-width: 960px) {
@@ -74,16 +90,21 @@
     }
 
     .recent-article {
-        font-size: 16px;
-        height: auto;
         overflow: visible;
         text-overflow: clip;
         white-space: normal;
     }
 
-    .recent-article__author {
-        font-size: 14px;
+    .recent-article__title--sheet {
+        display: block;
+        margin-right: 0;
     }
+
+    .recent-article__informations--sheet {
+        display: block;
+    }
+        text-transform: uppercase;
+
 }
 
 @media screen and (max-width: 700px) {
@@ -91,20 +112,8 @@
       margin-bottom: $gutter / 4;
     }
 
-    .recent-article {
-        font-size: 14px;
-    }
-
-    .recent-article__author {
-        font-size: 12px;
-    }
-
     .recent-article--sheet {
         font-size: 14px;
         margin-top: $gutter / 4;
-    }
-
-    .recent-article__author--sheet {
-        font-size: 12px;
     }
 }
