@@ -26,20 +26,45 @@ class CommentsController extends AppController {
 
     public function add() {
 
-        if ($this->request->is('post')) {
-            $this->Comment->create();
+      /* if( $this->request->is('ajax') ) {
 
-            if ($this->Comment->save($this->request->data)) {
-                return $this->redirect($this->referer());
-            }
-            else {
-                $this->Session->write('errors.Comment', $this->Comment->validationErrors);
-                $this->Session->write('data', $this->request->data);
-                $this->Session->write('flash', 'Le commentaire n’a pas pu être publié. Veuillez réessayer SVP.');
+          if ($this->request->is('post')) {
+              $this->Comment->create();
 
-                return $this->redirect($this->referer());
-            }
-        }
+              if ($this->Comment->save($this->request->data)) {
+
+                  $comment = $this->Comment->findByContent( $this->request->data['Comment']['content'] );
+
+                  echo json_encode( $comment );
+                  $this->render('/Elements/Ajax/comment');
+              }
+              else {
+                  $this->Session->write('errors.Comment', $this->Comment->validationErrors);
+                  $this->Session->write('data', $this->request->data);
+                  $this->Session->write('flash', 'Le commentaire n’a pas pu être publié. Veuillez réessayer SVP.');
+
+                  return $this->redirect($this->referer());
+              }
+          }
+      }
+      else { */
+
+          if ($this->request->is('post')) {
+              $this->Comment->create();
+
+              if ($this->Comment->save($this->request->data)) {
+                  return $this->redirect($this->referer());
+              }
+              else {
+                  $this->Session->write('errors.Comment', $this->Comment->validationErrors);
+                  $this->Session->write('data', $this->request->data);
+                  $this->Session->write('flash', 'Le commentaire n’a pas pu être publié. Veuillez réessayer SVP.');
+
+                  return $this->redirect($this->referer());
+              }
+          }
+      // }
+
     }
 
     public function delete() {

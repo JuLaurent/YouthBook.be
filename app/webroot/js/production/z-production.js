@@ -1,4 +1,4 @@
-(function () {
+( function () {
 
     $( window ).resize( function(e) {
 
@@ -179,4 +179,4 @@
         ]
     });
 
-})();
+} )();

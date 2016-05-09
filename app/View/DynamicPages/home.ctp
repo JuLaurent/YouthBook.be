@@ -81,10 +81,10 @@
                       <div class='image-box__image image-box__image--highlighted-article'>
                           <?php
                               if( $article['Article']['thumbnail'] ) {
-                                  echo $this->Html->image('articlesThumbnails/' . $article['Article']['id'] . '/normal_' . $article['Article']['thumbnail'], array('alt' => 'Thumbnail de l’article' . $article['Article']['title'], 'srcset' => $this->webroot . 'img/articlesThumbnails/' . $article['Article']['id'] . '/normal_' . $article['Article']['thumbnail'] . ' 1x, ' . $this->webroot . 'img/articlesThumbnails/' . $article['Article']['id'] . '/normalHR_' . $article['Article']['thumbnail'] . ' 2x', 'width' => '360', 'height' => '160'));
+                                  echo $this->Html->image('articlesThumbnails/' . $article['Article']['id'] . '/normal_' . $article['Article']['thumbnail'], array('alt' => 'Thumbnail de l’article' . $article['Article']['title'], 'srcset' => $this->webroot . 'img/articlesThumbnails/' . $article['Article']['id'] . '/normal_' . $article['Article']['thumbnail'] . ' 1x, ' . $this->webroot . 'img/articlesThumbnails/' . $article['Article']['id'] . '/normalHR_' . $article['Article']['thumbnail'] . ' 2x', 'width' => '360', 'height' => '188'));
                               }
                               else {
-                                  echo $this->Html->image('articlesThumbnails/normal_noThumbnail.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/articlesThumbnails/normal_noThumbnail.png 1x, ' . $this->webroot . 'img/articlesThumbnails/normalHR_noThumbnail.png 2x', 'width' => '360', 'height' => '160'));
+                                  echo $this->Html->image('articlesThumbnails/normal_noThumbnail.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/articlesThumbnails/normal_noThumbnail.png 1x, ' . $this->webroot . 'img/articlesThumbnails/normalHR_noThumbnail.png 2x', 'width' => '360', 'height' => '188'));
                               } ?>
 
                       </div>

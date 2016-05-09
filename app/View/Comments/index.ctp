@@ -73,7 +73,7 @@
                     </div>
                     <div class='comment__content'><?php echo $comment['Comment']['content'] ?></div>
                 </div>
-              <?php endforeach; ?>
+            <?php endforeach; ?>
         </div>
 
         <section>
@@ -84,10 +84,10 @@
             <?php if( $this->Session->check('Auth.User.id') ): ?>
                 <div class="form form--comment">
                     <?php
-                        echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'add'), 'novalidate' => true));
-                            echo $this->Wysiwyg->input('Comment.content', array('label' => 'Commentaire*', 'class' => 'form-textarea form-textarea--article wysi2'));
-                            echo $this->Form->input('article_id', array('type' => 'hidden', 'value' => $comments[0]['Comment']['article_id']));
-                            echo $this->Form->input('user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
+                        echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'add'), 'novalidate' => true, 'class' => 'ajax__add-comment'));
+                            echo $this->Wysiwyg->input('Comment.content', array('label' => 'Commentaire*', 'class' => 'form-textarea form-textarea--article wysi2 ajax__add-comment--content'));
+                            echo $this->Form->input('article_id', array('type' => 'hidden', 'value' => $comments[0]['Comment']['article_id'], 'class' => 'ajax__add-comment--article-id'));
+                            echo $this->Form->input('user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__add-comment--user-id'));
                         echo $this->Form->end(__('Publier le commentaire'));
                     ?>
                 </div>
