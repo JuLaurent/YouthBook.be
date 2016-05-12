@@ -68,18 +68,15 @@
 
         <ul>
             <?php foreach($doneRequests as $request): ?>
-                <li>
-                    <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $request['Article']['id'], 'slug2' => $request['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de l&apos;article <?php echo $request['Article']['title'] ?>' class='link'>
-                        <span class='link article-link'>
-                            <span class='article-link__date'><?php echo $this->Time->format('d/m/Y', $request['Article']['created']) ?></span>
-                            <span class='article-link__types'>
-                                <?php foreach($request['Article']['Type'] as $type): ?>
-                                    <span class='article-link__type'><?php echo $type['name'] ?></span>
-                                <?php endforeach; ?>
-                            </span>
-                            <span class='article-link__title'><?php echo $request['Article']['title'] ?></span>
-                            <span class='article-link__username'>par <?php echo $request['Article']['User']['username'] ?></span>
-                        </span>
+                <li class='recent-article__item recent-article__item--sheet'>
+                    <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $request['Article']['id'], 'slug2' => $request['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de la critique <?php echo $request['Article']['title'] ?>' class='link'>
+                        <div class='recent-article recent-article--sheet'>
+                            <div class='recent-article__title recent-article__title--sheet'><?php echo $request['Article']['title'] ?></div>
+                            <div class='recent-article__informations recent-article__informations--sheet clearfix'>
+                                <span class='recent-article__date'><?php echo $this->Time->format('d/m', $request['Article']['created']) ?></span>
+                                <span class='recent-article__author'><?php echo $request['Article']['User']['username'] ?></span>
+                            </div>
+                        </div>
                     </a>
                 </li>
             <?php endforeach; ?>

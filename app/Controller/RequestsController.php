@@ -47,7 +47,7 @@ class RequestsController extends AppController {
 
         $book = $this->Book->findById($this->request->data['Request']['book_id']);
 
-        if( $request == '' ) {
+        if( empty($request) ) {
             if ($this->request->is('post')) {
                 if ($this->Request->save($this->request->data)) {
                     return $this->redirect(array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']));

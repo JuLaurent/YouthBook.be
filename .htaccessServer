@@ -19,6 +19,7 @@ AddType application/x-font-woff2 .woff2
 	ExpiresByType image/jpeg "access plus 1 week"
 	ExpiresByType image/gif "access plus 1 week"
 	ExpiresByType image/png "access plus 1 week"
+  ExpiresByType image/svg+xml "access plus 1 week"
 	ExpiresByType text/css "access plus 1 week"
 	ExpiresByType application/pdf "access plus 1 month"
 	ExpiresByType text/x-javascript "access plus 1 month"
@@ -27,5 +28,4 @@ AddType application/x-font-woff2 .woff2
 	ExpiresByType application/x-javascript "access plus 1 month"
 	ExpiresByType application/x-shockwave-flash "access plus 1 month"
 	ExpiresByType image/x-icon "access plus 1 year"
-	ExpiresDefault "access plus 1 week"
 </IfModule>
