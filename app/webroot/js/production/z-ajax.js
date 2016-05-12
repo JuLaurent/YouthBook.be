@@ -32,12 +32,13 @@
 
         e.preventDefault();
 
+        var self = $( this );
         var data = {
             Book : {
-                id : $('.ajax__book-collection--id').val()
+                id : self.find('.ajax__book-collection--id').val()
             },
             User : {
-                id : $('.ajax__book-collection--user-id').val()
+                id : self.find('.ajax__book-collection--user-id').val()
             }
         };
 
@@ -50,19 +51,111 @@
             url: url,
             data: data,
             success: function( responseFromServer, textstatus, jqXHR ) {
-                if ( $('.ajax__book-collection').attr( 'action' ) == '/YouthBook.be/books/removeFromCollection' ) {
-                    $('.ajax__book-collection').attr( 'action', '/YouthBook.be/books/addToCollection' );
-                    $('.ajax__book-collection .user__action--input').val( '+' );
-                    $('.ajax__book-collection .user__action--input').attr( 'title', 'Ajouter à ma collection de livres' );
+                if ( self.attr( 'action' ) == '/YouthBook.be/books/removeFromCollection' ) {
+                    self.attr( 'action', '/YouthBook.be/books/addToCollection' );
+                    self.find('.user__action--input').val( '+' )
+                                                     .attr( 'title', 'Ajouter à ma collection de livres' );
                 }
                 else {
-                    $('.ajax__book-collection').attr( 'action', '/YouthBook.be/books/removeFromCollection' );
-                    $('.ajax__book-collection .user__action--input').val( '-' );
-                    $('.ajax__book-collection .user__action--input').attr( 'title', 'Enlever de ma collection de livres' );
+                    self.attr( 'action', '/YouthBook.be/books/removeFromCollection' );
+                    self.find('.user__action--input').val( '-' )
+                                                     .attr( 'title', 'Enlever de ma collection de livres' );
                 }
             }
         });
 
+    });
+
+    $('.comment').on( 'submit', '.ajax__like', function( e ) {
+
+        e.preventDefault();
+
+        var self = $( this );
+        var data = {
+            Comment : {
+                id : self.find('.ajax__like--id').val(),
+                number_of_likes : self.find('.ajax__like--number-of-likes').val()
+            },
+            Like : {
+                0 : {
+                    comment_id : self.find('.ajax__like--like-comment-id').val(),
+                    user_id : self.find('.ajax__like--like-user-id').val(),
+                }
+            }
+        };
+
+        var url = $( this ).attr( 'action' );
+
+        if(xhr) xhr.abort();
+
+        var xhr = $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            success: function( responseFromServer, textstatus, jqXHR ) {
+                if ( self.attr( 'action' ) == '/YouthBook.be/comments/like' ) {
+                    self.attr( 'action', '/YouthBook.be/comments/dislike' );
+                    self
+                        .find('.comment__icon')
+                            .removeClass( 'comment__like' )
+                            .addClass( 'comment__dislike' )
+                            .val( 'Ne plus aimer ce commentaire' )
+                            .attr( 'title', 'Ne plus aimer ce commentaire' )
+                            .end()
+                        .parents('.comment')
+                            .find('.comment__number')
+                                .html( +self.parents('.comment').find('.comment__number').html() + 1 );
+                }
+                else {
+                    self.attr( 'action', '/YouthBook.be/comments/like' );
+                    self
+                        .find('.comment__icon')
+                            .removeClass( 'comment__dislike' )
+                            .addClass( 'comment__like' )
+                            .val( 'Aimer ce commentaire' )
+                            .attr( 'title', 'Aimer ce commentaire' )
+                            .end()
+                        .parents('.comment')
+                            .find('.comment__number')
+                                .html( +self.parents('.comment').find('.comment__number').html() - 1 );
+                }
+            }
+        });
+    });
+
+    $('.comment').on( 'submit', '.ajax__comment-delete', function( e ) {
+
+        e.preventDefault();
+
+        var self = $( this );
+        var data = {
+            Comment : {
+                id : self.find('.ajax__comment-delete--id').val(),
+                content : self.find('.ajax__comment-delete--content').val(),
+                deleted : self.find('.ajax__comment-delete--deleted').val() === "1"
+            }
+        };
+
+        var url = $( this ).attr( 'action' );
+
+        if(xhr) xhr.abort();
+
+        console.log( data );
+
+        var xhr = $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            success: function( responseFromServer, textstatus, jqXHR ) {
+                self
+                    .parents('.comment')
+                        .find('.comment__actions')
+                            .hide( "slow" )
+                            .end()
+                        .find('.comment__content')
+                            .html( '<p class=\'message message--bad\'>Ce commentaire a été supprimé</p>' );
+            }
+        });
     });
 
 } )();

@@ -16,7 +16,7 @@
                     <div class='comment__actions'>
                         <?php if( $comment['Comment']['deleted'] == 0 ): ?>
                             <span class='comment__number-of-likes'>
-                                <span><?php echo $comment['Comment']['number_of_likes'] ?></span>
+                                <span class='comment__number'><?php echo $comment['Comment']['number_of_likes'] ?></span>
                                 <span class='comment__like-icon'><?php echo $this->Html->image('icons/number-of-likes.svg', array('alt' => 'Avatar de substitution', 'width' => '25', 'height' => '25')); ?></span>
                             </span>
                             <?php
@@ -28,29 +28,29 @@
                                     }
                                 }
                                 if( $likedByUser == true ) {
-                                    echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'dislike'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form'));
-                                        echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id']));
-                                        echo $this->Form->input('number_of_likes', array('type' => 'hidden', 'value' => $comment['Comment']['number_of_likes'] - 1));
-                                        echo $this->Form->input('Like.0.comment_id', array('type' => 'hidden', 'value' => $comment['Comment']['id']));
-                                        echo $this->Form->input('Like.0.user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
+                                    echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'dislike'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form ajax__like'));
+                                        echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id'], 'class' => 'ajax__like--id'));
+                                        echo $this->Form->input('number_of_likes', array('type' => 'hidden', 'value' => $comment['Comment']['number_of_likes'] - 1, 'class' => 'ajax__like--number-of-likes'));
+                                        echo $this->Form->input('Like.0.comment_id', array('type' => 'hidden', 'value' => $comment['Comment']['id'], 'class' => 'ajax__like--like-comment-id'));
+                                        echo $this->Form->input('Like.0.user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__like--like-user-id'));
                                     echo $this->Form->end( array( 'label' => 'Ne plus aimer ce commentaire', 'title' => 'Ne plus aimer ce commentaire', 'class' => 'user__action--input comment__icon comment__dislike'));
                                 }
                                 else {
-                                    echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'like'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form'));
-                                        echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id']));
-                                        echo $this->Form->input('number_of_likes', array('type' => 'hidden', 'value' => $comment['Comment']['number_of_likes'] + 1));
-                                        echo $this->Form->input('Like.0.comment_id', array('type' => 'hidden', 'value' => $comment['Comment']['id']));
-                                        echo $this->Form->input('Like.0.user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
+                                    echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'like'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form ajax__like'));
+                                        echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id'], 'class' => 'ajax__like--id'));
+                                        echo $this->Form->input('number_of_likes', array('type' => 'hidden', 'value' => $comment['Comment']['number_of_likes'] + 1, 'class' => 'ajax__like--number-of-likes'));
+                                        echo $this->Form->input('Like.0.comment_id', array('type' => 'hidden', 'value' => $comment['Comment']['id'], 'class' => 'ajax__like--like-comment-id'));
+                                        echo $this->Form->input('Like.0.user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__like--like-user-id' ));
                                     echo $this->Form->end( array( 'label' => 'Aimer ce commentaire', 'title' => 'Aimer ce commentaire', 'class' => 'user__action--input comment__icon comment__like'));
                                 }
                             ?>
                         <?php endif; ?>
                         <?php
                             if( ( ( $comment['Comment']['user_id'] == $this->Session->read('Auth.User.id') && ( $this->Session->read('Auth.User.role') == 'administrateur' || $this->Session->read('Auth.User.role') == 'modérateur' ) ) || ( $comment['Comment']['user_id'] == $this->Session->read('Auth.User.id') || $this->Session->read('Auth.User.role') == 'administrateur' || $this->Session->read('Auth.User.role') == 'modérateur' ) ) && $comment['Comment']['deleted'] == 0 ) {
-                                echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'delete'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form'));
-                                    echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id']));
-                                    echo $this->Form->input('content', array('type' => 'hidden', 'value' => '<p class=\'message message--bad\'>Ce commentaire a été supprimé</p>'));
-                                    echo $this->Form->input('deleted', array('type' => 'hidden', 'value' => true));
+                                echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'delete'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form ajax__comment-delete'));
+                                    echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id'], 'class' => 'ajax__comment-delete--id'));
+                                    echo $this->Form->input('content', array('type' => 'hidden', 'value' => '<p class=\'message message--bad\'>Ce commentaire a été supprimé</p>', 'class' => 'ajax__comment-delete--content'));
+                                    echo $this->Form->input('deleted', array('type' => 'hidden', 'value' => true, 'class' => 'ajax__comment-delete--deleted'));
                                 echo $this->Form->end( array( 'label' => 'Supprimer ce commentaire', 'title' => 'Supprimer ce commentaire', 'class' => 'user__action--input comment__icon comment__delete'));
                             }
                         ?>

@@ -70,18 +70,22 @@ class CommentsController extends AppController {
     public function delete() {
         $comment = $this->Comment->findById($this->request->data['Comment']['id']);
 
-        if (!$comment) {
+        if ( !$comment ) {
             throw new NotFoundException(__('Ce commentaire n’existe pas.'));
         }
 
         $this->Comment->id = $comment['Comment']['id'];
 
-        if ($this->request->is('post') || $this->request->is('put')) {
+        if ( $this->request->is('post') || $this->request->is('put') ) {
 
-            if ($this->Comment->save($this->request->data)) {
+            if ( $this->Comment->save($this->request->data) ) {
 
-                return $this->redirect($this->referer());
-
+                if ( $this->request->is('ajax') ) {
+                    exit();
+                }
+                else {
+                    return $this->redirect($this->referer());
+                }
             }
             else {
                 $this->Flash->error('Le commentaire n’a pas pu été supprimé. Veuillez réessayer SVP.');
@@ -96,17 +100,22 @@ class CommentsController extends AppController {
 
         $comment = $this->Comment->findById($this->request->data['Comment']['id']);
 
-        if (!$comment) {
+        if ( !$comment ) {
             throw new NotFoundException(__('Ce commentaire n’existe pas.'));
         }
 
         $this->Comment->id = $comment['Comment']['id'];
 
-        if ($this->request->is('post') || $this->request->is('put')) {
+        if ( $this->request->is('post') || $this->request->is('put') ) {
 
-            if ($this->Comment->saveAll($this->request->data)) {
+            if ( $this->Comment->saveAll($this->request->data) ) {
 
-                return $this->redirect($this->referer());
+                if ( $this->request->is('ajax') ) {
+                    exit();
+                }
+                else {
+                    return $this->redirect($this->referer());
+                }
 
             }
             else {
@@ -116,6 +125,7 @@ class CommentsController extends AppController {
         else {
             $this->request->data = $this->Comment->read(null, $comment['Comment']['id']);
         }
+
     }
 
     public function dislike() {
@@ -130,13 +140,19 @@ class CommentsController extends AppController {
 
         $this->Comment->id = $comment['Comment']['id'];
 
-        if ($this->request->is('post') || $this->request->is('put')) {
 
-            if ($this->Comment->saveAll($this->request->data)) {
+        if ( $this->request->is('post') || $this->request->is('put') ) {
+
+            if ( $this->Comment->saveAll($this->request->data) ) {
 
                 $this->Like->query('DELETE from yb_likes WHERE comment_id = "' . $this->request->data['Like']['0']['comment_id'] . '"AND user_id = "' . $this->request->data['Like']['0']['user_id'] . '"');
 
-                return $this->redirect($this->referer());
+                if ( $this->request->is('ajax') ) {
+                    exit();
+                }
+                else {
+                    return $this->redirect($this->referer());
+                }
 
             }
             else {
@@ -146,5 +162,6 @@ class CommentsController extends AppController {
         else {
             $this->request->data = $this->Comment->read(null, $comment['Comment']['id']);
         }
+
     }
 }

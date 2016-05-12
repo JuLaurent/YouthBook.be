@@ -253,20 +253,19 @@ class BooksController extends AppController {
         $book = $this->Book->findById( $this->request->data['Book']['id'] );
         $this->Book->id = $book['Book']['id'];
 
-        if ( $this->request->is('ajax') ) {
-            if ( $this->request->is('post') ) {
-                if ( $this->Book->save($this->request->data) ) {
+
+        if ( $this->request->is('post') ) {
+            if ( $this->Book->save($this->request->data) ) {
+
+                if ( $this->request->is('ajax') ) {
                     exit();
                 }
-            }
-        }
-        else {
-            if ( $this->request->is('post') ) {
-                if ( $this->Book->save($this->request->data) ) {
+                else {
                     return $this->redirect(array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']));
                 }
             }
         }
+
     }
 
     public function removeFromCollection() {
@@ -276,18 +275,17 @@ class BooksController extends AppController {
 
         debug( $book['Book']['slug'] );
 
-        if ( $this->request->is('ajax') ) {
-            if ($this->request->is('post')) {
-                $this->Book->query('DELETE from yb_books_users WHERE book_id = "' . $this->request->data['Book']['id'] . '"AND user_id = "' . $this->request->data['User']['id'] . '"');
+        if ($this->request->is('post')) {
+            $this->Book->query('DELETE from yb_books_users WHERE book_id = "' . $this->request->data['Book']['id'] . '"AND user_id = "' . $this->request->data['User']['id'] . '"');
+
+            if ( $this->request->is('ajax') ) {
+                exit();
+            }
+            else {
                 return $this->redirect(array('action' => 'view', 'slug' => $book['Book']['slug']));
             }
         }
-        else {
-            if ($this->request->is('post')) {
-                $this->Book->query('DELETE from yb_books_users WHERE book_id = "' . $this->request->data['Book']['id'] . '"AND user_id = "' . $this->request->data['User']['id'] . '"');
-                return $this->redirect(array('action' => 'view', 'slug' => $book['Book']['slug']));
-            }
-        }
+
 
     }
 }
