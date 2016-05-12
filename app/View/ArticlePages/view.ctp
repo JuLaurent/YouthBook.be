@@ -82,7 +82,7 @@
 
                 <?php if( $articlePage['ArticlePage']['page_number'] == $articlePage['Article']['number_of_pages'] && !empty($comments) ): ?>
                     <div class='comments'>
-                        <? foreach( $comments as $comment ): ?>
+                        <?php foreach( $comments as $comment ): ?>
                             <div class='comment'>
                                 <div class='clearfix'>
                                     <span class='user__avatar user__avatar--article comment__avatar'>

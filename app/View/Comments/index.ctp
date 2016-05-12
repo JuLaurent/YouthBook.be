@@ -11,7 +11,7 @@
 
     <div class='clearfix bloc--comments'>
         <div class='bloc comments'>
-            <? foreach( $comments as $comment ): ?>
+            <?php foreach( $comments as $comment ): ?>
                 <div class='comment'>
                     <div class='comment__actions'>
                         <?php if( $comment['Comment']['deleted'] == 0 ): ?>
@@ -22,7 +22,6 @@
                             <?php
                                 $likedByUser = false;
                                 foreach( $comment['Like'] as $like ) {
-
                                     if( $likedByUser = in_array( $this->Session->read('Auth.User.id'), $like ) == true ) {
                                         break;
                                     }
