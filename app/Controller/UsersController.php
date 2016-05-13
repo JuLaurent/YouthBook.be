@@ -229,7 +229,7 @@ class UsersController extends AppController {
         }
     }
 
-    public function removeFromCollection() {
+    /* public function removeFromCollection() {
 
         $this->loadModel('Book');
 
@@ -237,8 +237,8 @@ class UsersController extends AppController {
 
         if ($this->request->is('post')) {
             $this->Book->query('DELETE from yb_books_users WHERE book_id = "' . $this->request->data['Book']['id'] . '"AND user_id = "' . $this->request->data['User']['id'] . '"');
-            return $this->redirect(array('action' => 'collection'));
+            return $this->redirect($this->referer());
         }
-    }
+    } */
 
 }

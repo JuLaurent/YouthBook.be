@@ -63,7 +63,34 @@
                 }
             }
         });
+    });
 
+    $('.collection__item').on( 'submit', '.ajax__user-remove', function( e ) {
+
+        e.preventDefault();
+
+        var self = $( this );
+        var data = {
+            Book : {
+                id : self.find('.ajax__user-remove--id').val()
+            },
+            User : {
+                id : self.find('.ajax__user-remove--user-id').val()
+            }
+        };
+
+        var url = $( this ).attr( 'action' );
+
+        if(xhr) xhr.abort();
+
+        var xhr = $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            success: function( responseFromServer, textstatus, jqXHR ) {
+                self.parents('.collection__item').hide('slow');
+            }
+        });
     });
 
     $('.comment').on( 'submit', '.ajax__like', function( e ) {

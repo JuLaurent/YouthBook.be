@@ -261,7 +261,7 @@ class BooksController extends AppController {
                     exit();
                 }
                 else {
-                    return $this->redirect(array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']));
+                    return $this->redirect($this->referer());
                 }
             }
         }
@@ -273,8 +273,6 @@ class BooksController extends AppController {
         $book = $this->Book->findById($this->request->data['Book']['id']);
         $this->Book->id = $book['Book']['id'];
 
-        debug( $book['Book']['slug'] );
-
         if ($this->request->is('post')) {
             $this->Book->query('DELETE from yb_books_users WHERE book_id = "' . $this->request->data['Book']['id'] . '"AND user_id = "' . $this->request->data['User']['id'] . '"');
 
@@ -282,10 +280,8 @@ class BooksController extends AppController {
                 exit();
             }
             else {
-                return $this->redirect(array('action' => 'view', 'slug' => $book['Book']['slug']));
+                return $this->redirect($this->referer());
             }
         }
-
-
     }
 }
