@@ -1,0 +1,57 @@
+.confirm-box {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    z-index:5;
+}
+
+.confirm-box__filter {
+    width: 100%;
+    height: 100%;
+    background-color: $lightMainColor;
+    opacity:0.6;
+}
+
+.confirm-box__content {
+    width: 40%;
+    padding: $gutter;
+    border: 2px solid $mainColor;
+    position: fixed;
+    top: 20%;
+    left: 30%;
+    background-color: $contrastColor;
+    color: $mainColor;
+}
+
+.confirm-box__sentence {
+    font-size: 20px;
+    font-weight: $light;
+    margin-bottom: $gutter;
+}
+
+@media screen and (max-width: 1280px) {
+    .confirm-box__content {
+        width: 60%;
+        top: 20%;
+        left: 20%;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .confirm-box__content {
+        width: 80%;
+        top: 10%;
+        left: 10%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .confirm-box__content {
+        width: 90%;
+        top: 5%;
+        left: 5%;
+    }
+}

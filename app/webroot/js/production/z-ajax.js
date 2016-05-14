@@ -33,16 +33,16 @@
         e.preventDefault();
 
         var self = $( this );
-        var data = {
-            Book : {
-                id : self.find('.ajax__book-collection--id').val()
-            },
-            User : {
-                id : self.find('.ajax__book-collection--user-id').val()
-            }
-        };
 
-        var url = $( this ).attr( 'action' );
+        var data = {
+                Book : {
+                    id : self.find('.ajax__book-collection--id').val()
+                },
+                User : {
+                    id : self.find('.ajax__book-collection--user-id').val()
+                }
+            },
+            url = self.attr( 'action' );
 
         if(xhr) xhr.abort();
 
@@ -70,25 +70,40 @@
         e.preventDefault();
 
         var self = $( this );
-        var data = {
-            Book : {
-                id : self.find('.ajax__user-remove--id').val()
-            },
-            User : {
-                id : self.find('.ajax__user-remove--user-id').val()
-            }
-        };
 
-        var url = $( this ).attr( 'action' );
+        $( '.confirm-box')
+            .find( '.confirm-box__sentence' )
+                .html( 'Voulez-vous supprimer ce livre de votre collection ?' )
+                .end()
+            .show('slow');
 
-        if(xhr) xhr.abort();
+        $( '.confirm-box' ).on( 'click', '.confirm-box__option', function( e ) {
 
-        var xhr = $.ajax({
-            type: "POST",
-            url: url,
-            data: data,
-            success: function( responseFromServer, textstatus, jqXHR ) {
-                self.parents('.collection__item').hide('slow');
+            $( '.confirm-box' ).hide('slow');
+
+            if ( $( this ).attr( 'data-option' ) == 'true' ) {
+
+                var data = {
+                    Book : {
+                        id : self.find('.ajax__user-remove--id').val()
+                    },
+                    User : {
+                        id : self.find('.ajax__user-remove--user-id').val()
+                    }
+                };
+
+                var url = $( this ).attr( 'action' );
+
+                if(xhr) xhr.abort();
+
+                var xhr = $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data,
+                    success: function( responseFromServer, textstatus, jqXHR ) {
+                        self.parents('.collection__item').hide('slow');
+                    }
+                });
             }
         });
     });
@@ -155,32 +170,46 @@
         e.preventDefault();
 
         var self = $( this );
-        var data = {
-            Comment : {
-                id : self.find('.ajax__comment-delete--id').val(),
-                content : self.find('.ajax__comment-delete--content').val(),
-                deleted : self.find('.ajax__comment-delete--deleted').val() === "1"
-            }
-        };
 
-        var url = $( this ).attr( 'action' );
+        $( '.confirm-box')
+            .find( '.confirm-box__sentence' )
+                .html( 'Voulez-vous supprimer ce commentaire ?' )
+                .end()
+            .show('slow');
 
-        if(xhr) xhr.abort();
+        $( '.confirm-box' ).on( 'click', '.confirm-box__option', function( e ) {
 
-        console.log( data );
+            $( '.confirm-box' ).hide('slow');
 
-        var xhr = $.ajax({
-            type: "POST",
-            url: url,
-            data: data,
-            success: function( responseFromServer, textstatus, jqXHR ) {
-                self
-                    .parents('.comment')
-                        .find('.comment__actions')
-                            .hide( "slow" )
-                            .end()
-                        .find('.comment__content')
-                            .html( '<p class=\'message message--bad\'>Ce commentaire a été supprimé</p>' );
+            if ( $( this ).attr( 'data-option' ) == 'true' ) {
+                var data = {
+                    Comment : {
+                        id : self.find('.ajax__comment-delete--id').val(),
+                        content : self.find('.ajax__comment-delete--content').val(),
+                        deleted : self.find('.ajax__comment-delete--deleted').val() === "1"
+                    }
+                };
+
+                var url = $( this ).attr( 'action' );
+
+                if(xhr) xhr.abort();
+
+                console.log( data );
+
+                var xhr = $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data,
+                    success: function( responseFromServer, textstatus, jqXHR ) {
+                        self
+                            .parents('.comment')
+                                .find('.comment__actions')
+                                    .hide( "slow" )
+                                    .end()
+                                .find('.comment__content')
+                                    .html( '<p class=\'message message--bad\'>Ce commentaire a été supprimé</p>' );
+                    }
+                });
             }
         });
     });
