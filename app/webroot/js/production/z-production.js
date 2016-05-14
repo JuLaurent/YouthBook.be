@@ -1,20 +1,5 @@
 ( function () {
 
-    $( '.side__delete' ).submit( function( e ) {
-        e.preventDefault;
-
-        $( '.confirm-box')
-            .find( '.confirm-box__sentence' )
-                .html( 'Voulez-vous supprimer cet article ?' )
-                .end()
-            .show('slow');
-
-        $( '.confirm-box' ).on( 'click', '.confirm-box__option', function( e ) {
-            $( '.confirm-box' ).hide('slow');
-            return $( this ).attr('data-option');
-        });
-    });
-
     $( window ).resize( function(e) {
 
         if( window.innerWidth > 960 ) {

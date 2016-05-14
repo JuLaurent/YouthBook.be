@@ -289,7 +289,13 @@ class ArticlesController extends AppController {
 
         if ( $this->ArticlePage->deleteAll(array('article_id' => $this->request->data['Article']['id']), false) ) {
             $this->Article->delete( $this->request->data['Article']['id'], true );
-            return $this->redirect(array('controller' => 'dynamicPages', 'action' => 'home'));
+
+            if( $this->request->is('ajax') ) {
+                exit();
+            }
+            else {
+                return $this->redirect(array('controller' => 'dynamicPages', 'action' => 'home'));
+            }
         }
         else {
             return $this->redirect(array('controller' => 'dynamicPages', 'action' => 'home'));

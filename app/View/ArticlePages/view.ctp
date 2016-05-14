@@ -210,8 +210,8 @@
                     </span>
                     <div class='side__action'>
                         <?php
-                            echo $this->Form->create('Article', array('url' => array('controller' => 'articles', 'action' => 'delete'), 'class' => 'side__form side__delete'));
-                                echo $this->Form->input('id', array('type' => 'hidden', 'value' => $articlePage['Article']['id']));
+                            echo $this->Form->create('Article', array('url' => array('controller' => 'articles', 'action' => 'delete'), 'class' => 'side__form ajax__article-delete'));
+                                echo $this->Form->input('id', array('type' => 'hidden', 'value' => $articlePage['Article']['id'], 'class' => 'ajax__article-delete--id'));
                             echo $this->Form->end(array('label' => 'Supprimer l’article', 'class' => 'button--submit'));
                         ?>
                     </div>
@@ -227,9 +227,11 @@
                         ?>
                     </span>
                     <div class='side__action'>
-                        <?php echo $this->Form->create('Article', array('url' => array('controller' => 'articles', 'action' => 'delete'), 'class' => 'side__form side__delete')); ?>
-                            <?php echo $this->Form->input('id', array('type' => 'hidden', 'value' => $articlePage['Article']['id'])); ?>
-                        <?php echo $this->Form->end(array('label' => 'Supprimer l’article', 'class' => 'button--submit')); ?>
+                        <?php
+                            echo $this->Form->create('Article', array('url' => array('controller' => 'articles', 'action' => 'delete'), 'class' => 'side__form ajax__article-delete'));
+                                echo $this->Form->input('id', array('type' => 'hidden', 'value' => $articlePage['Article']['id'], 'class' => 'ajax__article-delete--id'));
+                            echo $this->Form->end(array('label' => 'Supprimer l’article', 'class' => 'button--submit'));
+                        ?>
                     </div>
                 </div>
             <?php endif; ?>

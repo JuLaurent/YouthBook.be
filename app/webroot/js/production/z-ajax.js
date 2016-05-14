@@ -71,7 +71,7 @@
 
         var self = $( this );
 
-        $( '.confirm-box')
+        $( '.confirm-box' )
             .find( '.confirm-box__sentence' )
                 .html( 'Voulez-vous supprimer ce livre de votre collection ?' )
                 .end()
@@ -92,7 +92,7 @@
                     }
                 };
 
-                var url = $( this ).attr( 'action' );
+                var url = self.attr( 'action' );
 
                 if(xhr) xhr.abort();
 
@@ -171,7 +171,7 @@
 
         var self = $( this );
 
-        $( '.confirm-box')
+        $( '.confirm-box' )
             .find( '.confirm-box__sentence' )
                 .html( 'Voulez-vous supprimer ce commentaire ?' )
                 .end()
@@ -190,11 +190,9 @@
                     }
                 };
 
-                var url = $( this ).attr( 'action' );
+                var url = self.attr( 'action' );
 
                 if(xhr) xhr.abort();
-
-                console.log( data );
 
                 var xhr = $.ajax({
                     type: "POST",
@@ -208,6 +206,44 @@
                                     .end()
                                 .find('.comment__content')
                                     .html( '<p class=\'message message--bad\'>Ce commentaire a été supprimé</p>' );
+                    }
+                });
+            }
+        });
+    });
+
+    $( '.side__action' ).on( 'submit', '.ajax__article-delete', function( e ) {
+        e.preventDefault();
+
+        var self = $( this );
+
+        $( '.confirm-box' )
+            .find( '.confirm-box__sentence' )
+                .html( 'Voulez-vous supprimer cet article ?' )
+                .end()
+            .show('slow');
+
+        $( '.confirm-box' ).on( 'click', '.confirm-box__option', function( e ) {
+
+            $( '.confirm-box' ).hide('slow');
+
+            if ( $( this ).attr( 'data-option' ) == 'true' ) {
+                var data = {
+                    Article : {
+                        id : self.find('.ajax__article-delete--id').val(),
+                    }
+                };
+
+                var url = self.attr( 'action' );
+
+                if(xhr) xhr.abort();
+
+                var xhr = $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data,
+                    success: function() {
+                        window.location.href = '/YouthBook.be/'
                     }
                 });
             }
