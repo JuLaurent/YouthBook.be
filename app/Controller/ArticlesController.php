@@ -287,8 +287,8 @@ class ArticlesController extends AppController {
             throw new MethodNotAllowedException();
         }
 
-        if ($this->Article->delete($this->request->data['Article']['id'], false)) {
-            $this->ArticlePage->deleteAll(array('article_id' => $this->request->data['Article']['id']), false);
+        if ( $this->ArticlePage->deleteAll(array('article_id' => $this->request->data['Article']['id']), false) ) {
+            $this->Article->delete( $this->request->data['Article']['id'], true );
             return $this->redirect(array('controller' => 'dynamicPages', 'action' => 'home'));
         }
         else {

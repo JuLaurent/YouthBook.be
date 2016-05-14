@@ -210,7 +210,7 @@
                     </span>
                     <div class='side__action'>
                         <?php
-                            echo $this->Form->create('Article', array('url' => array('controller' => 'articles', 'action' => 'delete'), 'onsubmit' => 'return confirm("Êtes-vous sûr de vouloir supprimer ce brouillon ?");', 'class' => 'side__form'));
+                            echo $this->Form->create('Article', array('url' => array('controller' => 'articles', 'action' => 'delete'), 'class' => 'side__form side__delete'));
                                 echo $this->Form->input('id', array('type' => 'hidden', 'value' => $articlePage['Article']['id']));
                             echo $this->Form->end(array('label' => 'Supprimer l’article', 'class' => 'button--submit'));
                         ?>
@@ -227,7 +227,7 @@
                         ?>
                     </span>
                     <div class='side__action'>
-                        <?php echo $this->Form->create('Article', array('url' => array('controller' => 'articles', 'action' => 'delete'), 'onsubmit' => 'return confirm("Êtes-vous sûr de vouloir supprimer ce brouillon ?");', 'class' => 'side__form')); ?>
+                        <?php echo $this->Form->create('Article', array('url' => array('controller' => 'articles', 'action' => 'delete'), 'class' => 'side__form side__delete')); ?>
                             <?php echo $this->Form->input('id', array('type' => 'hidden', 'value' => $articlePage['Article']['id'])); ?>
                         <?php echo $this->Form->end(array('label' => 'Supprimer l’article', 'class' => 'button--submit')); ?>
                     </div>
