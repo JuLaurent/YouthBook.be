@@ -7,12 +7,28 @@
     text-align: center;
 }
 
-.footer__content {
-    display: block;
+.footer__nav {
     padding: $gutter / 2 0;
+    font-size: 20px;
+}
+
+.footer__nav-item {
+    & + .footer__nav-item:before {
+        content: '-';
+        margin: $gutter / 4;
+    }
 }
 
 .footer__link {
     color: $contrastColor;
     text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.footer__creator {
+    display: block;
+    padding: $gutter / 2 0;
 }

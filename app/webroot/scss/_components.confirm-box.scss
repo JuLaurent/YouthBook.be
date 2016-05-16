@@ -26,6 +26,12 @@
     color: $mainColor;
 }
 
+.confirm-box__option {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 .confirm-box__sentence {
     font-size: 20px;
     font-weight: $light;
