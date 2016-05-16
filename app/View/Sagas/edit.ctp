@@ -17,7 +17,7 @@
             <?php echo $this->Form->create('Saga', array('enctype' => 'multipart/form-data', 'novalidate' => true)); ?>
                 <?php
                     echo $this->Form->input('title', array('label' => 'Titre*', 'class' => 'input-text'));
-                    echo $this->Form->input('user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
+                    echo $this->Form->input('id', array('type' => 'hidden'));
                 ?>
             <?php echo $this->Form->end(__('Modifier le titre'));?>
         </div>

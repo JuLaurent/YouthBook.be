@@ -2,8 +2,13 @@
 
 class SagasController extends AppController {
 
+    public $components = array(
+        'Auth'
+    );
+
     public function beforeFilter() {
         parent::beforeFilter();
+        $this->Auth->allow('index', 'view');
     }
 
     public function index() {
@@ -22,7 +27,15 @@ class SagasController extends AppController {
 
         $this->loadModel('Book');
 
-        $saga = $this->Saga->findBySlug($slug);
+        if ( !$slug ) {
+            throw new NotFoundException(__('Cette saga n’apparait pas dans la base de données.'));
+        }
+
+        $saga = $this->Saga->findBySlug( $slug );
+
+        if ( !$saga ) {
+            throw new NotFoundException(__('Cette saga n’apparait pas dans la base de données.'));
+        }
 
         $main = $this->Book->find(
             'all',
@@ -51,9 +64,8 @@ class SagasController extends AppController {
             $this->Saga->create();
             if ($this->Saga->saveAll($this->request->data)) {
 
-                $newSaga = $this->Saga->findByTitle($this->request->data['Saga']['title']);
-
-                return $this->redirect(array('action' => 'view', 'slug' => $newBook['Saga']['slug']));
+                $newSaga = $this->Saga->findByTitle( $this->request->data['Saga']['title'] );
+                return $this->redirect(array('action' => 'view', 'slug' => $newSaga['Saga']['slug']));
             }
             else {
                 $this->Flash->error('La saga n’a pas pu être ajoutée. Veuillez réessayer SVP.');
@@ -62,15 +74,14 @@ class SagasController extends AppController {
     }
 
     public function edit($slug = null) {
-        $this->loadModel('Book');
 
-        if (!$slug) {
+        if ( !$slug ) {
             throw new NotFoundException(__('Cette saga n’apparait pas dans la base de données.'));
         }
 
         $saga = $this->Saga->findBySlug($slug);
 
-        if (!$saga) {
+        if ( !$saga ) {
             throw new NotFoundException(__('Cette saga n’apparait pas dans la base de données.'));
         }
 
@@ -84,7 +95,7 @@ class SagasController extends AppController {
 
         $this->Saga->id = $saga['Saga']['id'];
 
-        if ($this->request->is('post') || $this->request->is('put')) {
+        if ( $this->request->is('post') || $this->request->is('put') ) {
 
             if ($this->Saga->saveAll($this->request->data)) {
 

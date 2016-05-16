@@ -194,11 +194,11 @@ class ArticlesController extends AppController {
 
         $request = $this->Request->findByBookId($article['Book'][0]['id']);
 
-        if ($this->request->is('post') || $this->request->is('put')) {
+        if ( $this->request->is('post') || $this->request->is('put') ) {
 
-            if ($this->Article->save($this->request->data)) {
+            if ( $this->Article->save($this->request->data) ) {
 
-                if (!empty($request)) {
+                if ( !empty($request) ) {
                     $this->Request->save( array( 'Request' => array( 'id' => $request['Request']['id'], 'done' => 1, 'article_id' => $article['Article']['id'] )));
                 }
 
@@ -282,15 +282,23 @@ class ArticlesController extends AppController {
     public function delete() {
 
         $this->loadModel('ArticlePage');
+        $this->loadModel('Request');
+
+        $request = $this->Request->findByArticleId( $this->request->data['Article']['id'] );
 
         if ($this->request->is('get')) {
             throw new MethodNotAllowedException();
         }
 
         if ( $this->ArticlePage->deleteAll(array('article_id' => $this->request->data['Article']['id']), false) ) {
+
+            if ( !empty( $request ) ) {
+                $this->Request->deleteAll( array('article_id' => $this->request->data['Article']['id']), false );
+            }
+
             $this->Article->delete( $this->request->data['Article']['id'], true );
 
-            if( $this->request->is('ajax') ) {
+            if ( $this->request->is('ajax') ) {
                 exit();
             }
             else {
