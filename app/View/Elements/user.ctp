@@ -55,7 +55,7 @@
             <?php echo $this->Html->link(
                     'Se connecter',
                     array('controller' => 'users', 'action' => 'login'),
-                    array('title' => 'Aller à la page de connexion')
+                    array('title' => 'Aller à la page de connexion', 'class' => 'user__connect')
                 );
             ?>
         </span> <!--

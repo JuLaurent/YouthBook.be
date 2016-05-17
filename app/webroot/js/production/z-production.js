@@ -1,5 +1,11 @@
 ( function () {
 
+    $( '.user__connect' ).on('click', function( e ) {
+        e.preventDefault();
+
+        $( '.popup-box--connect' ).show('slow');
+    });
+
     $( window ).resize( function(e) {
 
         if( window.innerWidth > 960 ) {

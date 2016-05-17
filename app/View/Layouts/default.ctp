@@ -47,20 +47,8 @@
     </head>
     <body>
 
-        <div class='confirm-box'>
-            <div class='confirm-box__filter'></div>
-            <div class='confirm-box__content'>
-                <p class='confirm-box__sentence'></p>
-                <div class='buttons'>
-                    <span class='button'>
-                        <a class='confirm-box__option' data-option='true'>Oui</a>
-                    </span>
-                    <span class='button'>
-                        <a class='confirm-box__option' data-option='false'>Non</a>
-                    </span>
-                </div>
-            </div>
-        </div>
+        <?php echo $this->element('connect-box'); ?>
+        <?php echo $this->element('confirm-box'); ?>
 
         <h1 class='hidden'>YouthBook.be</h1>
         <!-- <div class="container" id="container"> -->

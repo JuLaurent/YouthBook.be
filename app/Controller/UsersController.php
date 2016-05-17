@@ -17,9 +17,14 @@ class UsersController extends AppController {
 
     public function login() {
 
-        if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
-                return $this->redirect($this->Auth->redirectUrl());
+        if ( $this->request->is('post')) {
+            if ( $this->Auth->login() ) {
+                if( $this->referer() == Router::fullbaseUrl() . Router::url(array('controller' => 'users', 'action' => 'login')) ) {
+                    return $this->redirect($this->Auth->redirectUrl());
+                }
+                else {
+                    return $this->redirect($this->referer());
+                }
             } else {
                 $this->Flash->error('Pseudo ou mot de passe invalide. Veuillez réessayer SVP');
             }

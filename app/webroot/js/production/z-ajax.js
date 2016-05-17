@@ -28,6 +28,10 @@
 
     }); */
 
+    $( '.popup-box__filter' ).on('click', function() {
+        $( '.popup-box' ).hide('slow');
+    });
+
     $('.social-links').on( 'submit', '.ajax__book-collection', function( e ) {
 
         e.preventDefault();
@@ -71,15 +75,15 @@
 
         var self = $( this );
 
-        $( '.confirm-box' )
-            .find( '.confirm-box__sentence' )
+        $( '.popup-box--confirm' )
+            .find( '.popup-box__sentence' )
                 .html( 'Voulez-vous supprimer ce livre de votre collection ?' )
                 .end()
             .show('slow');
 
-        $( '.confirm-box' ).on( 'click', '.confirm-box__option', function( e ) {
+        $( '.popup-box--confirm' ).on( 'click', '.popup-box__option', function( e ) {
 
-            $( '.confirm-box' ).hide('slow');
+            $( '.popup-box--confirm' ).hide('slow');
 
             if ( $( this ).attr( 'data-option' ) == 'true' ) {
 
@@ -171,15 +175,15 @@
 
         var self = $( this );
 
-        $( '.confirm-box' )
-            .find( '.confirm-box__sentence' )
+        $( '.popup-box--confirm' )
+            .find( '.popup-box__sentence' )
                 .html( 'Voulez-vous supprimer ce commentaire ?' )
                 .end()
             .show('slow');
 
-        $( '.confirm-box' ).on( 'click', '.confirm-box__option', function( e ) {
+        $( '.popup-box--confirm' ).on( 'click', '.popup-box__option', function( e ) {
 
-            $( '.confirm-box' ).hide('slow');
+            $( '.popup-box--confirm' ).hide('slow');
 
             if ( $( this ).attr( 'data-option' ) == 'true' ) {
                 var data = {
@@ -217,15 +221,15 @@
 
         var self = $( this );
 
-        $( '.confirm-box' )
-            .find( '.confirm-box__sentence' )
+        $( '.popup-box--confirm' )
+            .find( '.popup-box__sentence' )
                 .html( 'Voulez-vous supprimer cet article ?' )
                 .end()
             .show('slow');
 
-        $( '.confirm-box' ).on( 'click', '.confirm-box__option', function( e ) {
+        $( '.popup-box--confirm' ).on( 'click', '.popup-box__option', function( e ) {
 
-            $( '.confirm-box' ).hide('slow');
+            $( '.popup-box--confirm' ).hide('slow');
 
             if ( $( this ).attr( 'data-option' ) == 'true' ) {
                 var data = {

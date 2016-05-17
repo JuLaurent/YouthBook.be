@@ -21,10 +21,12 @@
 
             <div class="form bloc">
 
-                <?php echo $this->Form->create('User', array('novalidate' => true));
-                    echo $this->Form->input('username', array('label' => 'Pseudo', 'class' => 'input-text'));
-                    echo $this->Form->input('password',  array('label' => 'Mot de passe', 'class' => 'input-password'));
-                echo $this->Form->end(__('Se connecter')); ?>
+                <?php
+                    echo $this->Form->create('User', array('novalidate' => true));
+                        echo $this->Form->input('username', array('label' => 'Pseudo', 'class' => 'input-text'));
+                        echo $this->Form->input('password',  array('label' => 'Mot de passe', 'class' => 'input-password'));
+                    echo $this->Form->end(__('Se connecter'));
+                ?>
 
             </div>
 
