@@ -95,7 +95,7 @@ class ConversationsController extends AppController {
             $this->Conversation->create();
 
             if ($this->Conversation->saveAll($this->request->data)) {
-                return $this->redirect($this->referer());
+                return $this->redirect(array('action' => 'view', 'slug' => $this->Conversation->id));
             }
             else {
                 $this->Flash->error('La conversation n’a pas pu être créée. Veuillez réessayer SVP.');

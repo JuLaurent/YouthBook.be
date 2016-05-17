@@ -188,7 +188,7 @@ class BooksController extends AppController {
             if ($this->Book->save($this->request->data)) {
                 $this->Session->delete('book');
 
-                $newBook = $this->Book->findByTitle($this->request->data['Book']['title']);
+                $newBook = $this->Book->findById( $this->Book->id );
 
                 return $this->redirect(array('action' => 'view', 'slug' => $newBook['Book']['slug']));
             }

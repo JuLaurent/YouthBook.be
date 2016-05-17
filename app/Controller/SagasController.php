@@ -64,7 +64,7 @@ class SagasController extends AppController {
             $this->Saga->create();
             if ($this->Saga->saveAll($this->request->data)) {
 
-                $newSaga = $this->Saga->findByTitle( $this->request->data['Saga']['title'] );
+                $newSaga = $this->Saga->findById( $this->Saga->id );
                 return $this->redirect(array('action' => 'view', 'slug' => $newSaga['Saga']['slug']));
             }
             else {
