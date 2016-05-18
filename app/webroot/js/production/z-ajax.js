@@ -254,4 +254,45 @@
         });
     });
 
+    var typingTimer;
+    var doneTypingInterval = 300;
+
+    $( '.search__form' ).on( 'keyup', '.ajax__datalist--search', function( e ) {
+
+        e.preventDefault();
+
+        clearTimeout( typingTimer );
+
+        if ( $('.ajax__datalist--search').val() ) {
+              typingTimer = setTimeout(doneTyping, doneTypingInterval);
+        }
+    });
+
+    var doneTyping = function() {
+        var data = {
+                Book : {
+                    title : $( '.ajax__datalist--search' ).val(),
+                }
+            },
+            url = '/YouthBook.be/dynamicPages/findBooks';
+
+        if(xhr) xhr.abort();
+
+        var xhr = $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            success: function( responseFromServer, textstatus, jqXHR ) {
+
+                var books = JSON.parse( responseFromServer );
+
+                $( '.ajax__datalist--search' ).parents( '.search__form' ).find( '.ajax__datalist--list' ).html( '' );
+
+                for( var i = 0 ; i < books.length ; i++ ) {
+                    $( '.ajax__datalist--search' ).parents( '.search__form' ).find( '.ajax__datalist--list' ).append( '<option>' + books[i]['Book']['title'] + '</option>' );
+                }
+            }
+        });
+    }
+
 } )();

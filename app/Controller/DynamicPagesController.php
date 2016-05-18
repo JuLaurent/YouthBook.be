@@ -60,6 +60,30 @@ class DynamicPagesController extends AppController {
         $this->set(compact('highlightedReview', 'recentReviews', 'highlightedArticles', 'recentArticles', 'recentBooks' ));
     }
 
+    public function findBooks() {
+        $this->loadModel('Book');
+
+        if ( $this->request->is('ajax') ) {
+            if ( $this->request->data['Book']['title'] != '' ) {
+                $books = $this->Book->find(
+                    'all',
+                    array(
+                        'recursive' => -1,
+                        'conditions' => array( 'Book.title REGEXP' => '[\s\S]*' . $this->request->data['Book']['title'] . '[\s\S]*' ),
+                        'order' => array( 'Book.title' => 'asc' )
+                    )
+                );
+            }
+            else {
+                $books = '';
+            }
+
+            echo json_encode( $books );
+
+            exit();
+        }
+    }
+
     public function search() {
         $this->loadModel('Book');
         $this->loadModel('Article');

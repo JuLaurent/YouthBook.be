@@ -14,6 +14,8 @@ class ConversationsController extends AppController {
 
     public function index() {
 
+        $this->loadModel('ConversationsUser');
+
         $conversations = $this->Conversation->find(
             'all',
             array(

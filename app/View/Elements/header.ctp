@@ -29,7 +29,8 @@
             </div>
             <div class="header__search search">
                 <?php echo $this->Form->create('Book', array('type' => 'get', 'url' => array('controller' => 'dynamicPages', 'action' => 'search'), 'class' => 'search__form')); ?>
-                    <?php echo $this->Form->input('search', array('type' => 'search', 'label' => 'Recherche', 'placeholder'=>'Rechercher', 'class' => 'search__text')); ?>
+                    <?php echo $this->Form->input('search', array('type' => 'search', 'label' => 'Recherche', 'placeholder'=>'Rechercher un livre, un article', 'list' => 'books', 'class' => 'search__text ajax__datalist--search')); ?>
+                    <datalist id='books' class='ajax__datalist--list'></datalist>
                 <?php echo $this->Form->end(__('Rechercher')); ?>
             </div>
         </div>
