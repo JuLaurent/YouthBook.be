@@ -247,7 +247,7 @@
                     url: url,
                     data: data,
                     success: function() {
-                        window.location.href = '/YouthBook.be/'
+                        window.location = '/YouthBook.be/'
                     }
                 });
             }

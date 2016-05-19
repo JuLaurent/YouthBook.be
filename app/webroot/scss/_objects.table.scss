@@ -6,13 +6,20 @@
     border-bottom: 1px solid $darkMainColor;
 }
 
-.table__row--conversation:hover {
-    color: $lightMainColor;
-    cursor: pointer;
+.table__row--conversation {
 
-    a {
+    &:hover {
         color: $lightMainColor;
+        cursor: pointer;
+
+        a {
+            color: $lightMainColor;
+        }
     }
+}
+
+.table__row--not-seen {
+    font-family: $bold;
 }
 
 .table__head {

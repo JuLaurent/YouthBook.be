@@ -23,7 +23,20 @@
                     <th class='table__head'>Dernier message</th>
                 </tr>
                 <?php foreach( $conversations as $conversation ): ?>
-                    <tr class='table__row table__row--data table__row--conversation'>
+                    <?php
+                        $seen = true;
+                        foreach( $conversationsUser as $conversationUser ) {
+                            if( $conversationUser['ConversationsUser']['conversation_id'] == $conversation['Conversation']['id'] && $conversationUser['ConversationsUser']['seen'] == false ) {
+                                $seen = false;
+                                break;
+                            }
+                        }
+                    ?>
+                    <?php if( $seen == false ): ?>
+                        <tr class='table__row table__row--data table__row--conversation table__row--not-seen'>
+                    <? else: ?>
+                        <tr class='table__row table__row--data table__row--conversation'>
+                    <? endif; ?>
                         <td class='table__data' data-head='Titre'>
                             <?php echo $this->Html->link(
                                 $conversation['Conversation']['title'],

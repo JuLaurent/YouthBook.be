@@ -24,11 +24,19 @@ class ConversationsController extends AppController {
             )
         );
 
-        $this->set(compact('conversations'));
+        $conversationsUser = $this->ConversationsUser->find(
+            'all',
+            array(
+                'conditions' => array('ConversationsUser.user_id' => $this->Session->read('Auth.User.id'))
+            )
+        );
+
+        $this->set(compact('conversations', 'conversationsUser'));
     }
 
     public function view($slug = null) {
 
+        $this->loadModel('ConversationsUser');
         $this->loadModel('Message');
         $this->loadModel('User');
 
@@ -69,6 +77,20 @@ class ConversationsController extends AppController {
 
         if ( $access == false ) {
             throw new NotFoundException(__('Vous ne pouvez pas avoir accès à cette conversation.'));
+        }
+
+        $conversationUser = $this->ConversationsUser->find(
+            'first',
+            array(
+                'conditions' => array('ConversationsUser.conversation_id' => $slug, 'ConversationsUser.user_id' => $this->Session->read('Auth.User.id'))
+            )
+        );
+
+        if ( $conversationUser['ConversationsUser']['seen'] == false ) {
+            $this->ConversationsUser->id = $conversationUser['ConversationsUser']['id'];
+            $data = array( 'ConversationsUser' => array( 'seen' => true ) );
+
+            $this->ConversationsUser->save($data);
         }
 
         $this->set(compact('conversation', 'messages', 'access'));
@@ -117,7 +139,7 @@ class ConversationsController extends AppController {
 
         if ( $this->request->is('post') || $this->request->is('put') ) {
 
-            if ($this->Conversation->saveAll($this->request->data)) {
+            if ( $this->Conversation->saveAll($this->request->data) ) {
                 return $this->redirect($this->referer());
             }
             else {
