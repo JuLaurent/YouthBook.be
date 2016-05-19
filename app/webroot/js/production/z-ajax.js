@@ -261,10 +261,13 @@
 
         e.preventDefault();
 
-        clearTimeout( typingTimer );
+        if ( e.keyCode != 38 && e.keyCode != 40 ) {
+            console.log(e.keyCode);
+            clearTimeout( typingTimer );
 
-        if ( $('.ajax__datalist--search').val() ) {
-              typingTimer = setTimeout(doneTyping, doneTypingInterval);
+            if ( $('.ajax__datalist--search').val() ) {
+                  typingTimer = setTimeout(doneTyping, doneTypingInterval);
+            }
         }
     });
 
