@@ -34,9 +34,9 @@
                     ?>
                     <?php if( $seen == false ): ?>
                         <tr class='table__row table__row--data table__row--conversation table__row--not-seen'>
-                    <? else: ?>
+                    <?php else: ?>
                         <tr class='table__row table__row--data table__row--conversation'>
-                    <? endif; ?>
+                    <?php endif; ?>
                         <td class='table__data' data-head='Titre'>
                             <?php echo $this->Html->link(
                                 $conversation['Conversation']['title'],
