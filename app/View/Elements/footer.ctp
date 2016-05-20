@@ -1,7 +1,7 @@
 <footer class='footer'>
     <nav class='footer__nav'>
         <div class="footer__nav-title hidden">
-            <h2>Menu de navigation</h2>
+            <h2>Menu de navigation Footer</h2>
         </div>
         <span class='footer__nav-item'>
             <?php echo $this->Html->link(

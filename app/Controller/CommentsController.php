@@ -140,7 +140,6 @@ class CommentsController extends AppController {
 
         $this->Comment->id = $comment['Comment']['id'];
 
-
         if ( $this->request->is('post') || $this->request->is('put') ) {
 
             if ( $this->Comment->saveAll($this->request->data) ) {

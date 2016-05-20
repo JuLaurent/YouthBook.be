@@ -1,7 +1,7 @@
 <div class="nav">
     <nav>
         <div class="nav__title hidden">
-            <h2>Menu de navigation</h2>
+            <h2>Menu de navigation Header</h2>
         </div>
         <div class="nav__items clearfix">
             <span class="nav__item-container">

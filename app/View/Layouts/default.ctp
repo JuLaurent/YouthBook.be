@@ -47,25 +47,30 @@
     </head>
     <body>
 
+        <h1 class='hidden'>YouthBook.be - Site d’actualité communautaire sur la littérature jeunesse</h1>
+
         <?php echo $this->element('connect-box'); ?>
         <?php echo $this->element('confirm-box'); ?>
 
-        <h1 class='hidden'>YouthBook.be</h1>
-        <!-- <div class="container" id="container"> -->
+        <?php echo $this->element('header'); ?>
 
-            <?php echo $this->element('header'); ?>
+        <div class='content'>
 
-            <div class='content'>
+            <div class='content__container clearfix'>
 
-                <div class='content__container clearfix'>
-
-                    <?php echo $this->fetch('content'); ?>
-
-                </div>
+                <?php echo $this->fetch('content'); ?>
 
             </div>
 
-            <?php echo $this->element('footer'); ?>
+        </div>
+
+        <?php echo $this->element('footer'); ?>
+
+        <?php
+            if ($this->params['controller'] == 'articlePages' && $this->params['action'] == 'view') {
+                echo $this->element('comment');
+            }
+        ?>
 
         <?php echo $this->Html->script('jquery-2.1.4.min.js'); ?>
         <?php echo $this->Html->script('main.js'); ?>
