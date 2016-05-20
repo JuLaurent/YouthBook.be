@@ -270,17 +270,24 @@ class BooksController extends AppController {
 
     public function removeFromCollection() {
 
-        $book = $this->Book->findById($this->request->data['Book']['id']);
-        $this->Book->id = $book['Book']['id'];
+        $this->loadModel('BooksUser');
+
+        $bookUser = $this->BooksUser->find(
+            'first',
+            array(
+                'conditions' => array( 'BooksUser.book_id' => $this->request->data['Book']['id'], 'BooksUser.user_id' => $this->request->data['User']['id'] )
+            )
+        );
 
         if ($this->request->is('post')) {
-            $this->Book->query('DELETE from yb_books_users WHERE book_id = "' . $this->request->data['Book']['id'] . '"AND user_id = "' . $this->request->data['User']['id'] . '"');
 
-            if ( $this->request->is('ajax') ) {
-                exit();
-            }
-            else {
-                return $this->redirect($this->referer());
+            if ( $this->BooksUser->delete( $bookUser['BooksUser']['id'], false ) ) {
+                if ( $this->request->is('ajax') ) {
+                    exit();
+                }
+                else {
+                    return $this->redirect($this->referer());
+                }
             }
         }
     }

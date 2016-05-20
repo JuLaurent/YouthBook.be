@@ -87,7 +87,7 @@ class RequestsController extends AppController {
                 }
             }
             else {
-                if ($this->Request->delete($request['Request']['id'], false)) {
+                if ( $this->Request->delete($request['Request']['id'], false) ) {
                     return $this->redirect(array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']));
                 }
                 else {
