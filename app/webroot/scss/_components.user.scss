@@ -38,6 +38,7 @@
     display: inline-block;
     width: 30px;
     height: 30px;
+    position: relative;
 
     & + .user__action {
         margin-left: $gutter / 4;
@@ -46,6 +47,21 @@
     & + .user__action--form {
         margin-left: $gutter / 4;
     }
+}
+
+.user__not-seen-conversations {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid $mainColor;
+    border-radius: 50%;
+    font-size: 12px;
+    text-align: center;
+    position: absolute;
+    bottom: -6px;
+    right: -6px;
+    background-color: $mainColor;
+    color: white;
 }
 
 .user__action--form {
@@ -141,6 +157,14 @@
         & + .user__action {
             margin-left: $mGutter / 4;
         }
+    }
+
+    .user__not-seen-conversations {
+        width: 24px;
+        height: 24px;
+        font-size: 16px;
+        bottom: -6px;
+        right: -6px;
     }
 
     .user__button {

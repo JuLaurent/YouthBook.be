@@ -1,3 +1,4 @@
+
 <?php
 /**
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
@@ -9,19 +10,34 @@
  *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.View.Layouts.Email.html
+ * @package       app.View.Layouts
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
-<head>
-	<title><?php echo $this->fetch('title'); ?></title>
-</head>
-<body>
-	<?php echo $this->fetch('content'); ?>
 
-	<p>This email was sent using the <a href="http://cakephp.org">CakePHP Framework</a></p>
-</body>
+//$cakeDescription = __d('cake_dev', $pageName . ' - YouthBook.be');
+//$cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
+?>
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <?php echo $this->Html->charset(); ?>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>
+            <?php echo ($this->fetch('title') . ' - YouthBook.be'); ?>
+        </title>
+        <?php
+            echo $this->Html->meta('viewport', 'width=device-width, initial-scale=1');
+
+            echo $this->Html->css('main');
+        ?>
+    </head>
+    <body>
+        <?php echo $this->element('mail-header'); ?>
+        <?php echo $this->fetch('content'); ?>
+    </body>
 </html>

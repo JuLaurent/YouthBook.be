@@ -24,6 +24,7 @@
             <span class='user__action action user__edit'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'conversations', 'action'=>'index' ) ) ?>' title='Aller à la page de mes conversations' class='action__link<?php if($this->params['controller'] == 'conversations' && $this->params['action'] == 'index') echo ' action__active' ?>'>
                     <span class="fa fa-comments"></span>
+                    <span class='user__not-seen-conversations'></span>
                 </a>
             </span>
             <span class='user__action action user__book-create'>

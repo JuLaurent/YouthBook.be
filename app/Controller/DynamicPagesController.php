@@ -60,30 +60,6 @@ class DynamicPagesController extends AppController {
         $this->set(compact('highlightedReview', 'recentReviews', 'highlightedArticles', 'recentArticles', 'recentBooks' ));
     }
 
-    public function findBooks() {
-        $this->loadModel('Book');
-
-        if ( $this->request->is('ajax') ) {
-            if ( $this->request->data['Book']['title'] != '' ) {
-                $books = $this->Book->find(
-                    'all',
-                    array(
-                        'recursive' => -1,
-                        'conditions' => array( 'Book.title REGEXP' => '[\s\S]*' . $this->request->data['Book']['title'] . '[\s\S]*' ),
-                        'order' => array( 'Book.title' => 'asc' )
-                    )
-                );
-            }
-            else {
-                $books = '';
-            }
-
-            echo json_encode( $books );
-
-            exit();
-        }
-    }
-
     public function search() {
         $this->loadModel('Book');
         $this->loadModel('Article');
@@ -116,5 +92,56 @@ class DynamicPagesController extends AppController {
 
     public function about() {
 
+    }
+
+    public function findBooks() {
+        $this->loadModel('Book');
+
+        if ( $this->request->is('ajax') ) {
+            if ( $this->request->data['Book']['title'] != '' ) {
+                $books = $this->Book->find(
+                    'all',
+                    array(
+                        'recursive' => -1,
+                        'conditions' => array( 'Book.title REGEXP' => '[\s\S]*' . $this->request->data['Book']['title'] . '[\s\S]*' ),
+                        'order' => array( 'Book.title' => 'asc' )
+                    )
+                );
+            }
+            else {
+                $books = '';
+            }
+
+            echo json_encode( $books );
+
+            exit();
+        }
+    }
+
+    public function countNotSeenConversations() {
+        $this->loadModel('ConversationsUser');
+
+        if ( $this->request->is('ajax') ) {
+            $numberNotSeenConversations = count($this->ConversationsUser->find(
+                'all',
+                array(
+                    'conditions' => array( 'ConversationsUser.user_id' => $this->Session->read('Auth.User.id'), 'ConversationsUser.seen' => false )
+                )
+            ));
+
+            echo json_encode( $numberNotSeenConversations );
+
+            exit();
+        }
+    }
+
+    public function newPassword() {
+        $Email = new CakeEmail();
+        $Email->from(array('contact@youthbook.be' => 'YouthBook.be'));
+        $Email->to('julien_shinigami@hotmail.com');
+        $Email->subject('About');
+        $Email->send('My message');
+
+        $this->redirect(array('controller' => 'users', 'action' => 'login'));
     }
 }

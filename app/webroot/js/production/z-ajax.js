@@ -1,5 +1,17 @@
 ( function() {
 
+
+    $.ajax({
+        url: '/YouthBook.be/dynamicPages/countNotSeenConversations',
+        success: function( responseFromServer, textstatus, jqXHR ) {
+            var number = JSON.parse( responseFromServer );
+            if ( number > 0 ) {
+                $( '.user__not-seen-conversations' ).show().html( number );
+            }
+        }
+    });
+
+
     /* $('.ajax__add-comment').submit(function( e ) {
 
         e.preventDefault();
