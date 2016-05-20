@@ -129,6 +129,8 @@ class ConversationsController extends AppController {
 
     public function addMessage() {
 
+        $this->loadModel('ConversationsUser');
+
         $conversation = $this->Conversation->findById($this->request->data['Conversation']['id']);
 
         if (!$conversation) {
@@ -140,6 +142,21 @@ class ConversationsController extends AppController {
         if ( $this->request->is('post') || $this->request->is('put') ) {
 
             if ( $this->Conversation->saveAll($this->request->data) ) {
+
+                $conversationsUser = $this->ConversationsUser->find(
+                    'all',
+                    array(
+                        'conditions' => array( 'ConversationsUser.conversation_id' => $conversation['Conversation']['id'], 'ConversationsUser.user_id !=' => $this->Session->read('Auth.User.id') )
+                    )
+                );
+
+                $data = array( 'ConversationsUser' => array( 'seen' => false ) );
+
+                foreach( $conversationsUser as $conversationUser ) {
+                    $this->ConversationsUser->id = $conversationUser['ConversationsUser']['id'];
+                    $this->ConversationsUser->save( $data );
+                }
+
                 return $this->redirect($this->referer());
             }
             else {
