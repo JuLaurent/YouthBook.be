@@ -41,8 +41,9 @@
         </section>
     <?php endif; ?>
 
-    <?php if( empty( $main ) && empty( $spinoff ) ) ?>
+    <?php if( empty( $main ) && empty( $spinoff ) ): ?>
         <p>Aucun livre n’a encore été ajouté à cette saga</p>
+    <?php endif; ?>
 
     <?php if( $saga['Saga']['user_id'] == $this->Session->read('Auth.User.id') || $this->Session->read('Auth.User.role') == 'administrateur' || $this->Session->read('Auth.User.role') == 'modérateur' ): ?>
         <div>

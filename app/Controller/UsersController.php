@@ -97,6 +97,28 @@ class UsersController extends AppController {
         $this->set(compact('user', 'books'));
     }
 
+    public function sagas($id = null) {
+
+        $this->loadModel('Saga');
+
+        $this->User->id = $this->Auth->user('id');
+        if (!$this->User->exists()) {
+            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+        }
+
+        $user = $this->User->read(null, $id);
+
+        $sagas = $this->Saga->find(
+            'all',
+            array(
+                'conditions' => array('user_id' => $this->User->id),
+                'order' => array('Saga.title' => 'asc')
+            )
+        );
+
+        $this->set(compact('user', 'sagas'));
+    }
+
     public function articles($id = null) {
 
         $this->loadModel('Article');

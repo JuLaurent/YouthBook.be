@@ -1,6 +1,6 @@
 <?php
 
-    $this->assign('title', 'Mes fiches');
+    $this->assign('title', 'Mes fiches livres');
     $this->assign('description', 'Liste de mes fiches de livres');
 
 ?>
@@ -9,7 +9,7 @@
 
 <section class='right-part'>
 
-    <div class="page-title"><h2 class='beta page-title__item'>Mes fiches de livre</h2></div>
+    <div class="page-title"><h2 class='beta page-title__item'>Mes fiches de livres</h2></div>
 
     <div class='bloc bloc--padding'>
 
@@ -24,7 +24,7 @@
                 <?php endforeach; ?>
             </ul>
         <?php else: ?>
-            <p>Vous n'avez créé aucune fiche de livre.</p>
+            <p>Vous n’avez créé aucune fiche de livre.</p>
         <?php endif; ?>
     </div>
 

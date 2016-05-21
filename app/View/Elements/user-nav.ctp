@@ -4,7 +4,10 @@
         <a  href='<?php echo $this->Html->url( array('controller' => 'users', 'action' => 'collection') ) ?>' title='Aller à la page de ma collection de livres' class='<?php if($this->params['controller'] == 'users' && $this->params['action'] == 'collection') echo 'nav__active ' ?>left-nav__item'>Ma collection</a>
     </span>
     <span class='left-nav__container'>
-        <a  href='<?php echo $this->Html->url( array('controller' => 'users', 'action' => 'books') ) ?>' title='Aller à la page de mes fiches de livres' class='<?php if($this->params['controller'] == 'users' && $this->params['action'] == 'books') echo 'nav__active ' ?>left-nav__item'>Mes fiches</a>
+        <a  href='<?php echo $this->Html->url( array('controller' => 'users', 'action' => 'books') ) ?>' title='Aller à la page de mes fiches de livres' class='<?php if($this->params['controller'] == 'users' && $this->params['action'] == 'books') echo 'nav__active ' ?>left-nav__item'>Mes fiches de livres</a>
+    </span>
+    <span class='left-nav__container'>
+        <a  href='<?php echo $this->Html->url( array('controller' => 'users', 'action' => 'sagas') ) ?>' title='Aller à la page de mes fiches de sagas' class='<?php if($this->params['controller'] == 'users' && $this->params['action'] == 'sagas') echo 'nav__active ' ?>left-nav__item'>Mes fiches de sagas</a>
     </span>
     <span class='left-nav__container'>
         <a  href='<?php echo $this->Html->url( array('controller' => 'users', 'action' => 'articles') ) ?>' title='Aller à la page des articles' class='<?php if($this->params['controller'] == 'users' && $this->params['action'] == 'articles') echo 'nav__active ' ?>left-nav__item'>Mes articles</a>
