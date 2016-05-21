@@ -7,9 +7,9 @@
 
 <?php // echo $this->element('book-nav'); ?>
 
-<section>
+<section itemscope itemtype='https://schema.org/Book'>
 
-    <div class='page-title'><h2 class='beta page-title__item'><?php echo $book['Book']['title'] ?></h2></div>
+    <div class='page-title'><h2 class='beta page-title__item' itemprop='name'><?php echo $book['Book']['title'] ?></h2></div>
 
     <div class='social-links'>
         <span class='user__action'><?php echo $this->SocialShare->fa('facebook', null,  array( 'title' => 'Partager via facebook')); ?></span>
@@ -37,7 +37,7 @@
     <section class='bloc'>
         <div class='bloc-title hidden'><h3>Fiche descriptive</h3></div>
         <div class='clearfix sheet'>
-            <div class='sheet__cover'>
+            <div class='sheet__cover' itemprop='image'>
                 <?php if( $book['Book']['cover'] ): ?>
                     <a href='<?php echo ('/img/covers/' . $book['Book']['id'] . '/' . $book['Book']['cover']) ?>' title='Voir la couverture du livre <?php echo $book['Book']['title'] ?> en grand format' class='image-box__link image-box__popup'>
                         <div class='sheet__image'>
@@ -54,7 +54,7 @@
                 <dl class='bloc clearfix'>
                     <dt class='sheet__term'>Auteurs(s)</dt>
                     <?php if($book['Book']['author']): ?>
-                        <dd class='sheet__description'><?php echo $book['Book']['author'] ?></dd>
+                        <dd class='sheet__description' itemprop='author'><?php echo $book['Book']['author'] ?></dd>
                     <?php else: ?>
                         <dd class='sheet__description'>Inconnu</dd>
                     <?php endif; ?>
@@ -74,31 +74,31 @@
                     <?php endif; ?>
                     <dt class='sheet__term'>Nombre de pages</dt>
                     <?php if($book['Book']['pages']): ?>
-                        <dd class='sheet__description'><?php echo $book['Book']['pages'] ?></dd>
+                        <dd class='sheet__description' itemprop='numberOfPages'><?php echo $book['Book']['pages'] ?></dd>
                     <?php else: ?>
                         <dd class='sheet__description'>Inconnu</dd>
                     <?php endif; ?>
                     <dt class='sheet__term'>Date de sortie</dt>
                     <?php if($book['Book']['release_date']): ?>
-                        <dd class='sheet__description'><?php echo $this->Time->format('d/m/Y', $book['Book']['release_date']) ?></dd>
+                        <dd class='sheet__description' itemprop='datePublished'><?php echo $this->Time->format('d/m/Y', $book['Book']['release_date']) ?></dd>
                     <?php else: ?>
                         <dd class='sheet__description'>Inconnu</dd>
                     <?php endif; ?>
                     <dt class='sheet__term'>ISBN 10</dt>
                     <?php if($book['Book']['isbn10']): ?>
-                        <dd class='sheet__description'><?php echo $book['Book']['isbn10'] ?></dd>
+                        <dd class='sheet__description' itemprop='isbn'><?php echo $book['Book']['isbn10'] ?></dd>
                     <?php else: ?>
                         <dd class='sheet__description'>Inconnu</dd>
                     <?php endif; ?>
                     <dt class='sheet__term'>ISBN 13</dt>
                     <?php if($book['Book']['isbn13']): ?>
-                        <dd class='sheet__description'><?php echo $book['Book']['isbn13'] ?></dd>
+                        <dd class='sheet__description' itemprop='isbn'><?php echo $book['Book']['isbn13'] ?></dd>
                     <?php else: ?>
                         <dd class='sheet__description'>Inconnu</dd>
                     <?php endif; ?>
                     <dt class='sheet__term'>Résumé</dt>
                     <?php if($book['Book']['summary']): ?>
-                        <dd class='sheet__description sheet__description--summary'><?php echo $book['Book']['summary'] ?></dd>
+                        <dd class='sheet__description sheet__description--summary' itemprop='description'><?php echo $book['Book']['summary'] ?></dd>
                     <?php else: ?>
                         <dd class='sheet__description'>Inconnu</dd>
                     <?php endif; ?>
@@ -124,20 +124,20 @@
         <section class='bloc bloc--padding'>
             <div class='bloc-title'><h3>Les dernières critiques</h3></div>
             <?php if($latestReviews): ?>
-                <ol>
+                <ol itemscope itemtype='https://schema.org/ItemList'>
                     <?php foreach($latestReviews as $review): ?>
-                        <li class='recent-article__item recent-article__item--sheet'>
-                            <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $review['Article']['id'], 'slug2' => $review['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de la critique <?php echo $review['Article']['title'] ?>' class='link'>
+                        <li class='recent-article__item recent-article__item--sheet' itemprop='itemListElement' itemscope itemtype='https://schema.org/Article'>
+                            <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $review['Article']['id'], 'slug2' => $review['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de la critique <?php echo $review['Article']['title'] ?>' class='link' itemprop='url'>
                                 <div class='recent-article recent-article--sheet'>
-                                    <div class='recent-article__title recent-article__title--sheet'><?php echo $review['Article']['title'] ?></div>
+                                    <div class='recent-article__title recent-article__title--sheet' itemprop='name'><?php echo $review['Article']['title'] ?></div>
                                     <div class='recent-article__informations recent-article__informations--sheet clearfix'>
-                                        <span class='recent-article__date'><?php echo $this->Time->format('d/m', $review['Article']['created']) ?></span>
+                                        <span class='recent-article__date' itemprop='datePublished'><?php echo $this->Time->format('d/m', $review['Article']['created']) ?></span>
                                         <span class='recent-article__types'>
                                             <?php foreach($review['Type'] as $type): ?>
                                                 <span class='recent-article__type'><?php echo $type['name'] ?></span>
                                             <?php endforeach; ?>
                                         </span>
-                                        <span class='recent-article__author'><?php echo $review['User']['username'] ?></span>
+                                        <span class='recent-article__author' itemprop='author'><?php echo $review['User']['username'] ?></span>
                                     </div>
                                 </div>
                             </a>
@@ -195,20 +195,20 @@
         <section class='bloc bloc--padding'>
             <div class='bloc-title'><h3>Les derniers articles</h3></div>
             <?php if($latestArticles): ?>
-                <ol>
+                <ol itemscope itemtype='https://schema.org/ItemList'>
                     <?php foreach ($latestArticles as $article): ?>
-                        <li class='recent-article__item recent-article__item--sheet'>
-                            <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $article['Article']['id'], 'slug2' => $article['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de l&apos;article <?php echo $article['Article']['title'] ?>' class='link'>
+                        <li class='recent-article__item recent-article__item--sheet' itemprop='itemListElement' itemscope itemtype='https://schema.org/Article'>
+                            <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $article['Article']['id'], 'slug2' => $article['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de l&apos;article <?php echo $article['Article']['title'] ?>' class='link' itemprop='url'>
                                 <div class='recent-article recent-article--sheet'>
-                                    <div class='recent-article__title recent-article__title--sheet'><?php echo $article['Article']['title'] ?></div>
+                                    <div class='recent-article__title recent-article__title--sheet' itemprop='name'><?php echo $article['Article']['title'] ?></div>
                                     <div class='recent-article__informations recent-article__informations--sheet clearfix'>
-                                        <span class='recent-article__date'><?php echo $this->Time->format('d/m', $article['Article']['created']) ?></span>
+                                        <span class='recent-article__date' itemprop='datePublished'><?php echo $this->Time->format('d/m', $article['Article']['created']) ?></span>
                                         <span class='recent-article__types'>
                                             <?php foreach($article['Type'] as $type): ?>
                                                 <span class='recent-article__type'><?php echo $type['name'] ?></span>
                                             <?php endforeach; ?>
                                         </span>
-                                        <span class='recent-article__author'><?php echo $article['User']['username'] ?></span>
+                                        <span class='recent-article__author' itemprop='author'><?php echo $article['User']['username'] ?></span>
                                     </div>
                                 </div>
                             </a>

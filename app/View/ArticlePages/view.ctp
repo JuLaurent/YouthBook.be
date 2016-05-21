@@ -5,9 +5,9 @@
 
 ?>
 
-<section class='bloc bloc--padding'>
+<section class='bloc bloc--padding' itemscope itemtype='http://schema.org/Article'>
 
-    <div class='page-title'><h2 class='beta page-title__item'><?php echo $articlePage['Article']['title'] ?></h2></div>
+    <div class='page-title'><h2 class='beta page-title__item' itemprop='name'><?php echo $articlePage['Article']['title'] ?></h2></div>
 
     <div class='social-links'>
         <span class='user__action'><?php echo $this->SocialShare->fa('facebook', null,  array( 'title' => 'Partager via facebook')); ?></span>
@@ -18,7 +18,7 @@
         <div class='article__content'>
             <div class='bloc'>
                 <?php if( $articlePage['Article']['number_of_pages'] > 1 ): ?>
-                    <div class='pagination'>
+                    <div class='pagination' itemprop='pagination'>
                         <?php for($i = 1 ; $i <= $articlePage['Article']['number_of_pages'] ; $i++): ?>
                             <span class='pagination__character character'>
                                 <a  href='<?php echo($this->Html->url( array('controller' => 'articlePages', 'action' => 'view', 'slug1' => $articlePage['Article']['id'], 'slug2' => $articlePage['Article']['slug'], 'slug3' => $i))) ?>' title='Aller à la page <?php echo($i) ?>' class='<?php if($this->params['pass'][2] == $i) echo('character__active ') ?>character__link'><?php echo($i) ?></a>
@@ -40,12 +40,12 @@
                               ?>
                         </span>
                         <span class='article__username'>
-                            Publiée par <?php echo $articlePage['Article']['User']['username'] ?> le <?php echo $this->Time->format('d/m/Y', $articlePage['Article']['created']) ?>
+                            Publiée par <span itemprop='author'><?php echo $articlePage['Article']['User']['username'] ?></span> le <span itemprop='datePublished'><?php echo $this->Time->format('d/m/Y', $articlePage['Article']['created']) ?></span>
                         </span>
                     </div>
                 <?php endif; ?>
 
-                <div class='article__text clearfix'><?php echo $articlePage['ArticlePage']['content'] ?></div>
+                <div class='article__text clearfix' itemprop='articleBody'><?php echo $articlePage['ArticlePage']['content'] ?></div>
 
                 <?php foreach( $articlePage['Article']['Type'] as $type ): ?>
                     <?php if( $type['slug'] == 'critiques' && $articlePage['Article']['number_of_pages'] == $articlePage['ArticlePage']['page_number']): ?>
@@ -65,7 +65,7 @@
                 <?php endforeach; ?>
 
                 <?php if( $articlePage['Article']['number_of_pages'] > 1 ): ?>
-                    <div class='pagination'>
+                    <div class='pagination' itemprop='pagination'>
                         <?php for($i = 1 ; $i <= $articlePage['Article']['number_of_pages'] ; $i++): ?>
                             <span class='pagination__character character'>
                                 <a  href='<?php echo($this->Html->url( array('controller' => 'articlePages', 'action' => 'view', 'slug1' => $articlePage['Article']['id'], 'slug2' => $articlePage['Article']['slug'], 'slug3' => $i))) ?>' title='Aller à la page <?php echo($i) ?>' class='<?php if($this->params['pass'][2] == $i) echo('character__active ') ?>character__link'><?php echo($i) ?></a>
@@ -83,7 +83,7 @@
                 <?php if( $articlePage['ArticlePage']['page_number'] == $articlePage['Article']['number_of_pages'] && !empty($comments) ): ?>
                     <div class='comments'>
                         <?php foreach( $comments as $comment ): ?>
-                            <div class='comment'>
+                            <div class='comment' itemprop='comment' itemscope itemtype='http://schema.org/Comment'>
                                 <div class='clearfix'>
                                     <span class='user__avatar user__avatar--article comment__avatar'>
                                         <?php
@@ -96,8 +96,8 @@
                                         ?>
                                     </span>
                                     <div class='comment__info'>
-                                        <span class='comment__username'><?php echo $comment['User']['username'] ?></span>
-                                        <span class='comment__date'><?php echo $this->Time->format('d/m/Y G:H:s', $comment['Comment']['created']) ?></span>
+                                        <span class='comment__username' itemprop='author'><?php echo $comment['User']['username'] ?></span>
+                                        <span class='comment__date' itemprop='datePublished	'><?php echo $this->Time->format('d/m/Y G:H:s', $comment['Comment']['created']) ?></span>
                                     </div>
                                 </div>
                                 <div class='comment__actions'>
@@ -143,7 +143,7 @@
                                         }
                                     ?>
                                 </div>
-                                <div class='comment__content'><?php echo $comment['Comment']['content'] ?></div>
+                                <div class='comment__content' itemprop='text'><?php echo $comment['Comment']['content'] ?></div>
                             </div>
                           <?php endforeach; ?>
                     </div>

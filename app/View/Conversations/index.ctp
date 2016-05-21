@@ -15,12 +15,12 @@
 
         <?php if( !empty($conversations) ): ?>
 
-            <table class='table requests'>
+            <table class='table requests' itemscope itemtype='https://schema.org/Table'>
                 <caption class='hidden'>Liste de mes conversations</caption>
                 <tr class='table__row'>
-                    <th class='table__head table__head--book-title'>Nom de la conversation</th>
-                    <th class='table__head'>Interlocuteurs</th>
-                    <th class='table__head'>Dernier message</th>
+                    <th id='title' class='table__head table__head--book-title'>Nom de la conversation</th>
+                    <th id='speakers' class='table__head'>Interlocuteurs</th>
+                    <th id='last-message' class='table__head'>Dernier message</th>
                 </tr>
                 <?php foreach( $conversations as $conversation ): ?>
                     <?php
@@ -33,18 +33,18 @@
                         }
                     ?>
                     <?php if( $seen == false ): ?>
-                        <tr class='table__row table__row--data table__row--conversation table__row--not-seen'>
+                        <tr class='table__row table__row--data table__row--conversation table__row--not-seen' itemscope itemtype='https://schema.org/Conversation'>
                     <?php else: ?>
                         <tr class='table__row table__row--data table__row--conversation'>
                     <?php endif; ?>
-                        <td class='table__data' data-head='Titre'>
+                        <td class='table__data' headers='title' data-head='Titre' itemprop='name'>
                             <?php echo $this->Html->link(
                                 $conversation['Conversation']['title'],
                                 array('controller' => 'conversations', 'action' => 'view', 'slug' => $conversation['Conversation']['id']),
                                 array('title' => 'Aller à la conversation' . $conversation['Conversation']['title'], 'class' => 'link'));
                             ?>
                         </td>
-                        <td class='table__data' data-head='Interlocuteurs'>
+                        <td class='table__data' headers='speakers' data-head='Interlocuteurs'>
                             <?php
                                 $j = 0;
                                 for( $i = 0 ; $i < count($conversation['User']) ; $i++ ) {
@@ -60,7 +60,7 @@
                                 }
                             ?>
                         </td>
-                        <td class='table__data' data-head='Dernier message'><?php echo $this->Time->format('d/m/Y G:H:s', $conversation['Conversation']['modified']) ?></td>
+                        <td class='table__data' headers='last-message' data-head='Dernier message' itemprop='dateModified'><?php echo $this->Time->format('d/m/Y G:H:s', $conversation['Conversation']['modified']) ?></td>
                     </tr>
                 <?php endforeach; ?>
 

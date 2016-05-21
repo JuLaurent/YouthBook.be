@@ -9,11 +9,11 @@
 
     <div class='page-title'><h2 class='beta page-title__item'>Les sagas</h2></div>
 
-    <ul>
+    <ul itemscope itemtype='https://schema.org/ItemList'>
         <?php foreach($sagas as $saga): ?>
-            <li class='recent-article recent-article--book'>
-                <a href='<?php echo $this->Html->url( array( 'controller'=>'sagas', 'action'=>'view', 'slug' => $saga['Saga']['slug'] )) ?>' class='link'>
-                    <?php echo $saga['Saga']['title'] ?>
+            <li class='recent-article recent-article--book' itemprop='itemListElement' itemscope itemtype='https://schema.org/Series'>
+                <a href='<?php echo $this->Html->url( array( 'controller'=>'sagas', 'action'=>'view', 'slug' => $saga['Saga']['slug'] )) ?>' class='link' itemprop='url'>
+                    <span itemprop='name'><?php echo $saga['Saga']['title'] ?></span>
                 </a>
             </li>
         <?php endforeach; ?>

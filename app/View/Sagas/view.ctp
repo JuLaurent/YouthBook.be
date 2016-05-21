@@ -5,19 +5,18 @@
 
 ?>
 
-<section>
+<section itemscope itemtype='https://schema.org/Series'>
 
-    <div class='page-title'><h2 class='beta page-title__item'><?php echo $saga['Saga']['title'] ?></h2></div>
+    <div class='page-title' itemprop='name'><h2 class='beta page-title__item'><?php echo $saga['Saga']['title'] ?></h2></div>
 
     <?php if( !empty( $main ) ): ?>
         <section class='bloc'>
             <div class='bloc-title bloc-title--padding'><h3>La série principale</h3></div>
-
-            <ul>
+            <ul itemscope itemtype='https://schema.org/ItemList'>
                 <?php foreach($main as $book): ?>
-                    <li class='recent-article recent-article--book'>
-                        <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' class='link'>
-                            <?php echo $book['Book']['title'] ?>
+                    <li class='recent-article recent-article--book' itemprop='itemListElement' itemscope itemtype='https://schema.org/Book'>
+                        <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' class='link' itemprop='url'>
+                            <span itemprop='name'><?php echo $book['Book']['title'] ?></span>
                         </a>
                     </li>
                 <?php endforeach; ?>
@@ -29,12 +28,11 @@
     <?php if( !empty( $spinoff ) ): ?>
         <section class='bloc'>
             <div class='bloc-title bloc-title--padding'><h3>Les spin-off</h3></div>
-
-            <ul>
+            <ul itemscope itemtype='https://schema.org/ItemList'>
                 <?php foreach($spinoff as $book): ?>
-                    <li class='recent-article recent-article--book'>
-                        <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' class='link'>
-                            <?php echo $book['Book']['title'] ?>
+                    <li class='recent-article recent-article--book' itemprop='itemListElement' itemscope itemtype='https://schema.org/Book'>
+                        <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' class='link' itemprop='url'>
+                            <span itemprop='name'><?php echo $book['Book']['title'] ?></span>
                         </a>
                     </li>
                 <?php endforeach; ?>

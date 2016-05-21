@@ -14,11 +14,11 @@
          <section>
               <div class='bloc-title'><h3>Les livres</h3></div>
               <?php if($books != null): ?>
-                  <ul>
+                  <ul itemscope itemtype='https://schema.org/ItemList'>
                       <?php foreach($books as $book): ?>
-                        <li>
-                            <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' class='link'>
-                                <?php echo $book['Book']['title'] ?>
+                        <li class='recent-article recent-article--book' itemprop='itemListElement' itemscope itemtype='https://schema.org/Book'>
+                            <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' class='link' itemprop='url'>
+                                <span itemprop='name'><?php echo $book['Book']['title'] ?></span>
                             </a>
                         </li>
                       <?php endforeach; ?>
@@ -32,20 +32,22 @@
          <section>
               <div class='bloc-title'><h3>Les articles</h3></div>
               <?php if($articles != null): ?>
-                  <ul>
+                  <ul itemscope itemtype='https://schema.org/ItemList'>
                       <?php foreach($articles as $article): ?>
-                          <li>
-                              <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $article['Article']['id'], 'slug2' => $article['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de l&apos;article <?php echo $article['Article']['title'] ?>' class='link'>
-                                  <span class='link article-link'>
-                                      <span class='article-link__date'><?php echo $this->Time->format('d/m', $article['Article']['created']) ?></span>
-                                      <span class='article-link__types'>
-                                          <?php foreach($article['Type'] as $type): ?>
-                                              <span class='article-link__type'><?php echo $type['name'] ?></span>
-                                          <?php endforeach; ?>
-                                      </span>
-                                      <span class='article-link__title'><?php echo $article['Article']['title'] ?></span>
-                                      <span class='article-link__username'>par <?php echo $article['User']['username'] ?></span>
-                                  </span>
+                          <li itemprop='itemListElement' itemscope itemtype='https://schema.org/Article'>
+                              <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $article['Article']['id'], 'slug2' => $article['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de l&apos;article <?php echo $article['Article']['title'] ?>' class='link' itemprop='url'>
+                                  <div class='recent-article recent-article--sheet'>
+                                      <div class='recent-article__title recent-article__title--sheet' itemprop='name'><?php echo $article['Article']['title'] ?></div>
+                                      <div class='recent-article__informations recent-article__informations--sheet clearfix'>
+                                          <span class='recent-article__date' itemprop='datePublished'><?php echo $this->Time->format('d/m', $article['Article']['created']) ?></span>
+                                          <span class='recent-article__types'>
+                                              <?php foreach($article['Type'] as $type): ?>
+                                                  <span class='recent-article__type'><?php echo $type['name'] ?></span>
+                                              <?php endforeach; ?>
+                                          </span>
+                                          <span class='recent-article__author' itemprop='author'><?php echo $article['User']['username'] ?></span>
+                                      </div>
+                                  </div>
                               </a>
                           </li>
                       <?php endforeach; ?>

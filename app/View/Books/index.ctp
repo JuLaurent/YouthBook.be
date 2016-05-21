@@ -13,9 +13,9 @@
         <div class='bloc-title bloc-title--padding'><h3>Les derniers ajouts</h3></div>
         <div class='clearfix'>
             <?php foreach($lastBooks as $book): ?>
-                <div class='image-box__cover'>
-                    <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' title='Aller à la fiche du livre <?php echo $book['Book']['title'] ?>' class='image-box__link'>
-                        <div class='image-box__image'>
+                <div class='image-box__cover' itemscope itemtype='https://schema.org/Book'>
+                    <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' title='Aller à la fiche du livre <?php echo $book['Book']['title'] ?>' class='image-box__link' itemprop='url'>
+                        <div class='image-box__image' itemprop='image'>
                             <?php
                                 if( $book['Book']['cover'] ) {
                                     echo $this->Html->image('covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'], array('alt' => 'Couverture du livre ' . $book['Book']['title'], 'srcset' => $this->webroot . 'img/covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'] . ' 1x, ' . $this->webroot . 'img/covers/' . $book['Book']['id'] . '/smallHR_' . $book['Book']['cover'] . ' 2x', 'width' => '126', 'height' => '200'));
@@ -25,7 +25,7 @@
                                 } ?>
 
                         </div>
-                        <span class='image-box__information image-box__information--cover image-box__title image-box__title--cover'><?php echo $book['Book']['title'] ?></span>
+                        <span class='image-box__information image-box__information--cover image-box__title image-box__title--cover' itemprop='name'><?php echo $book['Book']['title'] ?></span>
                     </a>
                 </div>
             <?php endforeach; ?>
@@ -42,11 +42,11 @@
                 </span>
             <?php endforeach; ?>
         </div>
-        <ul>
+        <ul itemscope itemtype='https://schema.org/ItemList'>
             <?php foreach($books as $book): ?>
-                <li class='recent-article recent-article--book'>
-                    <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' class='link'>
-                        <?php echo $book['Book']['title'] ?>
+                <li class='recent-article recent-article--book' itemprop='itemListElement' itemscope itemtype='https://schema.org/Book'>
+                    <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' class='link' itemprop='url'>
+                        <span itemprop='name'><?php echo $book['Book']['title'] ?></span>
                     </a>
                 </li>
             <?php endforeach; ?>

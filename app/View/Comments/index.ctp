@@ -12,7 +12,7 @@
     <div class='clearfix bloc--comments'>
         <div class='bloc comments'>
             <?php foreach( $comments as $comment ): ?>
-                <div class='comment'>
+                <div class='comment' itemscope itemtype='https://schema.org/Comment'>
                     <div class='comment__actions'>
                         <?php if( $comment['Comment']['deleted'] == 0 ): ?>
                             <span class='comment__number-of-likes'>
@@ -66,11 +66,11 @@
                             ?>
                         </span>
                         <div class='comment__info'>
-                            <span class='comment__username'><?php echo $comment['User']['username'] ?></span>
-                            <span class='comment__date'><?php echo $this->Time->format('d/m/Y G:H:s', $comment['Comment']['created']) ?></span>
+                            <span class='comment__username' itemprop='author'><?php echo $comment['User']['username'] ?></span>
+                            <span class='comment__date' itemprop='datePublished'><?php echo $this->Time->format('d/m/Y G:H:s', $comment['Comment']['created']) ?></span>
                         </div>
                     </div>
-                    <div class='comment__content'><?php echo $comment['Comment']['content'] ?></div>
+                    <div class='comment__content' itemprop='text'><?php echo $comment['Comment']['content'] ?></div>
                 </div>
             <?php endforeach; ?>
         </div>

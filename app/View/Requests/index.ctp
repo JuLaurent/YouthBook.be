@@ -14,24 +14,24 @@
         <div class='bloc-title'><h3>Les requêtes non accomplies</h3></div>
 
         <?php if( !empty($notDoneRequests) ): ?>
-            <table class='table requests'>
+            <table class='table requests' itemscope itemprop='https://schema.org/Table'>
                 <caption class='hidden'>Liste des requêtes non accomplies</caption>
                 <tr class='table__row'>
-                    <th class='table__head table__head--book-title'>Titre du livre</th>
-                    <th class='table__head'>Demandé par</th>
-                    <th class='table__head'>Dernière requête</th>
-                    <th class='table__head'>&nbsp;</th>
+                    <th id='title' class='table__head table__head--book-title'>Titre du livre</th>
+                    <th id='requesters' class='table__head'>Demandé par</th>
+                    <th id='last-request'class='table__head'>Dernière requête</th>
+                    <th id='button' class='table__head'>&nbsp;</th>
                 </tr>
                 <?php foreach( $notDoneRequests as $request ): ?>
                     <tr class='table__row table__row--data'>
-                        <td class='table__data' data-head='Titre du livre'>
+                        <td class='table__data' headers='title' data-head='Titre du livre'>
                             <?php echo $this->Html->link(
                                 $request['Book']['title'],
                                 array('controller' => 'books', 'action' => 'view', 'slug' => $request['Book']['slug']),
                                 array('title' => 'Voir la fiche du livre' . $request['Book']['title'], 'class' => 'link'));
                             ?>
                         </td>
-                        <td class='table__data' data-head='Demandé par'>
+                        <td class='table__data' headers='requesters' data-head='Demandé par'>
                             <?php echo $request['User']['0']['username'] ?>
                             <?php
                                 if( count($request['User']) > 1 ) {
@@ -41,8 +41,8 @@
                                 }
                             ?>
                         </td>
-                        <td class='table__data' data-head='Dernière requête'><?php echo $this->Time->format('d/m/Y', $request['Request']['modified']) ?></td>
-                        <td class='table__data table__data--button'>
+                        <td class='table__data' headers='last-request' data-head='Dernière requête'><?php echo $this->Time->format('d/m/Y', $request['Request']['modified']) ?></td>
+                        <td class='table__data' headers='button' class='table__data--button'>
                             <?php
                                 echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'articles', 'action' => 'addStepOne'), 'class' => 'button button--100'));
                                     echo $this->Form->input('Article.Type.0', array('type' => 'hidden', 'value' => '1'));

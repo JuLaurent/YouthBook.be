@@ -7,13 +7,13 @@
 
 <?php echo $this->element('conversation-nav'); ?>
 
-<section class='right-part'>
+<section class='right-part' itemscope itemprop='https://schema.org/Conversation'>
 
-    <div class='page-title'><h2 class='beta page-title__item'><?php echo $conversation['Conversation']['title'] ?></h2></div>
+    <div class='page-title'><h2 class='beta page-title__item' itemprop='name'><?php echo $conversation['Conversation']['title'] ?></h2></div>
 
     <div class='bloc bloc--padding bloc--comments clearfix'>
 
-        <div class='comments'>
+        <div class='comments' itemprop='isPartOf' itemscope itemtype='https://schema.org/Message'>
             <? foreach( $messages as $message ): ?>
                 <div class='comment'>
                     <div class='clearfix'>
@@ -28,11 +28,11 @@
                             ?>
                         </span>
                         <div class='comment__info'>
-                            <span class='comment__username'><?php echo $message['User']['username'] ?></span>
-                            <span class='comment__date'><?php echo $this->Time->format('d/m/Y G:H:s', $message['Message']['created']) ?></span>
+                            <span class='comment__username' itemprop='sender'><?php echo $message['User']['username'] ?></span>
+                            <span class='comment__date' itemprop='dateSent'><?php echo $this->Time->format('d/m/Y G:H:s', $message['Message']['created']) ?></span>
                         </div>
                     </div>
-                    <div class='comment__content'><?php echo $message['Message']['content'] ?></div>
+                    <div class='comment__content' itemprop='text'><?php echo $message['Message']['content'] ?></div>
                 </div>
               <?php endforeach; ?>
         </div>
