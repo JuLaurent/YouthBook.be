@@ -65,7 +65,7 @@
                                 echo $this->Html->link(
                                     $book['Saga']['title'],
                                     array('controller' => 'sagas', 'action' => 'view', 'slug' => $book['Saga']['slug']),
-                                    array('title' => 'Aller à la page de la saga' . $book['Saga']['title'], 'class' => 'link')
+                                    array('title' => 'Aller à la page de la saga' . $book['Saga']['title'], 'class' => 'link link--bold')
                                 );
                             ?>
                         </dd>
