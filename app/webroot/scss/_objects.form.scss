@@ -85,6 +85,15 @@
     float: left;
 }
 
+.form--article textarea {
+    width: $douzeSeizieme;
+    height: 14em;
+}
+
+.form--comment textarea {
+    width: $dixSeizieme;
+}
+
 .select-date {
     box-sizing: border-box;
     width: $deuxSeizieme;
@@ -210,6 +219,10 @@
 
     .form textarea {
         width: $mNeufSeizieme;
+    }
+
+    .form--comment textarea {
+        width: $mTreizeSeizieme;
     }
 
     .select-date {

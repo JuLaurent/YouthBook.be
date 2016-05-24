@@ -49,12 +49,25 @@ class BooksController extends AppController {
         $this->loadModel('Article');
         $this->loadModel('Request');
         $this->loadModel('Type');
+        $this->loadModel('User');
 
         if (!$slug) {
             throw new NotFoundException(__('Ce livre n’apparait pas dans la base de données.'));
         }
 
         $book = $this->Book->findBySlug($slug);
+
+        if (!$book) {
+            throw new NotFoundException(__('Ce livre n’apparait pas dans la base de données.'));
+        }
+
+        $creator = $this->User->find(
+            'first',
+            array(
+                'recursive' => -1,
+                'conditions' => array('id' => $book['Book']['creator_id'])
+            )
+        );
 
         $latestReviews = $this->Article->find(
             'all',
@@ -86,10 +99,6 @@ class BooksController extends AppController {
             }
         }
 
-        if (!$book) {
-            throw new NotFoundException(__('Ce livre n’apparait pas dans la base de données.'));
-        }
-
         $request = $this->Request->findByBookId($book['Book']['id']);
 
         $requestedByUser = false;
@@ -105,7 +114,7 @@ class BooksController extends AppController {
             }
         }
 
-      $this->set(compact('book', 'latestReviews', 'latestArticles', 'inUserCollection', 'requestedByUser'));
+      $this->set(compact('book', 'creator', 'latestReviews', 'latestArticles', 'inUserCollection', 'requestedByUser'));
     }
 
     public function articles($slug1 = null, $slug2 = null) {

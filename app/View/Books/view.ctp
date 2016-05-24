@@ -37,6 +37,21 @@
     <section class='bloc'>
         <div class='bloc-title hidden'><h3>Fiche descriptive</h3></div>
         <div class='clearfix sheet'>
+            <div class='article__user message bloc--padding'>
+                <span class='user__avatar user__avatar--article article__avatar'>
+                      <?php
+                          if( $creator['User']['avatar'] ) {
+                              echo $this->Html->image('avatars/' . $creator['User']['id'] . '/small_' . $creator['User']['avatar'], array('alt' => 'Votre avatar', 'srcset' => $this->webroot . 'img/avatars/' . $creator['User']['id'] . '/small_' . $creator['User']['avatar'] . ' 1x, ' . $this->webroot . 'img/avatars/' . $creator['User']['id'] . '/smallHR_' . $creator['User']['avatar'] . ' 2x', 'width' => '48', 'height' => '48'));
+                          }
+                          else {
+                              echo $this->Html->image('avatars/small_noAvatar.png', array('alt' => 'Avatar de substitution', 'srcset' => $this->webroot . 'img/avatars/small_noAvatar.png 1x, ' . $this->webroot . 'img/avatars/smallHR_noAvatar.png 2x', 'width' => '48', 'height' => '48'));
+                          }
+                      ?>
+                </span>
+                <span class='article__username'>
+                    Fiche créée par <?php echo $creator['User']['username'] ?> le <?php echo $this->Time->format('d/m/Y', $book['Book']['created']) ?>
+                </span>
+            </div>
             <div class='sheet__cover' itemprop='image'>
                 <?php if( $book['Book']['cover'] ): ?>
                     <a href='<?php echo ('/img/covers/' . $book['Book']['id'] . '/' . $book['Book']['cover']) ?>' title='Voir la couverture du livre <?php echo $book['Book']['title'] ?> en grand format' class='image-box__link image-box__popup'>

@@ -44,7 +44,7 @@
     .sheet__cover {
         width: $mQuatreSeizieme;
         height: auto;
-        max-height: auto;
+        max-height: none;
     }
 
     .sheet__informations {
@@ -69,9 +69,7 @@
     }
 
     .sheet__cover {
-        width: $mDouzeSeizieme;
-        height: auto;
-        max-height: auto;
+        width: $mHuitSeizieme;
         margin: 0 auto $gutter;
         float: none;
         text-align: center;
@@ -87,6 +85,10 @@
 @media screen and (max-width: 700px) {
     .sheet {
         padding: 0;
+    }
+
+    .sheet__cover {
+        width: $mDixSeizieme;
     }
 
     .sheet__informations {
@@ -108,5 +110,11 @@
     .sheet__description--summary {
         text-align: justify;
         text-justify: inter-word;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sheet__cover {
+        width: $mDouzeSeizieme;
     }
 }

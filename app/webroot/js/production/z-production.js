@@ -6,6 +6,10 @@
         $( '.popup-box--connect' ).show('slow');
     });
 
+    $( document ).on('paste', '.no-past', function( e ) {
+        e.preventDefault();
+    });
+
     $( window ).resize( function(e) {
 
         if( window.innerWidth > 960 ) {

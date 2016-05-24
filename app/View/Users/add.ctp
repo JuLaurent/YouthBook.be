@@ -26,9 +26,9 @@
                   <?php
                       echo $this->Form->input('username', array('label' => 'Pseudo*', 'class' => 'input-text'));
                       echo $this->Form->input('password', array('label' => 'Mot de passe*', 'class' => 'input-password'));
-                      echo $this->Form->input('confirm_password', array('type' => 'password', 'label' => 'Confirmer le mot de passe*', 'class' => 'input-password'));
+                      echo $this->Form->input('confirm_password', array('type' => 'password', 'label' => 'Confirmer le mot de passe*', 'class' => 'input-password no-past'));
                       echo $this->Form->input('mail', array('label' => 'Adresse mail*', 'class' => 'input-text'));
-                      echo $this->Form->input('confirm_mail', array('label' => 'Confirmer l’adresse mail*', 'class' => 'input-text'));
+                      echo $this->Form->input('confirm_mail', array('label' => 'Confirmer l’adresse mail*', 'class' => 'input-text no-past'));
                       echo $this->Form->input('avatar', array('type' => 'file', 'label' => 'Avatar (au format png, jpeg ou gif)', 'class' => 'input-file'));
                       echo $this->Form->input('role', array('type' => 'hidden', 'value' => 'membre'));
                   ?>
