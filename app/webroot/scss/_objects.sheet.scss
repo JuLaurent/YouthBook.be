@@ -9,6 +9,7 @@
     float: left;
     width: $douzeSeizieme;
     margin-left: $gutter;
+    position: relative;
 }
 
 .sheet__term {
@@ -22,7 +23,17 @@
     float: left;
     width: $neufSeizieme;
     margin-left: $gutter;
-    margin-bottom: $gutter / 4;
+    margin-bottom: $gutter / 2;
+
+    &:after {
+        content: '';
+        display: block;
+        width: $mSeizeSeizieme;
+        position: absolute;
+        padding-top: $gutter / 4;
+        left: 0;
+        border-bottom: 1px dotted $mainColor;
+    }
 }
 
 @media screen and (max-width: 1280px) {
