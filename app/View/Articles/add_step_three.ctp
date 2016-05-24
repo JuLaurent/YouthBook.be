@@ -27,6 +27,8 @@
             <div class="form form--article">
                 <p class='alert-message'>Les champs marqué d’un astérisque (*) sont obligatoires.</p>
 
+                <p class='alert-message message--warning'>Lorsque vous aurez fini de rédiger votre article, vous serez redirigez vers votre liste de brouillons.<br>Veuillez d’abord vérifier le brouillon de l’article en question avant de publier ce dernier.</p>
+
                 <?php
                     echo $this->Form->create('Article', array('enctype' => 'multipart/form-data', 'novalidate' => true));
                         echo $this->Form->input('title', array('label' => 'Titre*', 'class' => 'input-text input-text--article'));

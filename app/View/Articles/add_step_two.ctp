@@ -33,6 +33,7 @@
                         echo $this->Form->end(__('Continuer'));
                     }
                     else{
+                        echo('<p class=\'alert-message message--warning\'>Lorsque vous aurez fini de rédiger votre article, vous serez redirigez vers votre liste de brouillons.<br>Veuillez d’abord vérifier le brouillon de l’article en question avant de publier ce dernier.</p>');
                         if($verif1 == true && !($verif3 == true || $verif4 == true)) {
                             if( !empty($this->Session->read( 'currentSessionData' )['Article']['Book'] )) {
                                 echo $this->Form->input('Article.Book', array('type' => 'select', 'label' => 'Livre*', 'value' => $this->Session->read( 'currentSessionData' )['Article']['Book'][0], 'class' => 'form-select form-select--article', 'data-placeholder' => 'Sélectionnez un livre'));
