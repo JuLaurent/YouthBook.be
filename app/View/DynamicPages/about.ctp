@@ -35,6 +35,16 @@
             </p>
             <p>
                 Si vous trouvez pertinent de sélectionner plusieurs types d’articles, il vous sera possible de le faire. Si vous désirez par exemple parler de l’annonce d’un nouveau film se passant dans l’univers d’Harry Potter, écrivez un article de type "news" et "article sur les produits dérivés".
+            </p>
+        </section>
+        <section class='about__bloc'>
+            <div class='bloc-title'><h3>Les requêtes</h3></div>
+            <p>
+                Le système de requête a été conçu afin de permettre aux membres de manifester leur envie de voir apparaître une critique d’un livre, si ce dernier n’en a pas encore.
+            </p>
+            <p>
+                Ainsi, si un utilisateur découvre qu’un livre n’a pas été critiqué, il peut, en cliquant sur un bouton se trouvant sur la page du livre, faire une requête. Libre alors aux membres ayant lu ces livres de satisfaire l’envie de ceux ayant soumis la demande, en écrivant une critique.
+            </p>
         </section>
 
     </div>
