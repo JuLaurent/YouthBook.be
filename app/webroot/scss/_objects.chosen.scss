@@ -1,0 +1,26 @@
+.chosen-container-single .chosen-single {
+    border: none;
+    border-bottom: 1px solid $notFocusColor;
+    border-radius: 0;
+    background-image: none;
+    box-shadow: none;
+    font-size: 16px;
+}
+
+.chosen-container-active.chosen-with-drop .chosen-single {
+    border: none;
+    border-bottom: 1px solid $darkMainColor;
+    background-image: none;
+    box-shadow: none;
+}
+
+.chosen-container-multi .chosen-choices {
+    border: none;
+    border-bottom: 1px solid $notFocusColor;
+    background-image: none;
+}
+
+.chosen-container-active .chosen-choices {
+    border-bottom: 1px solid $darkMainColor;
+    box-shadow: none;
+}

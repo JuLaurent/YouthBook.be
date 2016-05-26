@@ -48,8 +48,13 @@
     width: $sixSeizieme;
     padding: 0.5em;
     border: 0;
-    border-bottom: 1px solid $mainColor;
+    border-bottom: 1px solid $notFocusColor;
     float: left;
+
+    &:focus {
+        border-bottom: 1px solid $darkMainColor;
+        outline: none;
+    }
 }
 
 .input-text--article, .input-number--article, .form-select--article, .input-checkbox--article  {
@@ -81,8 +86,13 @@
     padding: 0.5em;
     height: 8em;
     border: 0;
-    border-bottom: 1px solid $mainColor;
+    border-bottom: 1px solid $notFocusColor;
     float: left;
+
+    &:focus {
+        border-bottom: 1px solid $darkMainColor;
+        outline: none;
+    }
 }
 
 .form--article textarea {
@@ -99,8 +109,13 @@
     width: $deuxSeizieme;
     padding: 0.5em;
     border: 0;
-    border-bottom: 1px solid $mainColor;
+    border-bottom: 1px solid $notFocusColor;
     float: left;
+
+    &:focus {
+        border-bottom: 1px solid $darkMainColor;
+        outline: none;
+    }
 
     & + .select-date {
         margin-left: $gutter;
