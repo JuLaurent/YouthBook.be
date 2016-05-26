@@ -14,7 +14,7 @@
     <div class='bloc bloc--padding bloc--comments clearfix'>
 
         <div class='comments' itemprop='isPartOf' itemscope itemtype='https://schema.org/Message'>
-            <? foreach( $messages as $message ): ?>
+            <?php foreach( $messages as $message ): ?>
                 <div class='comment'>
                     <div class='clearfix'>
                         <span class='user__avatar user__avatar--article comment__avatar'>
@@ -34,7 +34,7 @@
                     </div>
                     <div class='comment__content' itemprop='text'><?php echo $message['Message']['content'] ?></div>
                 </div>
-              <?php endforeach; ?>
+            <?php endforeach; ?>
         </div>
 
         <section>
