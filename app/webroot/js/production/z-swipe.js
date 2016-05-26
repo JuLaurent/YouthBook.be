@@ -7,7 +7,7 @@
             if( !( $('.header__bottom').is(':visible') ) ) {
 
               $('.header__bottom').css({
-                'height': window.innerHeight
+                  'height': window.innerHeight
               });
 
               $('.header__bottom').animate({width: 'toggle'});

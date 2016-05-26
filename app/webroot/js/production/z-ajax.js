@@ -40,10 +40,6 @@
 
     }); */
 
-    $( '.popup-box__filter' ).on('click', function() {
-        $( '.popup-box' ).hide('slow');
-    });
-
     $('.social-links').on( 'submit', '.ajax__book-collection', function( e ) {
 
         e.preventDefault();

@@ -1,7 +1,10 @@
 <div class='popup-box popup-box--connect'>
     <span class='popup-box__filter'></span>
-    <section class='popup-box__content'>
-        <div class="page-title"><h2 class='beta page-title__item'>Se connecter</h2></div>
+    <div class='popup-box__content'>
+        <span class='popup-box__close'>
+            <button class='popup-box__close-button'><span class="fa fa-times" aria-hidden="true"></span></button>
+        </span>
+        <div class="page-title"><span class='beta page-title__item'>Se connecter</span></div>
         <div class="form form--popup-box">
             <?php
                 echo $this->Form->create('User', array('novalidate' => true, 'url' => array('controller' => 'users', 'action' => 'login')));
@@ -10,12 +13,12 @@
                 echo $this->Form->end(__('Se connecter'));
             ?>
         </div>
-        <!-- <?php
+        <?php
             echo $this->Html->link(
                 'Envoyer mail',
                 array('controller' => 'dynamicPages', 'action' => 'newPassword'),
                 array('title' => 'Aller à la page de connexion')
             );
-        ?> -->
-    </section>
+        ?>
+    </div>
 </div>

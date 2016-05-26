@@ -1,14 +1,24 @@
 ( function () {
 
+    $( '.popup-box__filter' ).on('click', function() {
+        $( '.popup-box' ).hide('slow');
+    });
+
     $( '.user__connect' ).on('click', function( e ) {
         e.preventDefault();
 
         $( '.popup-box--connect' ).show('slow');
     });
 
+    $( '.popup-box__close-button' ).on('click', function( e ) {
+        $( '.popup-box' ).hide('slow');
+    });
+
+
     $( document ).on('paste', '.no-past', function( e ) {
         e.preventDefault();
     });
+
 
     $( window ).resize( function(e) {
 

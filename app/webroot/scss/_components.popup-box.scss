@@ -16,6 +16,23 @@
     opacity:0.6;
 }
 
+.popup-box__close {
+    display: block;
+    text-align: right;
+}
+
+.popup-box__close-button {
+
+    border: none;
+    background-color: $contrastColor;
+    color: $notFocusColor;
+    font-size: 20px;
+
+    &:hover {
+        color: $darkMainColor;
+    }
+}
+
 .popup-box__content {
     width: 40%;
     padding: $gutter;
