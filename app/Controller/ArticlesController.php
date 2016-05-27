@@ -282,9 +282,11 @@ class ArticlesController extends AppController {
     public function delete() {
 
         $this->loadModel('ArticlePage');
+        $this->loadModel('Comment');
         $this->loadModel('Request');
 
-        $request = $this->Request->findByArticleId( $this->request->data['Article']['id'] );
+        $requests = $this->Request->findByArticleId( $this->request->data['Article']['id'] );
+        $comments = $this->Comment->findByArticleId( $this->request->data['Article']['id'] );
 
         if ($this->request->is('get')) {
             throw new MethodNotAllowedException();
@@ -292,7 +294,11 @@ class ArticlesController extends AppController {
 
         if ( $this->ArticlePage->deleteAll(array('article_id' => $this->request->data['Article']['id']), false) ) {
 
-            if ( !empty( $request ) ) {
+            if ( !empty( $comments ) ) {
+                $this->Comment->deleteAll(array('article_id' => $this->request->data['Article']['id']), false);
+            }
+
+            if ( !empty( $requests ) ) {
                 $this->Request->deleteAll( array('article_id' => $this->request->data['Article']['id']), false );
             }
 

@@ -66,12 +66,6 @@
 
         <?php echo $this->element('footer'); ?>
 
-        <?php
-            if ($this->params['controller'] == 'articlePages' && $this->params['action'] == 'view') {
-                echo $this->element('comment');
-            }
-        ?>
-
         <?php echo $this->Html->script('jquery-2.1.4.min.js'); ?>
         <?php echo $this->Html->script('main.js'); ?>
 
