@@ -76,6 +76,7 @@
 
             </div>
 
+            <?php if( $articlePage['Article']['draft'] == 0 ): ?>
                 <section class='bloc'>
 
                     <div class='bloc-title'><h3>Les meilleurs commentaires</h3></div>
