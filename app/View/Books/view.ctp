@@ -66,7 +66,7 @@
                 <?php endif; ?>
             </div>
             <div class='sheet__informations clearfix'>
-                <dl class='bloc clearfix'>
+                <dl class='clearfix'>
                     <dt class='sheet__term'>Auteurs(s)</dt>
                     <?php if($book['Book']['author']): ?>
                         <dd class='sheet__description' itemprop='author'><?php echo $book['Book']['author'] ?></dd>

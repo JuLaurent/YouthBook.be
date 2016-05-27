@@ -86,7 +86,7 @@
     .recent-articles {
         width: $mSeizeSeizieme;
         margin-left: 0;
-        padding: $mGutter;
+        padding: $gutter $mGutter 0;
     }
 
     .recent-article {
