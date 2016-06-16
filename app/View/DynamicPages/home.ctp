@@ -1,7 +1,7 @@
 <?php
 
     $this->assign('title', 'Page d’accueil');
-    $this->assign('description', 'Site d’actualités littéraires communautaire');
+    $this->assign('description', 'Site d’actualité communautaire sur la littérature jeunesse');
 
 ?>
 
@@ -166,7 +166,7 @@
                                     echo $this->Html->image('covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'], array('alt' => 'Couverture du livre ' . $book['Book']['title'], 'srcset' => $this->webroot . 'img/covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'] . ' 1x, ' . $this->webroot . 'img/covers/' . $book['Book']['id'] . '/smallHR_' . $book['Book']['cover'] . ' 2x', 'width' => '126', 'height' => '200'));
                                 }
                                 else {
-                                    echo $this->Html->image('covers/noCoverSmall.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/covers/small_noCover.png 1x, ' . $this->webroot . 'img//covers/smallHR_noCover.png 2x', 'width' => '126', 'height' => '200'));
+                                    echo $this->Html->image('covers/small_noCover.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/covers/small_noCover.png 1x, ' . $this->webroot . 'img/covers/smallHR_noCover.png 2x', 'width' => '126', 'height' => '200'));
                                 } ?>
 
                         </div>

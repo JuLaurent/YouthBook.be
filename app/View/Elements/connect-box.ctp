@@ -13,12 +13,12 @@
                 echo $this->Form->end(__('Se connecter'));
             ?>
         </div>
-        <?php
+        <!-- <?php
             echo $this->Html->link(
                 'Envoyer mail',
                 array('controller' => 'dynamicPages', 'action' => 'newPassword'),
                 array('title' => 'Aller à la page de connexion')
             );
-        ?>
+        ?> -->
     </div>
 </div>

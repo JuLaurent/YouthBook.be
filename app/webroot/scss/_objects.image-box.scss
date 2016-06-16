@@ -7,6 +7,20 @@
     opacity: 0.8;
 }
 
+.image-box__link {
+    display: block;
+
+    &:focus {
+        .image-box:before {
+            content: '';
+            height: 404px;
+            display: block;
+            background-color: red;
+            opacity: 0.5;
+        }
+    }
+}
+
 .image-box__date {
     top: 0;
 }

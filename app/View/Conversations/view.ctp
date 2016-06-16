@@ -1,7 +1,7 @@
 <?php
 
     $this->assign('title', $conversation['Conversation']['title']);
-    $this->assign('description', 'Conversation' . $conversation['Conversation']['title']);
+    $this->assign('description', 'Conversation ' . $conversation['Conversation']['title']);
 
 ?>
 

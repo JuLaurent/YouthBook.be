@@ -61,7 +61,7 @@
                     </a>
                 <?php else: ?>
                     <div class='sheet__image'>
-                        <?php echo $this->Html->image('covers/noCoverSmall.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/covers/normal_noCover.png 1x, ' . $this->webroot . 'img//covers/normalHR_noCover.png 2x', 'width' => '282', 'height' => '440')); ?>
+                        <?php echo $this->Html->image('covers/normal_noCover.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/covers/normal_noCover.png 1x, ' . $this->webroot . 'img//covers/normalHR_noCover.png 2x', 'width' => '282', 'height' => '440')); ?>
                     </div>
                 <?php endif; ?>
             </div>

@@ -1,7 +1,7 @@
 <?php
 
     $this->assign('title', $articlePage['Article']['title'] );
-    $this->assign('description', $articlePage['Article']['title']);
+    $this->assign('description', 'Article ' . $articlePage['Article']['title']);
 
 ?>
 
@@ -105,32 +105,34 @@
                                         <?php if( $comment['Comment']['deleted'] == 0 ): ?>
                                             <span class='comment__number-of-likes'>
                                                 <span class='comment__number'><?php echo $comment['Comment']['number_of_likes'] ?></span>
-                                                <span class='comment__like-icon'><?php echo $this->Html->image('icons/number-of-likes.svg', array('alt' => 'Avatar de substitution', 'width' => '25', 'height' => '25')); ?></span>
+                                                <span class='comment__like-icon'><?php echo $this->Html->image('icons/number-of-likes.svg', array('alt' => 'Like', 'width' => '25', 'height' => '25')); ?></span>
                                             </span>
                                             <?php
-                                                $likedByUser = false;
-                                                foreach( $comment['Like'] as $like ) {
-                                                    $likedByUser = in_array( $this->Session->read('Auth.User.id'), $like );
+                                                if ( $this->Session->check('Auth.User.id') ) {
+                                                    $likedByUser = false;
+                                                    foreach( $comment['Like'] as $like ) {
+                                                        $likedByUser = in_array( $this->Session->read('Auth.User.id'), $like );
 
-                                                    if( $likedByUser = in_array( $this->Session->read('Auth.User.id'), $like ) == true ) {
-                                                        break;
+                                                        if( $likedByUser = in_array( $this->Session->read('Auth.User.id'), $like ) == true ) {
+                                                            break;
+                                                        }
                                                     }
-                                                }
-                                                if( $likedByUser == true ) {
-                                                    echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'dislike'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form ajax__like'));
-                                                        echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id'], 'class' => 'ajax__like--id'));
-                                                        echo $this->Form->input('number_of_likes', array('type' => 'hidden', 'value' => $comment['Comment']['number_of_likes'] - 1, 'class' => 'ajax__like--number-of-likes'));
-                                                        echo $this->Form->input('Like.0.comment_id', array('type' => 'hidden', 'value' => $comment['Comment']['id'], 'class' => 'ajax__like--like-comment-id'));
-                                                        echo $this->Form->input('Like.0.user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__like--like-user-id'));
-                                                    echo $this->Form->end( array( 'label' => 'Ne plus aimer ce commentaire', 'title' => 'Ne plus aimer ce commentaire', 'class' => 'user__action--input comment__icon comment__dislike'));
-                                                }
-                                                else {
-                                                    echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'like'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form ajax__like'));
-                                                        echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id'], 'class' => 'ajax__like--id'));
-                                                        echo $this->Form->input('number_of_likes', array('type' => 'hidden', 'value' => $comment['Comment']['number_of_likes'] + 1, 'class' => 'ajax__like--number-of-likes'));
-                                                        echo $this->Form->input('Like.0.comment_id', array('type' => 'hidden', 'value' => $comment['Comment']['id'], 'class' => 'ajax__like--like-comment-id'));
-                                                        echo $this->Form->input('Like.0.user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__like--like-user-id' ));
-                                                    echo $this->Form->end( array( 'label' => 'Aimer ce commentaire', 'title' => 'Aimer ce commentaire', 'class' => 'user__action--input comment__icon comment__like'));
+                                                    if( $likedByUser == true ) {
+                                                        echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'dislike'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form ajax__like'));
+                                                            echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id'], 'class' => 'ajax__like--id'));
+                                                            echo $this->Form->input('number_of_likes', array('type' => 'hidden', 'value' => $comment['Comment']['number_of_likes'] - 1, 'class' => 'ajax__like--number-of-likes'));
+                                                            echo $this->Form->input('Like.0.comment_id', array('type' => 'hidden', 'value' => $comment['Comment']['id'], 'class' => 'ajax__like--like-comment-id'));
+                                                            echo $this->Form->input('Like.0.user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__like--like-user-id'));
+                                                        echo $this->Form->end( array( 'label' => 'Ne plus aimer ce commentaire', 'title' => 'Ne plus aimer ce commentaire', 'class' => 'user__action--input comment__icon comment__dislike'));
+                                                    }
+                                                    else {
+                                                        echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'like'), 'novalidate' => true, 'class' => 'user__action user__action--form comment__form ajax__like'));
+                                                            echo $this->Form->input('id', array('type' => 'hidden', 'value' => $comment['Comment']['id'], 'class' => 'ajax__like--id'));
+                                                            echo $this->Form->input('number_of_likes', array('type' => 'hidden', 'value' => $comment['Comment']['number_of_likes'] + 1, 'class' => 'ajax__like--number-of-likes'));
+                                                            echo $this->Form->input('Like.0.comment_id', array('type' => 'hidden', 'value' => $comment['Comment']['id'], 'class' => 'ajax__like--like-comment-id'));
+                                                            echo $this->Form->input('Like.0.user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__like--like-user-id' ));
+                                                        echo $this->Form->end( array( 'label' => 'Aimer ce commentaire', 'title' => 'Aimer ce commentaire', 'class' => 'user__action--input comment__icon comment__like'));
+                                                    }
                                                 }
                                             ?>
                                         <?php endif; ?>
