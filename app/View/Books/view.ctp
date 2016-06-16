@@ -56,7 +56,7 @@
                 <?php if( $book['Book']['cover'] ): ?>
                     <a href='<?php echo ('/img/covers/' . $book['Book']['id'] . '/' . $book['Book']['cover']) ?>' title='Voir la couverture du livre <?php echo $book['Book']['title'] ?> en grand format' class='image-box__link image-box__popup'>
                         <div class='sheet__image'>
-                            <?php echo $this->Html->image('covers/' . $book['Book']['id'] . '/normal_' . $book['Book']['cover'], array('alt' => 'Couverture du livre ' . $book['Book']['title'], 'srcset' => $this->webroot . 'img/covers/' . $book['Book']['id'] . '/normal_' . $book['Book']['cover'] . ' 1x, ' . $this->webroot . 'img/covers/' . $book['Book']['id'] . '/normalHR_' . $book['Book']['cover'] . ' 2x, ' . $this->webroot . 'img/covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'] . ' 1x 126w, ' . $this->webroot . 'img/covers/' . $book['Book']['id'] . '/smallHR_' . $book['Book']['cover'] . ' 2x 126w', 'width' => '282', 'height' => '440')); ?>
+                            <?php echo $this->Html->image('covers/' . $book['Book']['id'] . '/normal_' . $book['Book']['cover'], array('alt' => 'Couverture du livre ' . $book['Book']['title'], 'srcset' => $this->webroot . 'img/covers/' . $book['Book']['id'] . '/normal_' . $book['Book']['cover'] . ' 1x, ' . $this->webroot . 'img/covers/' . $book['Book']['id'] . '/normalHR_' . $book['Book']['cover'] . ' 2x', 'width' => '282', 'height' => '440')); ?>
                         </div>
                     </a>
                 <?php else: ?>
