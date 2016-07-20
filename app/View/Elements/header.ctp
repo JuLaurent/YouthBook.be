@@ -1,11 +1,9 @@
 <header class="header">
-    <span class='header__menu menu'>
-        <?php echo $this->Html->link(
-                $this->Html->image('icons/menu.svg', array('alt' => 'Menu déroulant', 'width' => '50', 'height' => '50')),
-                '#',
-                array('title' => 'Menu déroulant', 'escape' => false, 'class' => 'menu__link')
-            );
-        ?>
+    <span class='header__menu menu menu--nav'>
+        <a href='#' title='Menu de navigation' class='menu__link'><span class='fa fa-bars' aria-hidden='true' class='menu__icon'></span></a>
+    </span>
+    <span class='header__menu header__menu--user menu menu--user'>
+        <a href='#' title='Menu utilisateur' class='menu__link'><span class='fa fa-user' aria-hidden='true' class='menu__icon'></span></a>
     </span>
     <div class="header__top">
         <div class="header__container clearfix">

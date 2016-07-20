@@ -8,9 +8,27 @@
     position: absolute;
     background-color: $darkMainColor;
     width: 50px;
-    height: 50px;
+    height: 100%;
     box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
     display: none;
+}
+
+.header__menu--user {
+    right: 0;
+}
+
+.menu__link {
+    display: table;
+    width: 100%;
+    height: 100%;
+    color: white;
+    text-align: center;
+}
+
+.menu__link .fa {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 40px;
 }
 
 .header__top {
@@ -70,8 +88,6 @@
     .header__logo {
         width: $mHuitSeizieme;
         margin-right: $mGutter;
-        padding: 19px 0 18px 0;
-        float: left;
     }
 
     .header__user {
@@ -93,10 +109,13 @@
 }
 
 @media screen and (max-width: 960px) {
+    .header {
+        position: fixed;
+        z-index: 5;
+    }
 
     .header__container {
         width: $mSeizeSeizieme;
-        padding: 0 $mGutter;
     }
 
     .bottom__container {
@@ -108,27 +127,31 @@
     }
 
     .header__logo {
-        width: $mSeizeSeizieme;
+        width: $mHuitSeizieme;
         text-align: center;
-        margin: 0 auto $gutter;
-        padding: $gutter * 3 0 0;
+        margin: 0 auto;
+        padding: $gutter / 4 0;
         float: none;
     }
 
     .header__user {
+        display: none;
         width: $mSeizeSeizieme;
+        padding: $mGutter;
+        position: absolute;
+        left: 0;
+        background-color: white;
         height: inherit;
         float: none;
         text-align: center;
     }
 
-    .header__bottom {
+    .header__bottom, {
         display: none;
-        width: $mQuatorzeSeizieme;
+        width: $mSeizeSeizieme;
         position: absolute;
-        top:0;
+        top: 100%;
         z-index: 3;
-        overflow: auto;
     }
 
     .header__nav {
@@ -141,5 +164,17 @@
         width: $mSeizeSeizieme;
         margin-top: $gutter;
         float: none;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .header__logo {
+        width: $mDixSeizieme;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header__logo {
+        width: $mDouzeSeizieme;
     }
 }
