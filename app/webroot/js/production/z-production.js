@@ -24,14 +24,9 @@
 
         if( window.innerWidth > 960 ) {
 
-            $('html, body, .header__bottom').removeAttr('style');
+            $('html, body, .header__bottom, .header__user').removeAttr('style');
 
         }
-        /*else {
-
-            $('.header__bottom').hide();
-
-        }*/
 
     });
 
@@ -48,17 +43,12 @@
                     'position': 'relative'
                 });
 
-                $('.content').css({
-                    'padding': '0 0 10em'
-                });
-
             }
 
             else {
 
                 $('html, body').removeAttr('style');
                 $('.header').removeAttr('style');
-                $('.content').removeAttr('style');
                 $('.header__bottom').slideUp();
 
             }

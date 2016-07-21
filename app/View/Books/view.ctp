@@ -15,42 +15,45 @@
         <span class='user__action'><?php echo $this->SocialShare->fa('facebook', null,  array( 'title' => 'Partager via facebook')); ?></span>
         <span class='user__action'><?php echo $this->SocialShare->fa('gplus', null,  array( 'title' => 'Partager via Google +')); ?></span>
         <span class='user__action'><?php echo $this->SocialShare->fa('twitter', null,  array( 'title' => 'Partager via Twitter')); ?></span>
-
-        <?php
-            if($this->Session->check('Auth.User.id')) {
-                if($inUserCollection == false) {
-                    echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'books', 'action' => 'addToCollection'), 'class' => 'user__action user__action--form ajax__book-collection'));
-                        echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__book-collection--user-id'));
-                        echo $this->Form->input('id', array('type' => 'hidden', 'value' => $book['Book']['id'], 'class' => 'ajax__book-collection--id'));
-                    echo $this->Form->end( array('label' => '+', 'title' => 'Ajouter à ma collection de livres', 'class' => 'user__action--input'));
-                }
-                else {
-                    echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'books', 'action' => 'removeFromCollection'), 'class' => 'user__action user__action--form ajax__book-collection'));
-                        echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__book-collection--user-id'));
-                        echo $this->Form->input('id', array('type' => 'hidden', 'value' => $book['Book']['id'], 'class' => 'ajax__book-collection--id'));
-                    echo $this->Form->end( array('label' => '-', 'title' => 'Enlever de ma collection de livres', 'class' => 'user__action--input'));
-                }
-            }
-        ?>
     </div>
 
     <section class='bloc'>
         <div class='bloc-title hidden'><h3>Fiche descriptive</h3></div>
         <div class='clearfix sheet'>
-            <div class='article__user message bloc--padding'>
-                <span class='user__avatar user__avatar--article article__avatar'>
-                      <?php
-                          if( $creator['User']['avatar'] ) {
-                              echo $this->Html->image('avatars/' . $creator['User']['id'] . '/small_' . $creator['User']['avatar'], array('alt' => 'Votre avatar', 'srcset' => $this->webroot . 'img/avatars/' . $creator['User']['id'] . '/small_' . $creator['User']['avatar'] . ' 1x, ' . $this->webroot . 'img/avatars/' . $creator['User']['id'] . '/smallHR_' . $creator['User']['avatar'] . ' 2x', 'width' => '48', 'height' => '48'));
-                          }
-                          else {
-                              echo $this->Html->image('avatars/small_noAvatar.png', array('alt' => 'Avatar de substitution', 'srcset' => $this->webroot . 'img/avatars/small_noAvatar.png 1x, ' . $this->webroot . 'img/avatars/smallHR_noAvatar.png 2x', 'width' => '48', 'height' => '48'));
-                          }
-                      ?>
-                </span>
-                <span class='article__username'>
-                    Fiche créée par <?php echo $creator['User']['username'] ?> le <?php echo $this->Time->format('d/m/Y', $book['Book']['created']) ?>
-                </span>
+            <div class='clearfix'>
+                <div class='article__user article__user--sheet message bloc--padding'>
+                    <span class='user__avatar user__avatar--article article__avatar'>
+                          <?php
+                              if( $creator['User']['avatar'] ) {
+                                  echo $this->Html->image('avatars/' . $creator['User']['id'] . '/small_' . $creator['User']['avatar'], array('alt' => 'Votre avatar', 'srcset' => $this->webroot . 'img/avatars/' . $creator['User']['id'] . '/small_' . $creator['User']['avatar'] . ' 1x, ' . $this->webroot . 'img/avatars/' . $creator['User']['id'] . '/smallHR_' . $creator['User']['avatar'] . ' 2x', 'width' => '48', 'height' => '48'));
+                              }
+                              else {
+                                  echo $this->Html->image('avatars/small_noAvatar.png', array('alt' => 'Avatar de substitution', 'srcset' => $this->webroot . 'img/avatars/small_noAvatar.png 1x, ' . $this->webroot . 'img/avatars/smallHR_noAvatar.png 2x', 'width' => '48', 'height' => '48'));
+                              }
+                          ?>
+                    </span>
+                    <span class='article__username'>
+                        Fiche créée par <?php echo $creator['User']['username'] ?> le <?php echo $this->Time->format('d/m/Y', $book['Book']['created']) ?>
+                    </span>
+                </div>
+                <div class='sheet__collection'>
+                    <?php
+                        if($this->Session->check('Auth.User.id')) {
+                            if($inUserCollection == false) {
+                                echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'books', 'action' => 'addToCollection'), 'class' => 'button'));
+                                    echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__book-collection--user-id'));
+                                    echo $this->Form->input('id', array('type' => 'hidden', 'value' => $book['Book']['id'], 'class' => 'ajax__book-collection--id'));
+                                echo $this->Form->end( array('label' => 'Ajouter à ma collection', 'class' => 'button--submit'));
+                            }
+                            else {
+                                echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'books', 'action' => 'removeFromCollection'), 'class' => 'button'));
+                                    echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__book-collection--user-id'));
+                                    echo $this->Form->input('id', array('type' => 'hidden', 'value' => $book['Book']['id'], 'class' => 'ajax__book-collection--id'));
+                                echo $this->Form->end( array('label' => 'Enlever de ma collection', 'class' => 'button--submit'));
+                            }
+                        }
+                    ?>
+                </div>
             </div>
             <div class='sheet__cover' itemprop='image'>
                 <?php if( $book['Book']['cover'] ): ?>
@@ -185,13 +188,13 @@
                             echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'requests', 'action' => 'add'), 'class' => 'button'));
                                 echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
                                 echo $this->Form->input('book_id', array('type' => 'hidden', 'value' => $book['Book']['id']));
-                            echo $this->Form->end(array('label' => 'Faire une requête', 'class' => 'button--submit'));
+                            echo $this->Form->end(array('label' => 'Demander une critique', 'class' => 'button--submit'));
                         }
                         else if($this->Session->check('Auth.User.id')) {
                             echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'requests', 'action' => 'delete'), 'class' => 'button'));
                                 echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
                                 echo $this->Form->input('book_id', array('type' => 'hidden', 'value' => $book['Book']['id']));
-                            echo $this->Form->end(array('label' => 'Annuler la requête', 'class' => 'button--submit'));
+                            echo $this->Form->end(array('label' => 'Annuler la demande', 'class' => 'button--submit'));
                         }
                     ?>
 

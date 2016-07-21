@@ -8,6 +8,12 @@
     margin-bottom: $gutter;
 }
 
+.article__user--sheet {
+    width: $huitSeizieme;
+    margin: 0 $gutter $gutter 0;
+    float: left;
+}
+
 .article__avatar {
     margin-right: $gutter / 4;
     vertical-align: middle;
@@ -77,6 +83,11 @@
         width: $mDouzeSeizieme;
     }
 
+    .article__user--sheet {
+        width: $mHuitSeizieme;
+        margin: 0 $mGutter $gutter 0;
+    }
+
     .article__text {
         img {
             height: auto;
@@ -97,6 +108,11 @@
         margin-bottom: $gutter;
         padding-bottom: $gutter;
         border-bottom: 1px solid $mainColor;
+        float: none;
+    }
+
+    .article__user--sheet {
+        width: $mSeizeSeizieme;
         float: none;
     }
 

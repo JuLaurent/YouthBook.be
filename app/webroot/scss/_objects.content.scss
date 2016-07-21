@@ -24,6 +24,10 @@
 }
 
 @media screen and (max-width: 960px) {
+    .content {
+        padding: 0 0 10em;
+    }
+
     .content__container {
         padding: 0;
     }

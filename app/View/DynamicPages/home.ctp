@@ -1,7 +1,7 @@
 <?php
 
     $this->assign('title', 'Page d’accueil');
-    $this->assign('description', 'Site d’actualité communautaire sur la littérature jeunesse');
+    $this->assign('description', 'Site d’actualité et de critiques communautaire sur la littérature jeunesse');
 
 ?>
 

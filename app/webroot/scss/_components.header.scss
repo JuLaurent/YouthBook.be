@@ -110,7 +110,7 @@
 
 @media screen and (max-width: 960px) {
     .header {
-        position: fixed;
+        height: 70px;
         z-index: 5;
     }
 
@@ -128,6 +128,7 @@
 
     .header__logo {
         width: $mHuitSeizieme;
+        height: 70px;
         text-align: center;
         margin: 0 auto;
         padding: $gutter / 4 0;
@@ -146,7 +147,7 @@
         text-align: center;
     }
 
-    .header__bottom, {
+    .header__bottom {
         display: none;
         width: $mSeizeSeizieme;
         position: absolute;
@@ -168,13 +169,22 @@
 }
 
 @media screen and (max-width: 700px) {
+    .header {
+        height: 60px;
+    }
+
     .header__logo {
-        width: $mDixSeizieme;
+        width: $mDouzeSeizieme;
+        height: 60px;
     }
 }
 
 @media screen and (max-width: 480px) {
+    .header {
+        height: 50px;
+    }
+
     .header__logo {
-        width: $mDouzeSeizieme;
+        height: 50px;
     }
 }

@@ -1,3 +1,9 @@
+.sheet__collection {
+    width: $huitSeizieme;
+    float: left;
+    text-align: right;
+}
+
 .sheet__cover {
     float: left;
     width: $quatreSeizieme;
@@ -41,6 +47,10 @@
         padding: 0 $mGutter;
     }
 
+    .sheet__collection {
+        width: $mHuitSeizieme;
+    }
+
     .sheet__cover {
         width: $mQuatreSeizieme;
         height: auto;
@@ -66,6 +76,13 @@
 @media screen and (max-width: 960px) {
     .sheet {
         padding: 0 $mGutter;
+    }
+
+    .sheet__collection {
+        width: $mSeizeSeizieme;
+        margin-bottom: $gutter;
+        text-align: center;
+        float: none;
     }
 
     .sheet__cover {
