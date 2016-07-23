@@ -145,9 +145,9 @@
                 <ol itemscope itemtype='https://schema.org/ItemList'>
                     <?php foreach($latestReviews as $review): ?>
                         <li class='recent-article__item recent-article__item--sheet' itemprop='itemListElement' itemscope itemtype='https://schema.org/Article'>
-                            <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $review['Article']['id'], 'slug2' => $review['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de la critique <?php echo $review['Article']['title'] ?>' class='link' itemprop='url'>
-                                <div class='recent-article recent-article--sheet'>
-                                    <div class='recent-article__title recent-article__title--sheet' itemprop='name'><?php echo $review['Article']['title'] ?></div>
+                            <div class='recent-article recent-article--sheet'>
+                                <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $review['Article']['id'], 'slug2' => $review['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de la critique <?php echo $review['Article']['title'] ?>' class='link' itemprop='url'>
+                                    <span class='recent-article__title recent-article__title--sheet' itemprop='name'><?php echo $review['Article']['title'] ?></span>
                                     <div class='recent-article__informations recent-article__informations--sheet clearfix'>
                                         <span class='recent-article__date' itemprop='datePublished'><?php echo $this->Time->format('d/m', $review['Article']['created']) ?></span>
                                         <span class='recent-article__types'>
@@ -157,8 +157,8 @@
                                         </span>
                                         <span class='recent-article__author' itemprop='author'><?php echo $review['User']['username'] ?></span>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </li>
                     <?php endforeach; ?>
                 </ol>
@@ -216,9 +216,9 @@
                 <ol itemscope itemtype='https://schema.org/ItemList'>
                     <?php foreach ($latestArticles as $article): ?>
                         <li class='recent-article__item recent-article__item--sheet' itemprop='itemListElement' itemscope itemtype='https://schema.org/Article'>
-                            <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $article['Article']['id'], 'slug2' => $article['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de l&apos;article <?php echo $article['Article']['title'] ?>' class='link' itemprop='url'>
-                                <div class='recent-article recent-article--sheet'>
-                                    <div class='recent-article__title recent-article__title--sheet' itemprop='name'><?php echo $article['Article']['title'] ?></div>
+                            <div class='recent-article recent-article--sheet'>
+                                <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $article['Article']['id'], 'slug2' => $article['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de l&apos;article <?php echo $article['Article']['title'] ?>' class='link' itemprop='url'>
+                                    <span class='recent-article__title recent-article__title--sheet' itemprop='name'><?php echo $article['Article']['title'] ?></span>
                                     <div class='recent-article__informations recent-article__informations--sheet clearfix'>
                                         <span class='recent-article__date' itemprop='datePublished'><?php echo $this->Time->format('d/m', $article['Article']['created']) ?></span>
                                         <span class='recent-article__types'>
@@ -228,8 +228,8 @@
                                         </span>
                                         <span class='recent-article__author' itemprop='author'><?php echo $article['User']['username'] ?></span>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </li>
                     <?php endforeach; ?>
                 </ol>

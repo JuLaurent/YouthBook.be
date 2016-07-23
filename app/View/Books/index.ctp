@@ -15,16 +15,14 @@
             <?php foreach($lastBooks as $book): ?>
                 <div class='image-box__cover' itemscope itemtype='https://schema.org/Book'>
                     <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' title='Aller à la fiche du livre <?php echo $book['Book']['title'] ?>' class='image-box__link' itemprop='url'>
-                        <div class='image-box__image' itemprop='image'>
-                            <?php
-                                if( $book['Book']['cover'] ) {
-                                    echo $this->Html->image('covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'], array('alt' => 'Couverture du livre ' . $book['Book']['title'], 'srcset' => $this->webroot . 'img/covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'] . ' 1x, ' . $this->webroot . 'img/covers/' . $book['Book']['id'] . '/smallHR_' . $book['Book']['cover'] . ' 2x', 'width' => '126', 'height' => '200'));
-                                }
-                                else {
-                                    echo $this->Html->image('covers/small_noCover.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/covers/small_noCover.png 1x, ' . $this->webroot . 'img/covers/smallHR_noCover.png 2x', 'width' => '126', 'height' => '200'));
-                                } ?>
-
-                        </div>
+                        <?php
+                            if( $book['Book']['cover'] ) {
+                                echo $this->Html->image('covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'], array('alt' => 'Livre ' . $book['Book']['title'], 'srcset' => $this->webroot . 'img/covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'] . ' 1x, ' . $this->webroot . 'img/covers/' . $book['Book']['id'] . '/smallHR_' . $book['Book']['cover'] . ' 2x', 'width' => '126', 'height' => '200', 'class' => 'image-box__image image-box__image--cover', 'itemprop' => 'image'));
+                            }
+                            else {
+                                echo $this->Html->image('covers/small_noCover.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/covers/small_noCover.png 1x, ' . $this->webroot . 'img/covers/smallHR_noCover.png 2x', 'width' => '126', 'height' => '200', 'class' => 'image-box__image image-box__image--cover', 'itemprop' => 'image'));
+                            }
+                        ?>
                         <span class='image-box__information image-box__information--cover image-box__title image-box__title--cover' itemprop='name'><?php echo $book['Book']['title'] ?></span>
                     </a>
                 </div>

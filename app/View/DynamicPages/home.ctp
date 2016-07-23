@@ -17,22 +17,22 @@
             <div class='bloc-title hidden' itemscope itemtype='https://schema.org/Article'><h4>Critique à la une</h3></div>
 
             <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $highlightedReview['Article']['id'], 'slug2' => $highlightedReview['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de la critique <?php echo $highlightedReview['Article']['title'] ?>' class='image-box__link' itemprop='url'>
-                <div class='image-box__image image-box__image--highlighted-review' itemprop='image'>
-                    <?php
-                        if( $highlightedReview['Article']['thumbnail'] ) {
-                            echo $this->Html->image('articlesThumbnails/' . $highlightedReview['Article']['id'] . '/big_' . $highlightedReview['Article']['thumbnail'], array('alt' => 'Thumbnail de l’article ' . $highlightedReview['Article']['title'], 'srcset' => $this->webroot . 'img/articlesThumbnails/' . $highlightedReview['Article']['id'] . '/big_' . $highlightedReview['Article']['thumbnail'] . ' 1x, ' . $this->webroot . 'img/articlesThumbnails/' . $highlightedReview['Article']['id'] . '/bigHR_' . $highlightedReview['Article']['thumbnail'] . ' 2x', 'width' => '750', 'height' => '404'));
-                        }
-                        else {
-                            echo $this->Html->image('articlesThumbnails/big_noThumbnail.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/articlesThumbnails/big_noThumbnail.png 1x, ' . $this->webroot . 'img/articlesThumbnails/bigHR_noThumbnail.png 2x', 'width' => '750', 'height' => '350'));
-                        }
-                    ?>
-                </div>
+                <?php
+                    if( $highlightedReview['Article']['thumbnail'] ) {
+                        echo $this->Html->image('articlesThumbnails/' . $highlightedReview['Article']['id'] . '/big_' . $highlightedReview['Article']['thumbnail'], array('alt' => 'Article ' . $highlightedReview['Article']['title'], 'srcset' => $this->webroot . 'img/articlesThumbnails/' . $highlightedReview['Article']['id'] . '/big_' . $highlightedReview['Article']['thumbnail'] . ' 1x, ' . $this->webroot . 'img/articlesThumbnails/' . $highlightedReview['Article']['id'] . '/bigHR_' . $highlightedReview['Article']['thumbnail'] . ' 2x', 'width' => '750', 'height' => '404', 'class' => 'image-box__image image-box__image--highlighted-review', 'itemprop' => 'image'));
+                    }
+                    else {
+                        echo $this->Html->image('articlesThumbnails/big_noThumbnail.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/articlesThumbnails/big_noThumbnail.png 1x, ' . $this->webroot . 'img/articlesThumbnails/bigHR_noThumbnail.png 2x', 'width' => '750', 'height' => '350', 'class' => 'image-box__image image-box__image--highlighted-review', 'itemprop' => 'image'));
+                    }
+                ?>
                 <div class='image-box__types'>
                     <?php foreach($highlightedReview['Type'] as $type): ?>
                         <span class='image-box__type image-box__type--highlighted-review'><?php echo $type['name'] ?></span>
                     <?php endforeach; ?>
                 </div>
-                <span class='image-box__information image-box__information--highlighted-review image-box__title image-box__title--highlighted-review'><span itemprop='name'><?php echo $highlightedReview['Article']['title'] ?></span> <span class='image-box__author--highlighted-review'>par <span itemprop='author'><?php echo $highlightedReview['User']['username'] ?></span></span></span>
+                <span class='image-box__information image-box__information--highlighted-review image-box__title image-box__title--highlighted-review'>
+                    <span itemprop='name'><?php echo $highlightedReview['Article']['title'] ?></span> <span class='image-box__author--highlighted-review'>par <span itemprop='author'><?php echo $highlightedReview['User']['username'] ?></span></span>
+                </span>
             </a>
         </section>
 
@@ -41,15 +41,15 @@
             <ol itemscope itemtype='https://schema.org/ItemList'>
                 <?php foreach($recentReviews as $review): ?>
                     <li class='recent-article__item' itemprop='itemListElement' itemscope itemtype='https://schema.org/Article'>
-                        <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $review['Article']['id'], 'slug2' => $review['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de la critique <?php echo $review['Article']['title'] ?>' class='link' itemprop='url'>
-                            <div class='recent-article'>
-                                <div class='recent-article__title' itemprop='name'><?php echo $review['Article']['title'] ?></div>
+                        <div class='recent-article'>
+                            <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $review['Article']['id'], 'slug2' => $review['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de la critique <?php echo $review['Article']['title'] ?>' class='link' itemprop='url'>
+                                <span class='recent-article__title' itemprop='name'><?php echo $review['Article']['title'] ?></span>
                                 <div class='recent-article__informations clearfix'>
                                     <span class='recent-article__date' itemprop='datePublished'><?php echo $this->Time->format('d/m', $review['Article']['created']) ?></span>
                                     <span class='recent-article__author' itemprop='author'><?php echo $review['User']['username'] ?></span>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </li>
                 <?php endforeach; ?>
             </ol>
@@ -77,22 +77,22 @@
 
                 <div class='image-box__highlighted-article' itemscope itemtype='https://schema.org/Article'>
                     <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $article['Article']['id'], 'slug2' => $article['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de l&apos;article <?php echo $article['Article']['title'] ?>' class='image-box__link' itemprop='url'>
-                      <div class='image-box__image image-box__image--highlighted-article' itemprop='image'>
-                          <?php
-                              if( $article['Article']['thumbnail'] ) {
-                                  echo $this->Html->image('articlesThumbnails/' . $article['Article']['id'] . '/normal_' . $article['Article']['thumbnail'], array('alt' => 'Thumbnail de l’article ' . $article['Article']['title'], 'srcset' => $this->webroot . 'img/articlesThumbnails/' . $article['Article']['id'] . '/normal_' . $article['Article']['thumbnail'] . ' 1x, ' . $this->webroot . 'img/articlesThumbnails/' . $article['Article']['id'] . '/normalHR_' . $article['Article']['thumbnail'] . ' 2x', 'width' => '360', 'height' => '188'));
-                              }
-                              else {
-                                  echo $this->Html->image('articlesThumbnails/normal_noThumbnail.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/articlesThumbnails/normal_noThumbnail.png 1x, ' . $this->webroot . 'img/articlesThumbnails/normalHR_noThumbnail.png 2x', 'width' => '360', 'height' => '188'));
-                              } ?>
-
-                      </div>
+                        <?php
+                            if( $article['Article']['thumbnail'] ) {
+                                echo $this->Html->image('articlesThumbnails/' . $article['Article']['id'] . '/normal_' . $article['Article']['thumbnail'], array('alt' => 'Article ' . $article['Article']['title'], 'srcset' => $this->webroot . 'img/articlesThumbnails/' . $article['Article']['id'] . '/normal_' . $article['Article']['thumbnail'] . ' 1x, ' . $this->webroot . 'img/articlesThumbnails/' . $article['Article']['id'] . '/normalHR_' . $article['Article']['thumbnail'] . ' 2x', 'width' => '360', 'height' => '188', 'class' => 'image-box__image image-box__image--highlighted-article', 'itemprop' => 'image'));
+                            }
+                            else {
+                                echo $this->Html->image('articlesThumbnails/normal_noThumbnail.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/articlesThumbnails/normal_noThumbnail.png 1x, ' . $this->webroot . 'img/articlesThumbnails/normalHR_noThumbnail.png 2x', 'width' => '360', 'height' => '188', 'class' => 'image-box__image image-box__image--highlighted-article', 'itemprop' => 'image'));
+                            }
+                        ?>
                         <div class='image-box__types'>
                             <?php foreach($article['Type'] as $type): ?>
                                 <span class='image-box__type image-box__type--highlighted-article'><?php echo $type['name'] ?></span>
                             <?php endforeach; ?>
                         </div>
-                        <span class='image-box__information image-box__information--highlighted-article image-box__title image-box__title--highlighted-article'><span itemprop='name'><?php echo $article['Article']['title'] ?></span> <span class='image-box__author--highlighted-article'>par <span itemprop='author'><?php echo $article['User']['username'] ?></span></span></span>
+                        <span class='image-box__information image-box__information--highlighted-article image-box__title image-box__title--highlighted-article'>
+                            <span itemprop='name'><?php echo $article['Article']['title'] ?></span> <span class='image-box__author--highlighted-article'>par <span itemprop='author'><?php echo $article['User']['username'] ?></span></span>
+                        </span>
                     </a>
                 </div>
 
@@ -105,9 +105,9 @@
             <ol itemscope itemtype='https://schema.org/ItemList'>
                 <?php foreach ($recentArticles as $article): ?>
                     <li class='recent-article__item' itemprop='itemListElement' itemscope itemtype='https://schema.org/Article'>
-                        <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $article['Article']['id'], 'slug2' => $article['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de l’article <?php echo $article['Article']['title'] ?>' class='link' itemprop='url'>
-                            <div class='recent-article'>
-                                <div class='recent-article__title' itemprop='name'><?php echo $article['Article']['title'] ?></div>
+                        <div class='recent-article'>
+                            <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $article['Article']['id'], 'slug2' => $article['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de l’article <?php echo $article['Article']['title'] ?>' class='link' itemprop='url'>
+                                <span class='recent-article__title' itemprop='name'><?php echo $article['Article']['title'] ?></span>
                                 <div class='recent-article__informations clearfix'>
                                     <span class='recent-article__date' itemprop='datePublished'><?php echo $this->Time->format('d/m', $article['Article']['created']) ?></span>
                                     <span class='recent-article__types'>
@@ -117,8 +117,8 @@
                                     </span>
                                     <span class='recent-article__author' itemprop='author'><?php echo $article['User']['username'] ?></span>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </li>
                 <?php endforeach; ?>
             </ol>
@@ -160,16 +160,14 @@
             <?php foreach($recentBooks as $book): ?>
                 <div class='image-box__cover' itemscope itemtype='https://schema.org/Book'>
                     <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' title='Aller à la fiche du livre <?php echo $book['Book']['title'] ?>' class='image-box__link' itemprop='url'>
-                        <div class='image-box__image image-box__image--cover' itemprop='image'>
-                            <?php
-                                if( $book['Book']['cover'] ) {
-                                    echo $this->Html->image('covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'], array('alt' => 'Couverture du livre ' . $book['Book']['title'], 'srcset' => $this->webroot . 'img/covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'] . ' 1x, ' . $this->webroot . 'img/covers/' . $book['Book']['id'] . '/smallHR_' . $book['Book']['cover'] . ' 2x', 'width' => '126', 'height' => '200'));
-                                }
-                                else {
-                                    echo $this->Html->image('covers/small_noCover.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/covers/small_noCover.png 1x, ' . $this->webroot . 'img/covers/smallHR_noCover.png 2x', 'width' => '126', 'height' => '200'));
-                                } ?>
-
-                        </div>
+                        <?php
+                            if( $book['Book']['cover'] ) {
+                                echo $this->Html->image('covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'], array('alt' => 'Livre ' . $book['Book']['title'], 'srcset' => $this->webroot . 'img/covers/' . $book['Book']['id'] . '/small_' . $book['Book']['cover'] . ' 1x, ' . $this->webroot . 'img/covers/' . $book['Book']['id'] . '/smallHR_' . $book['Book']['cover'] . ' 2x', 'width' => '126', 'height' => '200', 'class' => 'image-box__image image-box__image--cover', 'itemprop' => 'image'));
+                            }
+                            else {
+                                echo $this->Html->image('covers/small_noCover.png', array('alt' => 'Couverture de substitution', 'srcset' => $this->webroot . 'img/covers/small_noCover.png 1x, ' . $this->webroot . 'img/covers/smallHR_noCover.png 2x', 'width' => '126', 'height' => '200', 'class' => 'image-box__image image-box__image--cover', 'itemprop' => 'image'));
+                            }
+                        ?>
                         <span class='image-box__information image-box__information--cover image-box__date image-box__date--cover' itemprop='datePublished'><?php echo $this->Time->format('d/m/Y', $book['Book']['release_date']) ?></span>
                         <span class='image-box__information image-box__information--cover image-box__title image-box__title--cover' itemprop='name'><?php echo $book['Book']['title'] ?></span>
                     </a>

@@ -17,9 +17,9 @@
             <ul itemscope itemtype='https://schema.org/ItemList'>
                 <?php foreach($drafts as $draft): ?>
                     <li class='recent-article__item' itemprop='itemListElement' itemscope itemtype='https://schema.org/Article'>
-                        <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $draft['Article']['id'], 'slug2' => $draft['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de l&apos;article <?php echo $draft['Article']['title'] ?>' class='link' itemprop='url'>
-                            <div class='recent-article recent-article--sheet'>
-                                <div class='recent-article__title recent-article__title--sheet' itemprop='name'><?php echo $draft['Article']['title'] ?></div>
+                        <div class='recent-article recent-article--sheet'>
+                            <a href='<?php echo $this->Html->url( array( 'controller'=>'articlePages', 'action'=>'view', 'slug1' => $draft['Article']['id'], 'slug2' => $draft['Article']['slug'], 'slug3' => '1' )) ?>' title='Aller à la page de l&apos;article <?php echo $draft['Article']['title'] ?>' class='link' itemprop='url'>
+                                <span class='recent-article__title recent-article__title--sheet' itemprop='name'><?php echo $draft['Article']['title'] ?></span>
                                 <div class='recent-article__informations recent-article__informations--sheet clearfix'>
                                     <span class='recent-article__date' itemprop='datePublished'><?php echo $this->Time->format('d/m/Y', $draft['Article']['created']) ?></span>
                                     <span class='recent-article__types'>
@@ -28,8 +28,8 @@
                                         <?php endforeach; ?>
                                     </span>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </li>
                 <?php endforeach; ?>
             </ul>
