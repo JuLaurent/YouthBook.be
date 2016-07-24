@@ -18,32 +18,38 @@
         <div class='user__actions'>
             <span class='user__action action user__edit'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'users', 'action'=>'collection' ) ) ?>' title='Aller à la page de ma collection de livres' class='action__link<?php if($this->params['controller'] == 'users') echo ' action__active' ?>'>
+                    <span class='hidden'>Mon profil</span>
                     <span class="fa fa-user"></span>
                 </a>
             </span>
             <span class='user__action action'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'conversations', 'action'=>'index' ) ) ?>' title='Aller à la page de mes conversations' class='action__link<?php if($this->params['controller'] == 'conversations') echo ' action__active' ?>'>
+                    <span class='hidden'>Mes conversations</span>
                     <span class="fa fa-comments"></span>
                     <span class='user__not-seen-conversations'></span>
                 </a>
             </span>
             <span class='user__action action user__book-create'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'add' ) ) ?>' title='Ajouter un livre' class='action__edit<?php if($this->params['controller'] == 'books' && ($this->params['action'] == 'add' || $this->params['action'] == 'addWithIsbn' || $this->params['action'] == 'addWithoutIsbn')) echo ' action__active' ?>'>
+                    <span class='hidden'>Ajouter un livre</span>
                     <span class="fa fa-book"></span>
                 </a>
             </span>
             <span class='user__action action user__article-create'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'articles', 'action'=>'addStepOne' ) ) ?>' title='Ajouter un article' class='action__edit<?php if($this->params['controller'] == 'articles' && ($this->params['action'] == 'addStepOne' || $this->params['action'] == 'addStepTwo' || $this->params['action'] == 'addStepThree')) echo ' action__active' ?>'>
+                    <span class='hidden'>Ajouter un article</span>
                     <span class="fa fa-file-text"></span>
                 </a>
             </span>
             <span class='user__action action user__article-create'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'requests', 'action'=>'index' ) ) ?>' title='Voir les demandes de critiques' class='action__edit<?php if($this->params['controller'] == 'requests' && $this->params['action'] == 'index') echo ' action__active' ?>'>
+                    <span class='hidden'>Les demandes de critiques</span>
                     <span class="fa fa-question"></span>
                 </a>
             </span>
             <span class='user__action action user__logout'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'users', 'action'=>'logout' ) ) ?>' title='Se déconnecter' class='action__edit'>
+                    <span class='hidden'>Se déconnecter</span>
                     <span class="fa fa-sign-out"></span>
                 </a>
             </span>

@@ -30,7 +30,6 @@
                                 </div>
                             </a>
                         </div>
-                      
                     </li>
                 <?php endforeach; ?>
             </ul>
