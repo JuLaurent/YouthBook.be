@@ -60,7 +60,7 @@ class SagasController extends AppController {
 
         $this->set(compact('books'));
 
-        if ($this->request->is('post')) {
+        if ( $this->request->is('post') ) {
             $this->Saga->create();
             if ($this->Saga->saveAll($this->request->data)) {
 

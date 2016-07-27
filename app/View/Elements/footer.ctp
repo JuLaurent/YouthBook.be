@@ -19,6 +19,14 @@
                 );
             ?>
         </span>
+        <span class='footer__nav-item'>
+            <?php echo $this->Html->link(
+                    'Contact',
+                    array('controller' => 'dynamicPages', 'action' => 'contact'),
+                    array('title' => 'Aller à la page du formulaire de contact', 'class' => 'footer__link')
+                );
+            ?>
+        </span>
     </nav>
     <span class='footer__creator'>Site développé par Julien Laurent</span>
 </footer>

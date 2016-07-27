@@ -77,9 +77,9 @@ class RequestsController extends AppController {
 
         $book = $this->Book->findById($this->request->data['Request']['book_id']);
 
-        if($this->request->is('post')) {
+        if ( $this->request->is('post') ) {
             if( count($request['User']) > 1 ) {
-                if ($this->Request->query('DELETE from yb_requests_users WHERE request_id = "' . $request['Request']['id'] . '"AND user_id = "' . $this->request->data['User']['id'] . '"')) {
+                if ( $this->Request->query('DELETE from yb_requests_users WHERE request_id = "' . $request['Request']['id'] . '"AND user_id = "' . $this->request->data['User']['id'] . '"') ) {
                     return $this->redirect(array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']));
                 }
                 else {
