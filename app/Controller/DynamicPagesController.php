@@ -3,6 +3,7 @@
 App::uses('AppController', 'Controller');
 
 class DynamicPagesController extends AppController {
+    public $helpers = array('Wysiwyg.Wysiwyg' => array('editor' => 'Tinymce'));
 
     public function home() {
         $this->loadModel('Article');
@@ -132,6 +133,40 @@ class DynamicPagesController extends AppController {
             echo json_encode( $numberNotSeenConversations );
 
             exit();
+        }
+    }
+
+    public function contact() {
+        $this->loadModel('Contact');
+
+        if ( $this->request->is('post') ) {
+            $this->Contact->set($this->request->data);
+
+            if ($this->Contact->validates()) {
+                App::uses('CakeEmail', 'Network/Email');
+                $Email = new CakeEmail('contact');
+                $Email->from(array($this->request->data['mail'] => $this->request->data['name']));
+                $Email->to('contact@youthbook.be');
+
+                if ( $this->request->data['subject'] == '' ) {
+                    $Email->subject('Contact');
+                }
+                else {
+                    $email->subject($this->request->data['subject']);
+                }
+
+                $Email->send($this->request->data['text']);
+
+                $this->Flash->success(__('Votre message a bien été envoyé.'));
+                return $this->redirect($this->referer());
+            }
+            else {
+                $this->Session->write('errors.Contact', $this->Contact->validationErrors);
+                $this->Session->write('data', $this->request->data);
+                $this->Session->write('flash', 'Le mail n’a pas pu être envoyé. Veuillez réessayer SVP.');
+
+                return $this->redirect($this->referer());
+            }
         }
     }
 
