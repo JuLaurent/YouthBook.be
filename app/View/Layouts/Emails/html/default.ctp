@@ -32,9 +32,55 @@
         </title>
         <?php
             echo $this->Html->meta('viewport', 'width=device-width, initial-scale=1');
-
-            echo $this->Html->css('main');
         ?>
+
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
+
+        <style>
+          body {
+              font-family: 'Lato', sans-serif;
+              min-height: 100%;
+              position: relative;
+              font-size: 16px;
+          }
+          .mail-header {
+              width: 100%;
+              position: relative;
+          }
+          .mail-header__logo {
+              width: 500px;
+              margin: 0 auto 30px;
+          }
+          .contact__informations {
+              position: relative;
+              width: 1000px;
+          }
+          .contact__informations:after{
+              content:'';
+              display:block;
+              clear:both;
+          }
+          .contact__term {
+              float: left;
+              width: 200px;
+              margin-bottom: 10px;
+          }
+          .contact__description {
+              float: left;
+              width: 775px;
+              margin-left: 25px;
+              margin-bottom: 20px;
+          }
+          .contact__description:after {
+              content: '';
+              display: block;
+              width: 600px;
+              position: absolute;
+              padding-top: 10px;
+              left: 0;
+              border-bottom: 1px dotted #1E5F7D;
+          }
+        </style>
     </head>
     <body>
         <?php echo $this->element('mail-header'); ?>

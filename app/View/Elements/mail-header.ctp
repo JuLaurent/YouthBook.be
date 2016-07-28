@@ -1,5 +1,5 @@
 <header class="mail-header">
     <div class="mail-header__logo">
-        <?php $this->Html->image('icons/logoV1.1.1.svg', array('alt' => 'Logo YouthBook.be', 'width' => '438', 'height' => '73')) ?>
+        <img src="cid:logo">.
     </div>
 </header>

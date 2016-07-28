@@ -144,18 +144,28 @@ class DynamicPagesController extends AppController {
 
             if ($this->Contact->validates()) {
                 App::uses('CakeEmail', 'Network/Email');
+
+                if ( $this->request->data['Contact']['subject'] == '' ) {
+                    $this->request->data['Contact']['subject'] = 'Contact';
+                }
+
                 $Email = new CakeEmail('contact');
-                $Email->from(array($this->request->data['mail'] => $this->request->data['name']));
+                $Email->viewVars(array('mailData' => $this->request->data));
+                $Email->template('contact', 'default');
+                $Email->emailFormat('html');
+                $Email->from(array($this->request->data['Contact']['mail'] => $this->request->data['Contact']['name']));
                 $Email->to('contact@youthbook.be');
+                $Email->subject($this->request->data['Contact']['subject']);
 
-                if ( $this->request->data['subject'] == '' ) {
-                    $Email->subject('Contact');
-                }
-                else {
-                    $email->subject($this->request->data['subject']);
-                }
+                $Email->attachments(array(
+                    'logo.svg' => array(
+                        'file' => WWW_ROOT . '/img/icons/logoV1.1.2.svg',
+                        'mimetype' => 'image/svg+xml',
+                        'contentId' => 'logo'
+                    )
+                ));
 
-                $Email->send($this->request->data['text']);
+                $Email->send();
 
                 $this->Flash->success(__('Votre message a bien été envoyé.'));
                 return $this->redirect($this->referer());
