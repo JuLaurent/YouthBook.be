@@ -66,11 +66,19 @@ class User extends AppModel {
             ),
             'length' => array(
                 'rule'          => array('between', 4, 16),
-                'message'       => 'Votre pseudo doit contenir entre 4 et 16 caractères.'
+                'message'       => 'Votre pseudo doit contenir entre 4 et 16 caractères.',
+                'on'            => 'create'
             ),
             'unique' => array(
                 'rule'          => 'isUnique',
-                'message'       => 'Ce pseudo a déjà été choisi.'
+                'message'       => 'Ce pseudo a déjà été choisi.',
+                'on'            => 'create'
+            )
+        ),
+        'verif_username' => array(
+            'required' => array(
+                'rule'          => array('notBlank'),
+                'message'       => 'Un pseudo est requis'
             )
         ),
         'password' => array(
@@ -80,7 +88,8 @@ class User extends AppModel {
             ),
             'length' => array(
                 'rule'          => array('between', 6, 16),
-                'message'       => 'Votre mot de passe doit contenir entre 6 et 16 caractères.'
+                'message'       => 'Votre mot de passe doit contenir entre 6 et 16 caractères.',
+                'on'            => 'create'
             )
         ),
         'confirm_password' => array(
@@ -105,6 +114,17 @@ class User extends AppModel {
             'same' => array(
                 'rule'          => array('compareFields', 'mail', 'confirm_mail'),
                 'message'       => 'L’adresse mail n’est pas identique.'
+            )
+        ),
+        'verif_mail' => array(
+            'required' => array(
+                'rule'          => array('notBlank'),
+                'message'       => 'Une adresse mail est requise.'
+            ),
+            'mail' => array(
+                'rule'          => array('email'),
+                'message'       => 'Votre adresse mail doit avoir un format valide.',
+                'allowEmpty'    => true
             )
         ),
         'role' => array(

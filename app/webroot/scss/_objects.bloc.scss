@@ -6,9 +6,17 @@
     width: $douzeSeizieme;
 }
 
+.bloc__password-link {
+    margin-left: $quatreSeizieme + $gutter;
+}
+
 @media screen and (max-width: 1280px) {
     .bloc--comments {
         width: $mSeizeSeizieme;
+    }
+
+    .bloc__password-link {
+        margin-left: $mSeptSeizieme + $mGutter;
     }
 }
 
@@ -20,4 +28,13 @@
     .bloc--padding {
         padding: 0 $mGutter;
     }
+}
+
+@media screen and (max-width: 700px) {
+      .bloc__password-link {
+          display: block;
+          margin: 0 auto;
+          text-align: center;
+      }
+
 }

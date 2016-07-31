@@ -9,3 +9,11 @@
 .link--bold {
     font-family: $bold;
 }
+
+.link--password {
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+    }
+}

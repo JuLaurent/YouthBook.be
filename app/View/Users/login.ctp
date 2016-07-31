@@ -25,8 +25,17 @@
                     echo $this->Form->create('User', array('novalidate' => true));
                         echo $this->Form->input('username', array('label' => 'Pseudo', 'class' => 'input-text'));
                         echo $this->Form->input('password',  array('label' => 'Mot de passe', 'class' => 'input-password'));
-                    echo $this->Form->end(__('Se connecter'));
                 ?>
+                <span class='bloc__password-link'>
+                    <?php
+                        echo $this->Html->link(
+                            'Mot de passe oublié',
+                            array('controller' => 'users', 'action' => 'forgottenPassword'),
+                            array('title' => 'Aller à la page de mot de passe oublié', 'class' => 'link link--password')
+                        );
+                    ?>
+                </span>
+                <?php echo $this->Form->end(__('Se connecter')); ?>
 
             </div>
 

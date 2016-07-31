@@ -12,7 +12,7 @@ class UsersController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add', 'login', 'edit', 'view');
+        $this->Auth->allow('add', 'login', 'edit', 'view', 'forgottenPassword');
     }
 
     public function login() {
@@ -221,6 +221,45 @@ class UsersController extends AppController {
         } else {
             $this->request->data = $this->User->read(null, $id);
             unset($this->request->data['User']['password']);
+        }
+    }
+
+    public function forgottenPassword() {
+
+        if ( $this->request->is('post') ) {
+            $this->User->set($this->request->data);
+
+            if ($this->User->validates()) {
+                App::uses('CakeEmail', 'Network/Email');
+
+                $Email = new CakeEmail('contact');
+                $Email->viewVars(array('mailData' => $this->request->data));
+                $Email->template('contact', 'default');
+                $Email->emailFormat('html');
+                $Email->from(array('contact@youthbook.be' => 'YouthBook.be'));
+                $Email->to($this->request->data['User']['verif_mail']);
+                $Email->subject('Mot de passe oublié');
+
+                $Email->attachments(array(
+                    'logo.svg' => array(
+                        'file' => WWW_ROOT . '/img/icons/logoV1.1.2.svg',
+                        'mimetype' => 'image/svg+xml',
+                        'contentId' => 'logo'
+                    )
+                ));
+
+                $Email->send();
+
+                $this->Flash->success(__('Votre message a bien été envoyé.'));
+                return $this->redirect($this->referer());
+            }
+            else {
+                $this->Session->write('errors.User', $this->User->validationErrors);
+                $this->Session->write('data', $this->request->data);
+                $this->Session->write('flash', 'Le mail n’a pas pu être envoyé. Veuillez réessayer SVP.');
+
+                return $this->redirect($this->referer());
+            }
         }
     }
 

@@ -55,6 +55,10 @@
     margin-bottom: $gutter;
 }
 
+.popup-box__password-link {
+    margin-left: $mQuatreSeizieme + $mGutter;
+}
+
 @media screen and (max-width: 1280px) {
     .popup-box__content {
         width: 60%;
@@ -76,5 +80,11 @@
         width: 90%;
         top: 5%;
         left: 5%;
+    }
+
+    .popup-box__password-link {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
     }
 }

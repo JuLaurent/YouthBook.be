@@ -179,14 +179,4 @@ class DynamicPagesController extends AppController {
             }
         }
     }
-
-    public function newPassword() {
-        $Email = new CakeEmail();
-        $Email->from(array('contact@youthbook.be' => 'YouthBook.be'));
-        $Email->to('julien_shinigami@hotmail.com');
-        $Email->subject('About');
-        $Email->send('My message');
-
-        $this->redirect(array('controller' => 'users', 'action' => 'login'));
-    }
 }
