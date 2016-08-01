@@ -12,14 +12,15 @@ class UsersController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add', 'login', 'edit', 'view', 'forgottenPassword');
+        $this->Auth->allow('add', 'login', 'edit', 'view', 'forgottenPassword', 'newPassword');
     }
 
     public function login() {
 
         if ( $this->request->is('post')) {
             if ( $this->Auth->login() ) {
-                if( $this->referer() == Router::fullbaseUrl() . Router::url(array('controller' => 'users', 'action' => 'login')) ) {
+                if( $this->referer() == Router::fullbaseUrl() . Router::url(array('controller' => 'users', 'action' => 'login')) ||
+                    $this->referer() == Router::fullbaseUrl() . Router::url(array('controller' => 'users', 'action' => 'newPassword')) ) {
                     return $this->redirect($this->Auth->redirectUrl());
                 }
                 else {
@@ -47,7 +48,7 @@ class UsersController extends AppController {
     public function view($id = null) {
         $this->User->id = $id;
         if (!$this->User->exists()) {
-            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+            throw new NotFoundException(__('Utilisateur invalide.'));
         }
         $this->set('user', $this->User->read(null, $id));
     }
@@ -58,7 +59,7 @@ class UsersController extends AppController {
 
         $this->User->id = $this->Auth->user('id');
         if (!$this->User->exists()) {
-            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+            throw new NotFoundException(__('Utilisateur invalide.'));
         }
 
         $user = $this->User->read(null, $id);
@@ -81,7 +82,7 @@ class UsersController extends AppController {
 
         $this->User->id = $this->Auth->user('id');
         if (!$this->User->exists()) {
-            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+            throw new NotFoundException(__('Utilisateur invalide.'));
         }
 
         $user = $this->User->read(null, $id);
@@ -103,7 +104,7 @@ class UsersController extends AppController {
 
         $this->User->id = $this->Auth->user('id');
         if (!$this->User->exists()) {
-            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+            throw new NotFoundException(__('Utilisateur invalide.'));
         }
 
         $user = $this->User->read(null, $id);
@@ -125,7 +126,7 @@ class UsersController extends AppController {
 
         $this->User->id = $this->Auth->user('id');
         if (!$this->User->exists()) {
-            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+            throw new NotFoundException(__('Utilisateur invalide.'));
         }
 
         $user = $this->User->read(null, $id);
@@ -147,7 +148,7 @@ class UsersController extends AppController {
 
         $this->User->id = $this->Auth->user('id');
         if (!$this->User->exists()) {
-            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+            throw new NotFoundException(__('Utilisateur invalide.'));
         }
 
         $user = $this->User->read(null, $id);
@@ -182,7 +183,7 @@ class UsersController extends AppController {
         $this->User->id = $this->Auth->user('id');
 
         if (!$this->User->exists()) {
-            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+            throw new NotFoundException(__('Utilisateur invalide.'));
         }
 
         if ($this->request->is('post') || $this->request->is('put')) {
@@ -206,7 +207,7 @@ class UsersController extends AppController {
 
         $this->User->id = $this->Auth->user('id');
         if (!$this->User->exists()) {
-            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+            throw new NotFoundException(__('Utilisateur invalide.'));
         }
 
         if ($this->request->is('post') || $this->request->is('put')) {
@@ -230,36 +231,84 @@ class UsersController extends AppController {
             $this->User->set($this->request->data);
 
             if ($this->User->validates()) {
-                App::uses('CakeEmail', 'Network/Email');
 
-                $Email = new CakeEmail('contact');
-                $Email->viewVars(array('mailData' => $this->request->data));
-                $Email->template('contact', 'default');
-                $Email->emailFormat('html');
-                $Email->from(array('contact@youthbook.be' => 'YouthBook.be'));
-                $Email->to($this->request->data['User']['verif_mail']);
-                $Email->subject('Mot de passe oublié');
-
-                $Email->attachments(array(
-                    'logo.svg' => array(
-                        'file' => WWW_ROOT . '/img/icons/logoV1.1.2.svg',
-                        'mimetype' => 'image/svg+xml',
-                        'contentId' => 'logo'
+                $user = $this->User->find(
+                    'first',
+                    array(
+                        'conditions' => array('User.username' => $this->request->data['User']['verif_username'], 'User.mail' => $this->request->data['User']['verif_mail'])
                     )
-                ));
+                );
 
-                $Email->send();
+                if ( !empty($user) ) {
 
-                $this->Flash->success(__('Votre message a bien été envoyé.'));
-                return $this->redirect($this->referer());
+                    $token = array('User' => array('token' => bin2hex(openssl_random_pseudo_bytes(20))));
+
+                    $this->User->id = $user['User']['id'];
+
+                    $this->User->save($token);
+
+                    /*App::uses('CakeEmail', 'Network/Email');
+
+                    $Email = new CakeEmail('contact');
+                    $Email->viewVars(array('mailData' => $this->request->data));
+                    $Email->template('contact', 'default');
+                    $Email->emailFormat('html');
+                    $Email->from(array('contact@youthbook.be' => 'YouthBook.be'));
+                    $Email->to($this->request->data['User']['verif_mail']);
+                    $Email->subject('Mot de passe oublié');
+
+                    $Email->attachments(array(
+                        'logo.svg' => array(
+                            'file' => WWW_ROOT . '/img/icons/logoV1.1.2.svg',
+                            'mimetype' => 'image/svg+xml',
+                            'contentId' => 'logo'
+                        )
+                    ));
+
+                    $Email->send();
+
+                    $this->Flash->success(__('Votre message a bien été envoyé.'));
+                    return $this->redirect($this->referer());*/
+                }
+                else {
+                    $this->Flash->error('Cet utilisateur n’existe pas. Veuillez réessayer SVP.');
+                }
+
             }
             else {
-                $this->Session->write('errors.User', $this->User->validationErrors);
-                $this->Session->write('data', $this->request->data);
-                $this->Session->write('flash', 'Le mail n’a pas pu être envoyé. Veuillez réessayer SVP.');
-
-                return $this->redirect($this->referer());
+                $this->Flash->error('La demande n’a pas pu être envoyé. Veuillez réessayer SVP.');
             }
+        }
+    }
+
+    public function newPassword($slug1 = null, $slug2 = null) {
+
+        $user = $this->User->findBySlug($slug1);
+
+        $this->User->id = $user['User']['id'];
+
+        if ( !$this->User->exists() ) {
+            throw new NotFoundException(__('Utilisateur invalide.'));
+        }
+
+        if ( $user['User']['token'] == null ) {
+            throw new NotFoundException(__('Page inacessible.'));
+        }
+
+        $this->set(compact('user'));
+
+        if ($this->request->is('post') || $this->request->is('put')) {
+
+            $this->request->data['User']['token'] = null;
+
+            if ($this->User->save($this->request->data)) {
+                return $this->redirect(array('action' => 'login'));
+            } else {
+                $this->Flash->error('Votre mot de passe n’a pas pu être été modifié. Veuillez réessayer SVP.');
+            }
+        } else {
+            // $this->request->data = $this->User->read(null, $id);
+            // unset($this->request->data['User']['password']);
         }
     }
 
@@ -271,7 +320,7 @@ class UsersController extends AppController {
 
         $this->User->id = $id;
         if (!$this->User->exists()) {
-            throw new NotFoundException('Utilisateur invalide', 'default', array( 'class' => 'message message--bad' ));
+            throw new NotFoundException(__('Utilisateur invalide.'));
         }
         if ($this->User->delete()) {
             $this->Session->setFlash('Votre compte a été supprimé.', 'default', array( 'class' => 'message message--good'));

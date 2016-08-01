@@ -45,6 +45,7 @@
 	Router::connect('sagas/edit/:slug', array('controller' => 'sagas', 'action' => 'edit'));
 
 	Router::connect('users/collection', array('controller' => 'users', 'action' => 'index'));
+	Router::connect('users/newPassword/:slug1/:slug2', array('controller' => 'users', 'action' => 'newPassword'));
 
 	Router::connect('comments/index/:slug1/:slug2', array('controller' => 'comments', 'action' => 'index'));
 
