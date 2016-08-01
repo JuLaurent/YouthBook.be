@@ -247,11 +247,11 @@ class UsersController extends AppController {
 
                     $this->User->save($token);
 
-                    /*App::uses('CakeEmail', 'Network/Email');
+                    App::uses('CakeEmail', 'Network/Email');
 
-                    $Email = new CakeEmail('contact');
-                    $Email->viewVars(array('mailData' => $this->request->data));
-                    $Email->template('contact', 'default');
+                    $Email = new CakeEmail('smtp');
+                    $Email->viewVars(array('mailData' => $user));
+                    $Email->template('newPassword', 'default');
                     $Email->emailFormat('html');
                     $Email->from(array('contact@youthbook.be' => 'YouthBook.be'));
                     $Email->to($this->request->data['User']['verif_mail']);
@@ -267,8 +267,8 @@ class UsersController extends AppController {
 
                     $Email->send();
 
-                    $this->Flash->success(__('Votre message a bien été envoyé.'));
-                    return $this->redirect($this->referer());*/
+                    $this->Flash->success(__('Votre demande a bien été envoyée.'));
+                    return $this->redirect($this->referer());
                 }
                 else {
                     $this->Flash->error('Cet utilisateur n’existe pas. Veuillez réessayer SVP.');

@@ -149,7 +149,7 @@ class DynamicPagesController extends AppController {
                     $this->request->data['Contact']['subject'] = 'Contact';
                 }
 
-                $Email = new CakeEmail('contact');
+                $Email = new CakeEmail('smtp');
                 $Email->viewVars(array('mailData' => $this->request->data));
                 $Email->template('contact', 'default');
                 $Email->emailFormat('html');

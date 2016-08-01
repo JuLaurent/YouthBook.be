@@ -51,6 +51,32 @@
               width: 500px;
               margin: 0 auto 30px;
           }
+          .mail__buttons {
+              text-align: center;
+              margin: 60px 30px;
+          }
+          .mail__button {
+              width: 200px;
+              display: inline-block;
+          }
+          .mail__button + .mail__button {
+              margin-left: 30px;
+          }
+          .mail__button a {
+              box-sizing: border-box;
+              display: inline-block;
+              width: 100%;
+              padding: 1.4em;
+              color: white;
+        	    background-color: #002138;
+        	    text-align: center;
+              text-decoration: none;
+              box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
+        	}
+          .mail__button a:hover {
+              background-color: #3B7D7F;
+              box-shadow: none;
+          }
           .contact__informations {
               position: relative;
               width: 1000px;

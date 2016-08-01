@@ -1,22 +1,22 @@
 @mixin link-button( $color1, $color2, $color3 ){
     box-sizing: border-box;
 
-	a {
-      box-sizing: border-box;
-      display: inline-block;
-      width: 100%;
-      padding:0.8em;
-      color:$color1;
-	    background-color:$color2;
-	    text-align: center;
-      box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
+  	a {
+        box-sizing: border-box;
+        display: inline-block;
+        width: 100%;
+        padding:0.8em;
+        color:$color1;
+  	    background-color:$color2;
+  	    text-align: center;
+        box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
 
-      &:hover {
-          color: $color1;
-          background-color: $color3;
-          box-shadow: none;
-      }
-	}
+        &:hover {
+            color: $color1;
+            background-color: $color3;
+            box-shadow: none;
+        }
+  	}
 }
 
 @mixin link-circle-button( $color1, $color2, $color3 ){
