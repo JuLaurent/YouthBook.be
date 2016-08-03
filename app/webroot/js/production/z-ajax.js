@@ -1,7 +1,7 @@
 ( function() {
 
 
-    $.ajax({
+    /* $.ajax({
         url: '/YouthBook.be/dynamicPages/countNotSeenConversations',
         success: function( responseFromServer, textstatus, jqXHR ) {
             var number = JSON.parse( responseFromServer );
@@ -9,7 +9,7 @@
                 $( '.user__not-seen-conversations' ).show().html( number );
             }
         }
-    });
+    }); */
 
 
     /* $('.ajax__add-comment').submit(function( e ) {

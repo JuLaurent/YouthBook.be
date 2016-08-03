@@ -62,4 +62,17 @@ class AppController extends Controller {
         }
     }
 
+    public function beforeRender() {
+        $this->loadModel('ConversationsUser');
+
+        $numberNotSeenConversations = count($this->ConversationsUser->find(
+            'all',
+            array(
+                'conditions' => array( 'ConversationsUser.user_id' => $this->Session->read('Auth.User.id'), 'ConversationsUser.seen' => false )
+            )
+        ));
+
+        $this->set('numberNotSeenConversations', $numberNotSeenConversations);
+    }
+
 }

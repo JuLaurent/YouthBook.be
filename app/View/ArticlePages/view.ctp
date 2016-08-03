@@ -79,7 +79,15 @@
             <?php if( $articlePage['Article']['draft'] == 0 ): ?>
                 <section class='bloc'>
 
-                    <div class='bloc-title'><h3>Les meilleurs commentaires</h3></div>
+                    <?php if( $numberOfComments > 5 ): ?>
+
+                        <div class='bloc-title'><h3>Les meilleurs commentaires</h3></div>
+
+                    <?php else: ?>
+
+                        <div class='bloc-title'><h3>Les commentaires</h3></div>
+
+                    <?php endif; ?>
 
                     <?php if( $articlePage['ArticlePage']['page_number'] == $articlePage['Article']['number_of_pages'] && !empty($comments) ): ?>
                         <div class='comments'>
