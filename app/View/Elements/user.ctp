@@ -23,13 +23,49 @@
                 </a>
             </span>
             <span class='user__action action'>
-                <a href='<?php echo $this->Html->url( array( 'controller'=>'conversations', 'action'=>'index' ) ) ?>' title='Aller à la page de mes conversations' class='action__link<?php if($this->params['controller'] == 'conversations') echo ' action__active' ?>'>
+                <a href='<?php echo $this->Html->url( array( 'controller'=>'conversations', 'action'=>'index' ) ) ?>' title='Aller à la page de mes conversations' data-number='<?php echo $numberNotSeenConversations ?>' class='action__link<?php if($this->params['controller'] == 'conversations') echo ' action__active action__popup' ?>'>
                     <span class='hidden'>Mes conversations</span>
                     <span class="fa fa-comments"></span>
                     <?php if ( $numberNotSeenConversations > 0 ): ?>
                         <span class='user__not-seen-conversations'><?php echo $numberNotSeenConversations ?></span>
                     <?php endif; ?>
                 </a>
+                <?php if ( $numberNotSeenConversations > 0 ): ?>
+                    <div class='bubble-popup'>
+                        <div class='bubble-popup__items'>
+                            <?php foreach($notSeenConversations as $conversation): ?>
+                                <a href='<?php echo $this->Html->url( array('controller' => 'conversations', 'action' => 'view', 'slug' => $conversation['Conversation']['id']) ) ?>' title='Aller à la conversation <?php echo $conversation['Conversation']['title'] ?>' class='bubble-popup__item'>
+                                    <span class='bubble-popup__information bubble-popup__information--title'><?php echo $conversation['Conversation']['title'] ?></span>
+                                    <span class='bubble-popup__information'>
+                                        <?php
+                                            $j = 0;
+                                            for( $i = 0 ; $i < count($conversation['User']) ; $i++ ) {
+                                                if( $conversation['User'][$i]['username'] != $this->Session->read('Auth.User.username') ) {
+                                                    if( $j == 0 ) {
+                                                        echo $conversation['User'][$i]['username'];
+                                                    }
+                                                    else {
+                                                        echo ', ' . $conversation['User'][$i]['username'];
+                                                    }
+                                                    $j++;
+                                                }
+                                            }
+                                        ?>
+                                    </span>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                        <span class='bubble-popup__link-container'>
+                            <?php
+                                echo $this->Html->link(
+                                    'Voir toutes les conversations',
+                                    array('controller' => 'conversations', 'action' => 'index'),
+                                    array('title' => 'Aller à la page de mes conversations', 'class' => 'bubble-popup__link')
+                                );
+                            ?>
+                        </span>
+                    </div>
+                <?php endif; ?>
             </span>
             <span class='user__action action user__book-create'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'add' ) ) ?>' title='Ajouter un livre' class='action__edit<?php if($this->params['controller'] == 'books' && ($this->params['action'] == 'add' || $this->params['action'] == 'addWithIsbn' || $this->params['action'] == 'addWithoutIsbn')) echo ' action__active' ?>'>

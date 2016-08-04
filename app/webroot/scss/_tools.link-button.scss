@@ -22,7 +22,7 @@
 @mixin link-circle-button( $color1, $color2, $color3 ){
     box-sizing: border-box;
 
-  	a, input[type='submit'] {
+  	> a, input[type='submit'] {
         box-sizing: border-box;
         display: inline-block;
         width: 100%;

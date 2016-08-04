@@ -27,6 +27,9 @@
             $('html, body, .header__bottom, .header__user').removeAttr('style');
 
         }
+        else {
+            $('.bubble-popup').removeAttr('style');
+        }
 
     });
 

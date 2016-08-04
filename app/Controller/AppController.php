@@ -63,6 +63,7 @@ class AppController extends Controller {
     }
 
     public function beforeRender() {
+        $this->loadModel('Conversation');
         $this->loadModel('ConversationsUser');
 
         $numberNotSeenConversations = count($this->ConversationsUser->find(
@@ -72,7 +73,16 @@ class AppController extends Controller {
             )
         ));
 
-        $this->set('numberNotSeenConversations', $numberNotSeenConversations);
+        $notSeenConversations = $this->Conversation->find(
+            'all',
+            array(
+                'joins' => $this->Conversation->joinUser,
+                'conditions' => array( 'User.id' => $this->Session->read('Auth.User.id'), 'ConversationUser.seen' => false ),
+                'order' => array('Conversation.modified' => 'desc')
+            )
+        );
+
+        $this->set(compact('numberNotSeenConversations', 'notSeenConversations'));
     }
 
 }

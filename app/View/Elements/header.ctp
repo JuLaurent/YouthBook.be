@@ -8,7 +8,8 @@
     <div class="header__top">
         <div class="header__container clearfix">
             <div class="header__logo">
-                <?php echo $this->Html->link(
+                <?php
+                    echo $this->Html->link(
                         $this->Html->image('icons/logoV1.1.2.svg', array('alt' => 'Logo YouthBook.be', 'width' => '438', 'height' => '73')),
                         '/',
                         array('title' => 'Aller à la page d’accueil', 'escape' => false)
