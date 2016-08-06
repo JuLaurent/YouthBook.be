@@ -94,7 +94,7 @@
                         <div class='bubble-popup'>
                             <div class='bubble-popup__items'>
                                 <?php foreach($notSeenArticles as $article): ?>
-                                    <a href='<?php echo $this->Html->url( array('controller' => 'conversations', 'action' => 'view', 'slug' => $article['Article']['id']) ) ?>' title='Aller à la conversation <?php echo $article['Article']['title'] ?>' class='bubble-popup__item'>
+                                    <a href='<?php echo $this->Html->url( array('controller' => 'articlePages', 'action' => 'view', 'slug1' => $article['Article']['id'], 'slug2' => $article['Article']['slug'], 'slug3' => '1') ) ?>' title='Aller à la page de l’article <?php echo $article['Article']['title'] ?>' class='bubble-popup__item'>
                                         <span class='bubble-popup__information bubble-popup__information--title'><?php echo $article['Article']['title'] ?></span>
                                         <span class='bubble-popup__information'><?php echo $article['Article']['User']['username'] ?></span>
                                     </a>
