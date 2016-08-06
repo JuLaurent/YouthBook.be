@@ -49,15 +49,6 @@ class ConversationsController extends AppController {
             )
         );
 
-        /*$users = $this->Conversation->User->find(
-            'list',
-            array(
-                'fields' => array('User.username'),
-                'conditions' => array('User.id !=' => $this->Session->read('Auth.User.id')),
-                'order' => array('User.username' => 'asc')
-            )
-        );*/
-
         $users = $this->User->find(
             'all',
             array(

@@ -188,18 +188,42 @@ class ArticlesController extends AppController {
 
     public function post($id = null) {
 
+        $this->loadModel('Notification');
         $this->loadModel('Request');
+        $this->loadModel('User');
 
         $article = $this->Article->findById($this->request->data['Article']['id']);
 
         $request = $this->Request->findByBookId($article['Book'][0]['id']);
 
-        if ( $this->request->is('post') || $this->request->is('put') ) {
+        $users = $this->User->find(
+            'all',
+            array(
+                'conditions' => array('User.role' => 'administrateur')
+            )
+        );
 
+        if ( $this->request->is('post') || $this->request->is('put') ) {
+          $notifications = array('Notification' => array(
+                  'article_id' => $article['Article']['id'],
+                  'User' => array()
+              )
+          );
+
+          foreach($users as $user) {
+              array_push($notifications['Notification']['User'], $user['User']['id']);
+          }
+
+          debug($notifications);
             if ( $this->Article->save($this->request->data) ) {
 
                 if ( !empty($request) ) {
                     $this->Request->save( array( 'Request' => array( 'id' => $request['Request']['id'], 'done' => 1, 'article_id' => $article['Article']['id'] )));
+                }
+
+                foreach($users as $user) {
+                    $this->Notification->create();
+                    $this->Notification->save( array( 'Notification' => array( 'article_id' => $article['Article']['id'], 'user_id' => $user['User']['id'] )));
                 }
 
                 $newArticle = $this->Article->findById($article['Article']['id']);

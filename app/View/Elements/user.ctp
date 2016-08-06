@@ -15,15 +15,15 @@
         <span class='user__username'>
             Bonjour <?php echo $this->Session->read('Auth.User.username') ?>
         </span>
-        <div class='user__actions'>
+        <div class='user__actions clearfix'>
             <span class='user__action action user__edit'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'users', 'action'=>'collection' ) ) ?>' title='Aller à la page de ma collection de livres' class='action__link<?php if($this->params['controller'] == 'users') echo ' action__active' ?>'>
                     <span class='hidden'>Mon profil</span>
                     <span class="fa fa-user"></span>
                 </a>
-            </span>
-            <span class='user__action action'>
-                <a href='<?php echo $this->Html->url( array( 'controller'=>'conversations', 'action'=>'index' ) ) ?>' title='Aller à la page de mes conversations' data-number='<?php echo $numberNotSeenConversations ?>' class='action__link<?php if($this->params['controller'] == 'conversations') echo ' action__active action__popup' ?>'>
+            </span><!--
+            --><span class='user__action action'>
+                <a href='<?php echo $this->Html->url( array( 'controller'=>'conversations', 'action'=>'index' ) ) ?>' title='Aller à la page de mes conversations' data-number='<?php echo $numberNotSeenConversations ?>' class='action__link action__popup<?php if($this->params['controller'] == 'conversations') echo ' action__active' ?>'>
                     <span class='hidden'>Mes conversations</span>
                     <span class="fa fa-comments"></span>
                     <?php if ( $numberNotSeenConversations > 0 ): ?>
@@ -58,7 +58,7 @@
                         <span class='bubble-popup__link-container'>
                             <?php
                                 echo $this->Html->link(
-                                    'Voir toutes les conversations',
+                                    'Voir toutes mes conversations',
                                     array('controller' => 'conversations', 'action' => 'index'),
                                     array('title' => 'Aller à la page de mes conversations', 'class' => 'bubble-popup__link')
                                 );
@@ -66,26 +66,59 @@
                         </span>
                     </div>
                 <?php endif; ?>
-            </span>
-            <span class='user__action action user__book-create'>
+            </span><!--
+            --><span class='user__action action user__book-create'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'add' ) ) ?>' title='Ajouter un livre' class='action__edit<?php if($this->params['controller'] == 'books' && ($this->params['action'] == 'add' || $this->params['action'] == 'addWithIsbn' || $this->params['action'] == 'addWithoutIsbn')) echo ' action__active' ?>'>
                     <span class='hidden'>Ajouter un livre</span>
                     <span class="fa fa-book"></span>
                 </a>
-            </span>
-            <span class='user__action action user__article-create'>
+            </span><!--
+            --><span class='user__action action user__article-create'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'articles', 'action'=>'addStepOne' ) ) ?>' title='Ajouter un article' class='action__edit<?php if($this->params['controller'] == 'articles' && ($this->params['action'] == 'addStepOne' || $this->params['action'] == 'addStepTwo' || $this->params['action'] == 'addStepThree')) echo ' action__active' ?>'>
                     <span class='hidden'>Ajouter un article</span>
                     <span class="fa fa-file-text"></span>
                 </a>
-            </span>
-            <span class='user__action action user__article-create'>
+            </span><!--
+            --><span class='user__action action user__article-create'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'requests', 'action'=>'index' ) ) ?>' title='Voir les demandes de critiques' class='action__edit<?php if($this->params['controller'] == 'requests' && $this->params['action'] == 'index') echo ' action__active' ?>'>
                     <span class='hidden'>Les demandes de critiques</span>
                     <span class="fa fa-question"></span>
                 </a>
-            </span>
-            <span class='user__action action user__logout'>
+            </span><!--
+            --><span class='user__action action user__article-create'>
+                <?php if( $numberNotSeenArticles > 0 ): ?>
+                    <a href='<?php echo $this->Html->url( array( 'controller'=>'notifications', 'action'=>'index' ) ) ?>' title='Voir mes notifications' data-number='<?php echo $numberNotSeenArticles ?>' class='action__edit action__popup<?php if($this->params['controller'] == 'notifications' && $this->params['action'] == 'index') echo ' action__active' ?>'>
+                        <span class='hidden'>Les notifications</span>
+                        <span class="fa fa-bell"></span>
+                        <span class='user__not-seen-conversations'><?php echo $numberNotSeenArticles ?></span>
+                        <div class='bubble-popup'>
+                            <div class='bubble-popup__items'>
+                                <?php foreach($notSeenArticles as $article): ?>
+                                    <a href='<?php echo $this->Html->url( array('controller' => 'conversations', 'action' => 'view', 'slug' => $article['Article']['id']) ) ?>' title='Aller à la conversation <?php echo $article['Article']['title'] ?>' class='bubble-popup__item'>
+                                        <span class='bubble-popup__information bubble-popup__information--title'><?php echo $article['Article']['title'] ?></span>
+                                        <span class='bubble-popup__information'><?php echo $article['Article']['User']['username'] ?></span>
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
+                            <span class='bubble-popup__link-container'>
+                                <?php
+                                    echo $this->Html->link(
+                                        'Voir toutes mes notifications',
+                                        array('controller' => 'notifications', 'action' => 'index'),
+                                        array('title' => 'Aller à la page de mes notifications', 'class' => 'bubble-popup__link')
+                                    );
+                                ?>
+                            </span>
+                        </div>
+                    </a>
+                <?php else: ?>
+                    <span class='action__deactivated'>
+                        <span class='hidden'>Pas de notifications/span>
+                        <span class="fa fa-bell-slash"></span>
+                    </span>
+                <?php endif; ?>
+            </span><!--
+            --><span class='user__action action user__logout'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'users', 'action'=>'logout' ) ) ?>' title='Se déconnecter' class='action__edit'>
                     <span class='hidden'>Se déconnecter</span>
                     <span class="fa fa-sign-out"></span>

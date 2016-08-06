@@ -11,6 +11,7 @@ class User extends AppModel {
         'Article',
         'Comment',
         'Like',
+        'Notification',
         'Message',
         'Saga'
     );

@@ -1,14 +1,14 @@
 .user__left {
     float: left;
-    width: $sixSeizieme;
+    width: $quatreSeizieme + 71 + $gutter;
     height: 100%;
     margin-right: $gutter;
     text-align: right;
 }
 
 .user__right {
+    width: $sixSeizieme - 71 - $gutter;
     float: left;
-    width: $quatreSeizieme;
     text-align: left;
 }
 
@@ -95,12 +95,12 @@
 
 @media screen and (max-width: 1280px) {
     .user__left {
-        width: $mQuatreSeizieme;
+        width: $mSeptSeizieme;
         margin-right: $mGutter;
     }
 
     .user__right {
-        width: $mDouzeSeizieme;
+        width: $mNeufSeizieme;
     }
 
     .user__action {
@@ -149,12 +149,12 @@
 
     .user__action {
 
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       font-size: 20px;
 
         & + .user__action {
-            margin-left: $mGutter / 4;
+            margin-left: $mGutter;
         }
     }
 
