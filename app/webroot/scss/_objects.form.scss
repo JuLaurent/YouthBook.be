@@ -126,6 +126,38 @@
     height: $gutter * 4;
 }
 
+.form__rating {
+    display: none;
+    width: $douzeSeizieme;
+    padding: 0.5em 0;
+    float: left;
+}
+
+.form__rating-button {
+    width: 26px;
+    height: 26px;
+    background-color: $darkMainColor;
+    border: 1px solid $darkMainColor;
+    color: $contrastColor;
+    border-radius: 50%;
+    box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
+
+    &:hover {
+        background-color: $lightMainColor;
+        border-color: $lightMainColor;
+        box-shadow: none;
+    }
+
+    + .form__rating-button {
+        margin-left: $gutter / 4
+    }
+}
+
+.form__rating-button--active {
+    background-color: $mainColor;
+    border: 1px solid $mainColor;
+}
+
 .submit {
     @include form-button( $darkMainColor, $contrastColor, $lightMainColor);
     width: 100%;
@@ -248,6 +280,10 @@
         }
     }
 
+    .form__rating {
+        width: $mNeufSeizieme;
+    }
+
     .form input[type="submit"]  {
         margin-left: $mSeptSeizieme + $mGutter;
         width: $mNeufSeizieme;
@@ -333,6 +369,12 @@
         & + .select-date {
             margin-left: $mGutter;
         }
+    }
+
+    .form__rating {
+        width: $mSeizeSeizieme;
+        text-align: center;
+        float: none;
     }
 
     .form input[type="submit"]  {
