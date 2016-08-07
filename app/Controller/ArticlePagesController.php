@@ -15,6 +15,7 @@ class ArticlePagesController extends AppController {
 		public function view($slug1 = null, $slug2 = null, $slug3 = null) {
 
       $this->loadModel('Comment');
+      $this->loadModel('Notification');
 
       if(!$slug1 && !$slug2) {
           throw new NotFoundException(__('Cet article n’apparait pas dans la base de données.'));
@@ -50,6 +51,17 @@ class ArticlePagesController extends AppController {
       }
       else {
           $comments = array();
+      }
+
+      $notification = $this->Notification->find(
+          'first',
+          array(
+              'conditions' => array('Notification.article_id' => $slug1, 'Notification.user_id' => $this->Session->read('Auth.User.id'))
+          )
+      );
+
+      if ( !empty($notification) ) {
+          $this->Notification->delete( $notification['Notification']['id'], false );
       }
 
 

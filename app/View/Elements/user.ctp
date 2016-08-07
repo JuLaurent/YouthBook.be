@@ -85,39 +85,41 @@
                     <span class="fa fa-question"></span>
                 </a>
             </span><!--
-            --><span class='user__action action user__article-create'>
-                <?php if( $numberNotSeenArticles > 0 ): ?>
-                    <a href='<?php echo $this->Html->url( array( 'controller'=>'notifications', 'action'=>'index' ) ) ?>' title='Voir mes notifications' data-number='<?php echo $numberNotSeenArticles ?>' class='action__edit action__popup<?php if($this->params['controller'] == 'notifications' && $this->params['action'] == 'index') echo ' action__active' ?>'>
-                        <span class='hidden'>Les notifications</span>
-                        <span class="fa fa-bell"></span>
-                        <span class='user__not-seen-conversations'><?php echo $numberNotSeenArticles ?></span>
-                        <div class='bubble-popup'>
-                            <div class='bubble-popup__items'>
-                                <?php foreach($notSeenArticles as $article): ?>
-                                    <a href='<?php echo $this->Html->url( array('controller' => 'articlePages', 'action' => 'view', 'slug1' => $article['Article']['id'], 'slug2' => $article['Article']['slug'], 'slug3' => '1') ) ?>' title='Aller à la page de l’article <?php echo $article['Article']['title'] ?>' class='bubble-popup__item'>
-                                        <span class='bubble-popup__information bubble-popup__information--title'><?php echo $article['Article']['title'] ?></span>
-                                        <span class='bubble-popup__information'><?php echo $article['Article']['User']['username'] ?></span>
-                                    </a>
-                                <?php endforeach; ?>
+            <?php if ( $this->Session->read('Auth.User.role') == 'administrateur' ): ?>
+                --><span class='user__action action user__article-create'>
+                    <?php if( $numberNotSeenArticles > 0 ): ?>
+                        <a href='<?php echo $this->Html->url( array( 'controller'=>'notifications', 'action'=>'index' ) ) ?>' title='Voir mes notifications' data-number='<?php echo $numberNotSeenArticles ?>' class='action__edit action__popup<?php if($this->params['controller'] == 'notifications' && $this->params['action'] == 'index') echo ' action__active' ?>'>
+                            <span class='hidden'>Les notifications</span>
+                            <span class="fa fa-bell"></span>
+                            <span class='user__not-seen-conversations'><?php echo $numberNotSeenArticles ?></span>
+                            <div class='bubble-popup'>
+                                <div class='bubble-popup__items'>
+                                    <?php foreach($notSeenArticles as $article): ?>
+                                        <a href='<?php echo $this->Html->url( array('controller' => 'articlePages', 'action' => 'view', 'slug1' => $article['Article']['id'], 'slug2' => $article['Article']['slug'], 'slug3' => '1') ) ?>' title='Aller à la page de l’article <?php echo $article['Article']['title'] ?>' class='bubble-popup__item'>
+                                            <span class='bubble-popup__information bubble-popup__information--title'><?php echo $article['Article']['title'] ?></span>
+                                            <span class='bubble-popup__information'><?php echo $article['Article']['User']['username'] ?></span>
+                                        </a>
+                                    <?php endforeach; ?>
+                                </div>
+                                <span class='bubble-popup__link-container'>
+                                    <?php
+                                        echo $this->Html->link(
+                                            'Voir toutes mes notifications',
+                                            array('controller' => 'notifications', 'action' => 'index'),
+                                            array('title' => 'Aller à la page de mes notifications', 'class' => 'bubble-popup__link')
+                                        );
+                                    ?>
+                                </span>
                             </div>
-                            <span class='bubble-popup__link-container'>
-                                <?php
-                                    echo $this->Html->link(
-                                        'Voir toutes mes notifications',
-                                        array('controller' => 'notifications', 'action' => 'index'),
-                                        array('title' => 'Aller à la page de mes notifications', 'class' => 'bubble-popup__link')
-                                    );
-                                ?>
-                            </span>
-                        </div>
-                    </a>
-                <?php else: ?>
-                    <span class='action__deactivated'>
-                        <span class='hidden'>Pas de notifications/span>
-                        <span class="fa fa-bell-slash"></span>
-                    </span>
-                <?php endif; ?>
-            </span><!--
+                        </a>
+                    <?php else: ?>
+                        <span class='action__deactivated'>
+                            <span class='hidden'>Pas de notifications</span>
+                            <span class="fa fa-bell-slash"></span>
+                        </span>
+                    <?php endif; ?>
+                </span><!--
+            <?php endif; ?>
             --><span class='user__action action user__logout'>
                 <a href='<?php echo $this->Html->url( array( 'controller'=>'users', 'action'=>'logout' ) ) ?>' title='Se déconnecter' class='action__edit'>
                     <span class='hidden'>Se déconnecter</span>

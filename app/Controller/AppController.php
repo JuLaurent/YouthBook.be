@@ -79,6 +79,7 @@ class AppController extends Controller {
             array(
                 'joins' => $this->Conversation->joinUser,
                 'conditions' => array( 'User.id' => $this->Session->read('Auth.User.id'), 'ConversationUser.seen' => false ),
+                'limit' => 5,
                 'order' => array('Conversation.modified' => 'desc')
             )
         );
@@ -95,6 +96,7 @@ class AppController extends Controller {
             array(
                 'recursive' => 2,
                 'conditions' => array( 'Notification.user_id' => $this->Session->read('Auth.User.id')),
+                'limit' => 5,
                 'order' => array('Article.created' => 'desc')
             )
         );
