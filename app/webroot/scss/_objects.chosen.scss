@@ -24,3 +24,19 @@
     border-bottom: 1px solid $darkMainColor;
     box-shadow: none;
 }
+
+@media screen and (max-width: 1280px) {
+    .form .chosen-container {
+        width: $mNeufSeizieme !important;
+    }
+
+    .form--comment .chosen-container {
+        width: $mTreizeSeizieme !important;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .form .chosen-container {
+        width: $mSeizeSeizieme !important;
+    }
+}

@@ -31,7 +31,6 @@
         });
 
         $('.action__popup').on( 'click', function(e) {
-            e.preventDefault();
 
             if ( parseFloat( $(this).attr('data-number') ) > 0 ) {
                 e.preventDefault();

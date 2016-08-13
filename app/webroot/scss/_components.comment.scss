@@ -71,6 +71,7 @@
 
 .comment__content {
     margin-top: $gutter / 4;
+    word-wrap: break-word;
 }
 
 @media screen and (max-width: 480px) {

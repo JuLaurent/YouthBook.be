@@ -307,26 +307,34 @@ class ArticlesController extends AppController {
 
         $this->loadModel('ArticlePage');
         $this->loadModel('Comment');
+        $this->loadModel('Notification');
         $this->loadModel('Request');
 
-        $requests = $this->Request->findByArticleId( $this->request->data['Article']['id'] );
-        $comments = $this->Comment->findByArticleId( $this->request->data['Article']['id'] );
+        $articleId = $this->request->data['Article']['id'];
+
+        $requests = $this->Request->findByArticleId( $articleId );
+        $comments = $this->Comment->findByArticleId( $articleId );
+        $notifications = $this->Notification->findByArticleId( $articleId );
 
         if ($this->request->is('get')) {
             throw new MethodNotAllowedException();
         }
 
-        if ( $this->ArticlePage->deleteAll(array('article_id' => $this->request->data['Article']['id']), false) ) {
+        if ( $this->ArticlePage->deleteAll(array('article_id' => $articleId), false) ) {
 
             if ( !empty( $comments ) ) {
-                $this->Comment->deleteAll(array('article_id' => $this->request->data['Article']['id']), false);
+                $this->Comment->deleteAll(array('article_id' => $articleId), false);
             }
 
             if ( !empty( $requests ) ) {
-                $this->Request->deleteAll( array('article_id' => $this->request->data['Article']['id']), false );
+                $this->Request->deleteAll( array('article_id' => $articleId), false );
             }
 
-            $this->Article->delete( $this->request->data['Article']['id'], true );
+            if ( !empty( $notifications ) ) {
+                $this->Notification->deleteAll( array('article_id' => $articleId), false );
+            }
+
+            $this->Article->delete( $articleId );
 
             if ( $this->request->is('ajax') ) {
                 exit();
