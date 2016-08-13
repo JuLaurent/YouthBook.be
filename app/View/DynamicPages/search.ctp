@@ -45,7 +45,7 @@
 
          <section>
               <div class='bloc-title'><h3>Les articles</h3></div>
-              <p class='alert-message'>Sachez que si vous cherchez une critique d’un livre et que celle-ci n'existe pas encore,<br/>vous pouvez là demander en cliquant sur le bouton «&nbsp;Demander une critique&nbsp;» sur la fiche du livre.</p>
+              <p class='alert-message'>Sachez que si vous cherchez une critique d’un livre et que celle-ci n'existe pas encore,<br/>vous pouvez la demander en cliquant sur le bouton «&nbsp;Demander une critique&nbsp;» sur la fiche du livre.</p>
               <?php if($articles != null): ?>
                   <ul itemscope itemtype='https://schema.org/ItemList'>
                       <?php foreach($articles as $article): ?>
