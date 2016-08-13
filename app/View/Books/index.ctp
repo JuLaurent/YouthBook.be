@@ -51,7 +51,7 @@
         </ul>
     </section>
 
-    <div>
+    <div class='bloc bloc--padding'>
         <p class='important'>Le livre que vous cherchez n’est pas répertorié ?</p>
         <div class='buttons'>
             <span class='button'>

@@ -27,10 +27,25 @@
                   <p>Aucun livre trouvé<p>
               <?php endif; ?>
 
+              <div class='bloc bloc--padding'>
+                  <p class='important'>Le livre que vous cherchez n’est pas répertorié ?</p>
+                  <div class='buttons'>
+                      <span class='button'>
+                          <?php echo $this->Html->link(
+                                  'Ajoutez-le',
+                                  array('controller' => 'books', 'action' => 'add'),
+                                  array('title' => 'Aller à la page d’ajout de livre')
+                              );
+                          ?>
+                      </span>
+                  </div>
+              </div>
+
          </section>
 
          <section>
               <div class='bloc-title'><h3>Les articles</h3></div>
+              <p class='alert-message'>Sachez que si vous cherchez une critique d’un livre et que celle-ci n'existe pas encore,<br/>vous pouvez là demander en cliquant sur le bouton «&nbsp;Demander une critique&nbsp;» sur la fiche du livre.</p>
               <?php if($articles != null): ?>
                   <ul itemscope itemtype='https://schema.org/ItemList'>
                       <?php foreach($articles as $article): ?>
@@ -55,7 +70,9 @@
               <?php else: ?>
                   <p>Aucun article trouvé<p>
               <?php endif; ?>
+              <div class='bloc bloc--padding'>
 
+              </div>
          </section>
 
     </div>
