@@ -18,6 +18,8 @@
             <div class="form form--article">
                 <p class='alert-message'>Les champs marqué d’un astérisque (*) sont obligatoires.</p>
 
+                <noscript><p class='alert-message message--warning'>Attention, désactiver JavaScript vous empêchera d’utiliser les outils de mise en forme.</p></noscript>
+
                 <?php echo $this->Form->create('Article', array('enctype' => 'multipart/form-data', 'novalidate' => true));
                     if($verif1 == true && ($verif2 == true || $verif3 == true || $verif4 == true) || $verif1 == false) {
                         echo $this->Form->input('title', array('label' => 'Titre*', 'class' => 'input-text input-text--article'));

@@ -89,8 +89,7 @@ class User extends AppModel {
             ),
             'length' => array(
                 'rule'          => array('between', 6, 16),
-                'message'       => 'Votre mot de passe doit contenir entre 6 et 16 caractères.',
-                'on'            => 'create'
+                'message'       => 'Votre mot de passe doit contenir entre 6 et 16 caractères.'
             )
         ),
         'confirm_password' => array(

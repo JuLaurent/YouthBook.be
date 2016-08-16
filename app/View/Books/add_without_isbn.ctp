@@ -11,6 +11,7 @@
 
     <div class='bloc bloc--padding'>
         <p>Afin de vous faciliter la tâche, vous avez la possibilité d’ajouter un livre à l’aide de l’ISBN, ce qui remplira automatiquement certaines informations de la fiche.</p>
+        <p class='alert-message message--warning'>Attention toutefois, cette recherche par ISBN ne donne pas un résultat correct à tous les coups. <br> Si vous obtenez de mauvaises informations, privilégiez donc l’ajout sans ISBN ou corriger les informations à la main.</p>
 
         <div class='buttons'>
             <span class='button'>

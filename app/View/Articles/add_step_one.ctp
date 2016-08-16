@@ -13,13 +13,13 @@
     <div class='bloc bloc--padding'>
         <?php echo $this->Flash->render(); ?>
 
-        <div class='alert-message message--warning'>
-            <p>Attention, assurez-vous que le ou les livres dont l’article parle sont répertoriés sur le site.</p>
-            <p>Attention, les types de l’article ne pourront plus être modifiés. Assurez vous de choisir les bons.</p>
-        </div>
-
         <div class="form">
             <p class='alert-message'>Les champs marqué d’un astérisque (*) sont obligatoires.</p>
+            <div class='alert-message message--warning'>
+                <p>Attention, assurez-vous que le ou les livres dont l’article parle sont répertoriés sur le site.</p>
+                <p>Attention, les types de l’article ne pourront plus être modifiés. Assurez vous de choisir les bons.</p>
+                <noscript><p>Attention, désactiver JavaScript vous empêchera d’utiliser les outils de mise en forme.</p></noscript>
+            </div>
             <?php
                 echo $this->Form->create('Article', array('novalidate' => true));
                     echo $this->Form->input('Article.Type', array('type' => 'select', 'multiple' => 'checkbox', 'label' => 'Type(s)*'));

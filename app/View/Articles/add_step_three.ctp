@@ -27,7 +27,10 @@
             <div class="form form--article">
                 <p class='alert-message'>Les champs marqué d’un astérisque (*) sont obligatoires.</p>
 
-                <p class='alert-message message--warning'>Lorsque vous aurez fini de rédiger votre article, vous serez redirigez vers votre liste de brouillons.<br>Veuillez d’abord vérifier le brouillon de l’article en question avant de publier ce dernier.</p>
+                <div class='alert-message message--warning'>
+                    <p>Lorsque vous aurez fini de rédiger votre article, vous serez redirigez vers votre liste de brouillons.<br>Veuillez d’abord vérifier le brouillon de l’article en question avant de publier ce dernier.</p>
+                    <noscript><p>Attention, désactiver JavaScript vous empêchera d’utiliser les outils de mise en forme.</p></noscript>
+                </div>
 
                 <?php
                     echo $this->Form->create('Article', array('enctype' => 'multipart/form-data', 'novalidate' => true));

@@ -84,6 +84,8 @@
 
             <?php if( $this->Session->check('Auth.User.id') ): ?>
                 <div class="form form--comment">
+                    <p class='alert-message'>Les champs marqué d’un astérisque (*) sont obligatoires.</p>
+                    <noscript><p class='alert-message message--warning'>Attention, désactiver JavaScript vous empêchera d’utiliser les outils de mise en forme.</p></noscript>
                     <?php
                         echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'add'), 'novalidate' => true, 'class' => 'ajax__add-comment'));
                             echo $this->Wysiwyg->input('Comment.content', array('label' => 'Commentaire*', 'class' => 'form-textarea form-textarea--article wysi2 ajax__add-comment--content'));

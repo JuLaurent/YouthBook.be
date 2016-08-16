@@ -43,6 +43,8 @@
             <?php echo $this->Flash->render(); ?>
 
             <div class="form form--comment">
+                <p class='alert-message'>Les champs marqué d’un astérisque (*) sont obligatoires.</p>
+                <noscript><p class='alert-message message--warning'>Attention, désactiver JavaScript vous empêchera d’utiliser les outils de mise en forme.</p></noscript>
                 <?php
                     echo $this->Form->create('Conversation', array('url' => array('controller' => 'conversations', 'action' => 'addMessage'), 'novalidate' => true));
                         echo $this->Wysiwyg->input('Message.0.content', array('label' => 'Message*', 'class' => 'form-textarea form-textarea--article wysi2'));
