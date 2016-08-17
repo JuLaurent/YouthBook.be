@@ -1,6 +1,7 @@
 .bloc-title {
     color: $mainColor;
     margin-bottom: $gutter / 4;
+    word-wrap: break-word;
 
     h3 {
         margin-bottom: $gutter / 2;

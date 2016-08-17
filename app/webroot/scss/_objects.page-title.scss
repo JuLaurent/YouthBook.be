@@ -3,6 +3,7 @@
     text-align: center;
     color: $mainColor;
     position: relative;
+    word-wrap: break-word;
 
     &:before {
         content: '';
