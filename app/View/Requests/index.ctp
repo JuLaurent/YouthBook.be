@@ -1,14 +1,14 @@
 <?php
 
-    $this->assign('title', 'Demandes critiques');
-    $this->assign('description', 'Liste des demandes de critiques');
+    $this->assign('title', 'Demandes critique');
+    $this->assign('description', 'Liste des demandes de critique');
 
 ?>
 
 <section>
 
 
-    <div class='page-title'><h2 class='beta page-title__item'>Les demandes de critiques</h2></div>
+    <div class='page-title'><h2 class='beta page-title__item'>Les demandes de critique</h2></div>
 
     <section class='bloc bloc--padding'>
         <div class='bloc-title'><h3>Les demandes non accomplies</h3></div>

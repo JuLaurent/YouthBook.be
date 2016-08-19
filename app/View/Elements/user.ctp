@@ -17,8 +17,8 @@
         </span>
         <div class='user__actions clearfix'>
             <span class='user__action action user__edit'>
-                <a href='<?php echo $this->Html->url( array( 'controller'=>'users', 'action'=>'collection' ) ) ?>' title='Aller à la page de ma collection de livres' class='action__link<?php if($this->params['controller'] == 'users') echo ' action__active' ?>'>
-                    <span class='hidden'>Mon profil</span>
+                <a href='<?php echo $this->Html->url( array( 'controller'=>'users', 'action'=>'collection' ) ) ?>' title='Aller à mon espace utilisateur' class='action__link<?php if($this->params['controller'] == 'users') echo ' action__active' ?>'>
+                    <span class='hidden'>Mon espace utilisateur</span>
                     <span class="fa fa-user"></span>
                 </a>
             </span><!--
@@ -80,8 +80,8 @@
                 </a>
             </span><!--
             --><span class='user__action action user__article-create'>
-                <a href='<?php echo $this->Html->url( array( 'controller'=>'requests', 'action'=>'index' ) ) ?>' title='Voir les demandes de critiques' class='action__edit<?php if($this->params['controller'] == 'requests' && $this->params['action'] == 'index') echo ' action__active' ?>'>
-                    <span class='hidden'>Les demandes de critiques</span>
+                <a href='<?php echo $this->Html->url( array( 'controller'=>'requests', 'action'=>'index' ) ) ?>' title='Voir les demandes de critique' class='action__edit<?php if($this->params['controller'] == 'requests' && $this->params['action'] == 'index') echo ' action__active' ?>'>
+                    <span class='hidden'>Les demandes de critique</span>
                     <span class="fa fa-question"></span>
                 </a>
             </span><!--
