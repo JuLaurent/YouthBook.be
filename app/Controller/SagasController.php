@@ -67,6 +67,13 @@ class SagasController extends AppController {
 
     public function add() {
 
+        $books = $this->Saga->Book->find(
+            'list',
+            array(
+                'order' => array('Book.title' => 'asc')
+            )
+        );
+
         $this->set(compact('books'));
 
         if ( $this->request->is('post') ) {
