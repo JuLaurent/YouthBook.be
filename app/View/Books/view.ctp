@@ -77,13 +77,13 @@
                         <dd class='sheet__description'>Inconnu</dd>
                     <?php endif; ?>
                     <dt class='sheet__term'>Saga</dt>
-                    <?php if($book['Saga']['title']): ?>
+                    <?php if( !empty( $book['Saga'][0]['title'] ) ): ?>
                         <dd class='sheet__description'>
                             <?php
                                 echo $this->Html->link(
-                                    $book['Saga']['title'],
-                                    array('controller' => 'sagas', 'action' => 'view', 'slug' => $book['Saga']['slug']),
-                                    array('title' => 'Aller à la page de la saga' . $book['Saga']['title'], 'class' => 'link link--bold')
+                                    $book['Saga'][0]['title'],
+                                    array('controller' => 'sagas', 'action' => 'view', 'slug' => $book['Saga'][0]['slug']),
+                                    array('title' => 'Aller à la page de la saga' . $book['Saga'][0]['title'], 'class' => 'link link--bold')
                                 );
                             ?>
                         </dd>

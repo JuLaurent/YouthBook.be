@@ -67,7 +67,7 @@
                 <div class='buttons'>
                     <span class='button'>
                         <?php echo $this->Html->link(
-                                'Modifier le titre',
+                                'Modifier la saga',
                                 array('controller' => 'sagas', 'action' => 'edit', 'slug' => $saga['Saga']['slug']),
                                 array('title' => 'Aller à la page de modification de la saga')
                             );

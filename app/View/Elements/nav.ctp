@@ -22,6 +22,9 @@
             <span class="nav__item-container">
                 <a  href='<?php echo $this->Html->url( array('controller' => 'books', 'action' => 'index', 'slug' => '0-9') ) ?>' title='Aller à la page des livres' class='<?php if($this->params['controller'] == 'books' && $this->params['action'] == 'index') echo 'nav__active ' ?>nav__item'>Livres</a>
             </span>
+            <span class="nav__item-container">
+                <a  href='<?php echo $this->Html->url( array('controller' => 'sagas', 'action' => 'index') ) ?>' title='Aller à la page des sagas' class='<?php if($this->params['controller'] == 'sagas' && $this->params['action'] == 'index') echo 'nav__active ' ?>nav__item'>Sagas</a>
+            </span>
         </div>
     </nav>
 </div>

@@ -17,9 +17,10 @@
             <?php echo $this->Form->create('Saga', array('enctype' => 'multipart/form-data', 'novalidate' => true)); ?>
                 <?php
                     echo $this->Form->input('title', array('label' => 'Titre*', 'class' => 'input-text'));
+                    echo $this->Form->input('Book', array('label' => 'Livre(s)*', 'multiple' => true, 'class' => 'form-select', 'data-placeholder' => 'Sélectionnez un ou plusieurs livres'));
                     echo $this->Form->input('id', array('type' => 'hidden'));
                 ?>
-            <?php echo $this->Form->end(__('Modifier le titre'));?>
+            <?php echo $this->Form->end(__('Modifier la saga'));?>
         </div>
     </div>
 

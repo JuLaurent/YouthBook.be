@@ -24,13 +24,29 @@ class Book extends AppModel {
         'Request'
     );
 
-    public $belongsTo = array(
+    public $hasAndBelongsToMany = array(
+        'Article',
+        'User',
         'Saga'
     );
 
-    public $hasAndBelongsToMany = array(
-        'Article',
-        'User'
+    public $joinSaga = array(
+        array(
+            'table' => 'yb_books_sagas',
+            'alias' => 'BookSaga',
+            'type' => 'inner',
+            'conditions' => array(
+                'Book.id = BookSaga.book_id'
+            )
+        ),
+        array(
+            'table' => 'yb_sagas',
+            'alias' => 'Saga',
+            'type' => 'inner',
+            'conditions' => array(
+                'BookSaga.saga_id = Saga.id'
+            )
+        )
     );
 
     public $joinUser = array(

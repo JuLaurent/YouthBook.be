@@ -11,14 +11,14 @@
                 );
             ?>
         </span>
-        <span class='footer__nav-item'>
+        <!-- <span class='footer__nav-item'>
             <?php echo $this->Html->link(
                     'Sagas',
                     array('controller' => 'sagas', 'action' => 'index'),
                     array('title' => 'Aller à la page des sagas', 'class' => 'footer__link')
                 );
             ?>
-        </span>
+        </span> -->
         <span class='footer__nav-item'>
             <?php echo $this->Html->link(
                     'Contact',

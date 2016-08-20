@@ -40,6 +40,7 @@ class SagasController extends AppController {
         $main = $this->Book->find(
             'all',
             array(
+                'joins' => $this->Book->joinSaga,
                 'conditions' => array('Book.chronology' => 'main', 'Saga.slug' => $slug),
                 'order' => array('Book.title' => 'asc')
             )
@@ -48,10 +49,18 @@ class SagasController extends AppController {
         $spinoff = $this->Book->find(
             'all',
             array(
+                'joins' => $this->Book->joinSaga,
                 'conditions' => array('Book.chronology' => 'spinoff', 'Saga.slug' => $slug),
                 'order' => array('Book.title' => 'asc')
             )
         );
+
+        /* $articles = $this->Article->find(
+            'all',
+            array(
+                'conditions' => array('''Book.saga_id' => $saga)
+            )
+        ) */
 
         $this->set(compact('saga', 'main', 'spinoff'));
     }
@@ -85,13 +94,20 @@ class SagasController extends AppController {
             throw new NotFoundException(__('Cette saga n’apparait pas dans la base de données.'));
         }
 
+        $books = $this->Saga->Book->find(
+            'list',
+            array(
+                'order' => array('Book.title' => 'asc')
+            )
+        );
+
         $access = true;
 
         if ($saga['Saga']['user_id'] != $this->Session->read('Auth.User.id') && $this->Session->read('Auth.User.role') != 'administrateur' && $this->Session->read('Auth.User.role') != 'modérateur') {
             $access = false;
         }
 
-        $this->set(compact('saga', 'access'));
+        $this->set(compact('saga', 'access', 'books'));
 
         $this->Saga->id = $saga['Saga']['id'];
 

@@ -49,14 +49,16 @@
                             echo $this->Form->input('rating', array('label' => 'Appréciation (sur 5)*', 'min' => '0', 'max' => '5', 'placeholder' => '0', 'class' => 'input-number input-number--article'));
                         }
                   ?>
-                  <div class='form__rating'>
-                      <button data-rating='0' class='form__rating-button'>0</button>
-                      <button data-rating='1' class='form__rating-button'>1</button>
-                      <button data-rating='2' class='form__rating-button'>2</button>
-                      <button data-rating='3' class='form__rating-button'>3</button>
-                      <button data-rating='4' class='form__rating-button'>4</button>
-                      <button data-rating='5' class='form__rating-button'>5</button>
-                  </div>
+                  <?php if ($verif1 == true ): ?>
+                      <div class='form__rating'>
+                          <button data-rating='0' class='form__rating-button'>0</button>
+                          <button data-rating='1' class='form__rating-button'>1</button>
+                          <button data-rating='2' class='form__rating-button'>2</button>
+                          <button data-rating='3' class='form__rating-button'>3</button>
+                          <button data-rating='4' class='form__rating-button'>4</button>
+                          <button data-rating='5' class='form__rating-button'>5</button>
+                      </div>
+                  <?php endif; ?>
                   <?php
                         if( $this->Session->read('Auth.User.role') == 'administrateur' ) {
                             echo $this->Form->input('highlighted', array('label' => 'Mise en évidence', 'input-number input-number--article'));
