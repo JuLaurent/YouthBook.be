@@ -17,7 +17,6 @@
             <?php echo $this->Form->create('Saga', array('enctype' => 'multipart/form-data', 'novalidate' => true)); ?>
                 <?php
                     echo $this->Form->input('title', array('label' => 'Titre*', 'class' => 'input-text'));
-                    echo $this->Form->input('Book', array('label' => 'Livre(s)*', 'multiple' => true, 'class' => 'form-select', 'data-placeholder' => 'Sélectionnez un ou plusieurs livres'));
                     echo $this->Form->input('user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
                 ?>
             <?php echo $this->Form->end(__('Ajouter la saga'));?>
