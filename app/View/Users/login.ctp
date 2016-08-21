@@ -1,7 +1,7 @@
 <?php
 
     $this->assign('title', 'Se connecter');
-    $this->assign('description', 'Connexion à son compte utilisateur');
+    $this->assign('description', 'Page de connexion à son compte utilisateur');
 
 ?>
 

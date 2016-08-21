@@ -1,7 +1,7 @@
 <?php
 
-    $this->assign('title', 'Éditer profil');
-    $this->assign('description', 'Édition de son mot de passe');
+    $this->assign('title', 'Modifier mot de passe');
+    $this->assign('description', 'Modification de son mot de passe');
 
 ?>
 

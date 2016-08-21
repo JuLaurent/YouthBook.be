@@ -1,7 +1,7 @@
 <?php
 
     $this->assign('title', 'A propos');
-    $this->assign('description', 'Description du site YouthBook.be');
+    $this->assign('description', 'Page descriptive du site YouthBook.be');
 
 ?>
 

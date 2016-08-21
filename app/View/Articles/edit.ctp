@@ -1,7 +1,7 @@
 <?php
 
     $this->assign('title', 'Modifier un article');
-    $this->assign('description', 'Modification d’un article');
+    $this->assign('description', 'Modification de l’article ' . $article['Article']['title']);
 
 ?>
 

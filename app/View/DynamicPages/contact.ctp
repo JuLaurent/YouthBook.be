@@ -1,7 +1,7 @@
 <?php
 
     $this->assign('title', 'Contact');
-    $this->assign('description', 'Ajout d’un livre avec ISBN');
+    $this->assign('description', 'Formulaire de contact');
 
 ?>
 

@@ -108,7 +108,7 @@
           }
         </style>
     </head>
-    <body>
+    <body style="font-family:'Lato',sans-serif;min-height:100%;position:relative;color:black;font-size:16px;">
         <?php echo $this->element('mail-header'); ?>
         <?php echo $this->fetch('content'); ?>
     </body>

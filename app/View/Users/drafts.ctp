@@ -1,7 +1,7 @@
 <?php
 
     $this->assign('title', 'Mes brouillons');
-    $this->assign('description', 'Mes brouillons');
+    $this->assign('description', 'Liste de mes brouillons');
 
 ?>
 

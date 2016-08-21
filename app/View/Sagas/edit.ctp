@@ -1,7 +1,7 @@
 <?php
 
     $this->assign('title', 'Modifier une saga');
-    $this->assign('description', 'Modification d’une saga');
+    $this->assign('description', 'Modification de la fiche de la saga ' . $saga['Saga']['title']);
 
 ?>
 

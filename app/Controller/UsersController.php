@@ -247,10 +247,12 @@ class UsersController extends AppController {
 
                     $this->User->save($token);
 
+                    $newUser = $this->User->findById($user['User']['id']);
+
                     App::uses('CakeEmail', 'Network/Email');
 
                     $Email = new CakeEmail('smtp');
-                    $Email->viewVars(array('mailData' => $user));
+                    $Email->viewVars(array('mailData' => $newUser));
                     $Email->template('newPassword', 'default');
                     $Email->emailFormat('html');
                     $Email->from(array('contact@youthbook.be' => 'YouthBook.be'));
@@ -259,8 +261,8 @@ class UsersController extends AppController {
 
                     $Email->attachments(array(
                         'logo.svg' => array(
-                            'file' => WWW_ROOT . '/img/icons/logoV1.1.2.svg',
-                            'mimetype' => 'image/svg+xml',
+                            'file' => WWW_ROOT . '/img/icons/logo.png',
+                            'mimetype' => 'image/png',
                             'contentId' => 'logo'
                         )
                     ));
@@ -283,6 +285,10 @@ class UsersController extends AppController {
 
     public function newPassword($slug1 = null, $slug2 = null) {
 
+        if ( !$slug1 ) {
+            throw new NotFoundException(__('Page inacessible.'));
+        }
+
         $user = $this->User->findBySlug($slug1);
 
         $this->User->id = $user['User']['id'];
@@ -291,7 +297,7 @@ class UsersController extends AppController {
             throw new NotFoundException(__('Utilisateur invalide.'));
         }
 
-        if ( $user['User']['token'] == null ) {
+        if ( $user['User']['token'] != $slug2 ) {
             throw new NotFoundException(__('Page inacessible.'));
         }
 

@@ -1,7 +1,7 @@
 <?php
 
     $this->assign('title', 'Modifier profil');
-    $this->assign('description', 'Modifier les informations de son profil');
+    $this->assign('description', 'Modification des informations de son profil');
 
 ?>
 
