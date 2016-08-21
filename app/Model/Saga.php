@@ -12,6 +12,41 @@ class Saga extends AppModel {
         'Book'
     );
 
+    public $joinBookUser = array(
+        array(
+            'table' => 'yb_books_sagas',
+            'alias' => 'BookSaga',
+            'type' => 'inner',
+            'conditions' => array(
+                'Saga.id = BookSaga.saga_id'
+            )
+        ),
+        array(
+            'table' => 'yb_books',
+            'alias' => 'Book',
+            'type' => 'inner',
+            'conditions' => array(
+                'BookSaga.book_id = Book.id'
+            )
+        ),
+        array(
+            'table' => 'yb_books_users',
+            'alias' => 'BookUser',
+            'type' => 'inner',
+            'conditions' => array(
+                'Book.id = BookUser.book_id'
+            )
+        ),
+        array(
+            'table' => 'yb_users',
+            'alias' => 'UserB',
+            'type' => 'inner',
+            'conditions' => array(
+                'BookUser.user_id = UserB.id'
+            )
+        )
+    );
+
     public $validate = array(
         'title' => array(
             'required' => array(

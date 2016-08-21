@@ -56,6 +56,7 @@ class UsersController extends AppController {
     public function collection($id = null) {
 
         $this->loadModel('Book');
+        $this->loadModel('Saga');
 
         $this->User->id = $this->Auth->user('id');
         if (!$this->User->exists()) {
@@ -64,7 +65,7 @@ class UsersController extends AppController {
 
         $user = $this->User->read(null, $id);
 
-        $collection = $this->Book->find(
+        $books = $this->Book->find(
             'all',
             array(
                 'joins' => $this->Book->joinUser,
@@ -73,7 +74,7 @@ class UsersController extends AppController {
             )
         );
 
-        $this->set(compact('user', 'collection'));
+        $this->set(compact('user', 'books'));
     }
 
     public function books($id = null) {

@@ -13,9 +13,9 @@
 
     <div class='bloc bloc--padding'>
 
-        <?php if( $collection != null ): ?>
+        <?php if( $books != null ): ?>
             <ul class='collection' itemscope itemtype='https://schema.org/ItemList'>
-                <?php foreach($collection as $book): ?>
+                <?php foreach( $books as $book ): ?>
                     <li class='collection__item' itemprop='itemListElement' itemscope itemtype='https://schema.org/Book'>
                         <?php
                             echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'books', 'action' => 'removeFromCollection'), 'class' => 'user__action user__action--form user__action--collection ajax__user-remove'));

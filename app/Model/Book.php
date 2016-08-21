@@ -68,6 +68,41 @@ class Book extends AppModel {
         )
     );
 
+    public $joinSagaUser = array(
+        array(
+            'table' => 'yb_books_sagas',
+            'alias' => 'BookSaga',
+            'type' => 'inner',
+            'conditions' => array(
+                'Book.id = BookSaga.book_id'
+            )
+        ),
+        array(
+            'table' => 'yb_sagas',
+            'alias' => 'Saga',
+            'type' => 'inner',
+            'conditions' => array(
+                'BookSaga.saga_id = Saga.id'
+            )
+        ),
+        array(
+            'table' => 'yb_books_users',
+            'alias' => 'BookUser',
+            'type' => 'inner',
+            'conditions' => array(
+                'Book.id = BookUser.book_id'
+            )
+        ),
+        array(
+            'table' => 'yb_users',
+            'alias' => 'User',
+            'type' => 'inner',
+            'conditions' => array(
+                'BookUser.user_id = User.id'
+            )
+        )
+    );
+
     public $validate = array(
         'isbn' => array(
             'required' => array(

@@ -77,6 +77,41 @@ class Article extends AppModel {
         )
     );
 
+    public $joinBookSaga = array(
+        array(
+            'table' => 'yb_articles_books',
+            'alias' => 'ArticleBook',
+            'type' => 'inner',
+            'conditions' => array(
+                'Article.id = ArticleBook.article_id'
+            )
+        ),
+        array(
+            'table' => 'yb_books',
+            'alias' => 'Book',
+            'type' => 'inner',
+            'conditions' => array(
+                'ArticleBook.book_id = Book.id'
+            )
+        ),
+        array(
+            'table' => 'yb_books_sagas',
+            'alias' => 'BookSaga',
+            'type' => 'inner',
+            'conditions' => array(
+                'Book.id = BookSaga.book_id'
+            )
+        ),
+        array(
+            'table' => 'yb_sagas',
+            'alias' => 'Saga',
+            'type' => 'inner',
+            'conditions' => array(
+                'BookSaga.saga_id = Saga.id'
+            )
+        )
+    );
+
     public $actsAs = array(
         'Upload.Upload' => array(
             'thumbnail' => array(

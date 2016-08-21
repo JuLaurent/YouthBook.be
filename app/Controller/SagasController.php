@@ -25,6 +25,7 @@ class SagasController extends AppController {
 
     public function view($slug = null) {
 
+        $this->loadModel('Article');
         $this->loadModel('Book');
 
         if ( !$slug ) {
@@ -55,14 +56,16 @@ class SagasController extends AppController {
             )
         );
 
-        /* $articles = $this->Article->find(
+        $articles = $this->Article->find(
             'all',
             array(
-                'conditions' => array('''Book.saga_id' => $saga)
+                'joins' => $this->Article->joinBookSaga,
+                'conditions' => array('Saga.id' => $saga['Saga']['id']),
+                'order' => array('Article.title' => 'asc')
             )
-        ) */
+        );
 
-        $this->set(compact('saga', 'main', 'spinoff'));
+        $this->set(compact('saga', 'main', 'spinoff', 'articles'));
     }
 
     public function add() {
