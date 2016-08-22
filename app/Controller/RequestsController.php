@@ -50,7 +50,12 @@ class RequestsController extends AppController {
         if( empty($request) ) {
             if ($this->request->is('post')) {
                 if ($this->Request->save($this->request->data)) {
-                    return $this->redirect(array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']));
+                    if ( $this->request->is('ajax') ) {
+                        exit();
+                    }
+                    else {
+                        return $this->redirect(array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']));
+                    }
                 }
             }
         }
@@ -59,7 +64,12 @@ class RequestsController extends AppController {
 
             if ($this->request->is('post')) {
                 if ($this->Request->save($this->request->data)) {
-                    return $this->redirect(array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']));
+                    if ( $this->request->is('ajax') ) {
+                        exit();
+                    }
+                    else {
+                        return $this->redirect(array('controller' => 'books', 'action' => 'view', 'slug' => $book['Book']['slug']));
+                    }
                 }
             }
         }

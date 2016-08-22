@@ -40,14 +40,47 @@
 
     }); */
 
-    $('.sheet__collection').on( 'submit', '.ajax__book-collection', function( e ) {
+    $('.buttons').on( 'submit', '.ajax__request', function( e ) {
 
         e.preventDefault();
 
         var self = $( this );
 
-        console.log(self);
+        var data = {
+                Request : {
+                    book_id : self.find('.ajax__request--book-id').val()
+                },
+                User : {
+                    id : self.find('.ajax__request--user-id').val()
+                }
+            },
+            url = self.attr( 'action' );
 
+        if(xhr) xhr.abort();
+
+        var xhr = $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            success: function( responseFromServer, textstatus, jqXHR ) {
+                if ( self.attr( 'action' ) == '/YouthBook.be/requests/delete' ) {
+                    self.attr( 'action', '/YouthBook.be/requests/add' );
+                    self.find('.button--submit').val( 'Demander une critique' );
+                }
+                else {
+                    self.attr( 'action', '/YouthBook.be/requests/delete' );
+                    self.find('.button--submit').val( 'Annuler la demande' );
+                }
+            }
+        });
+
+    });
+
+    $('.sheet__collection').on( 'submit', '.ajax__book-collection', function( e ) {
+
+        e.preventDefault();
+
+        var self = $( this );
 
         var data = {
                 Book : {
@@ -69,12 +102,12 @@
                 if ( self.attr( 'action' ) == '/YouthBook.be/books/removeFromCollection' ) {
                     self.attr( 'action', '/YouthBook.be/books/addToCollection' );
                     self.find('.button--submit').val( 'Ajouter à ma collection' )
-                                                     .attr( 'title', 'Ajouter à ma collection de livres' );
+                                                .attr( 'title', 'Ajouter à ma collection de livres' );
                 }
                 else {
                     self.attr( 'action', '/YouthBook.be/books/removeFromCollection' );
                     self.find('.button--submit').val( 'Enlever de ma collection' )
-                                                     .attr( 'title', 'Enlever de ma collection de livres' );
+                                                .attr( 'title', 'Enlever de ma collection de livres' );
                 }
             }
         });
@@ -85,8 +118,6 @@
         e.preventDefault();
 
         var self = $( this );
-
-        console.log(self);
 
         var data = {
                 Subscription : {

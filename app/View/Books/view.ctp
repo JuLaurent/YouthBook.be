@@ -185,15 +185,15 @@
                 <div class='buttons'>
                     <?php
                         if($requestedByUser != true && $this->Session->check('Auth.User.id')) {
-                            echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'requests', 'action' => 'add'), 'class' => 'button'));
-                                echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
-                                echo $this->Form->input('book_id', array('type' => 'hidden', 'value' => $book['Book']['id']));
+                            echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'requests', 'action' => 'add'), 'class' => 'button ajax__request'));
+                                echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__request--user-id'));
+                                echo $this->Form->input('book_id', array('type' => 'hidden', 'value' => $book['Book']['id'], 'class' => 'ajax__request--book-id'));
                             echo $this->Form->end(array('label' => 'Demander une critique', 'class' => 'button--submit'));
                         }
                         else if($this->Session->check('Auth.User.id')) {
-                            echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'requests', 'action' => 'delete'), 'class' => 'button'));
-                                echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id')));
-                                echo $this->Form->input('book_id', array('type' => 'hidden', 'value' => $book['Book']['id']));
+                            echo $this->Form->create('Request', array('novalidate' => true, 'url' => array('controller' => 'requests', 'action' => 'delete'), 'class' => 'button ajax__request'));
+                                echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__request--user-id'));
+                                echo $this->Form->input('book_id', array('type' => 'hidden', 'value' => $book['Book']['id'], 'class' => 'ajax__request--book-id'));
                             echo $this->Form->end(array('label' => 'Annuler la demande', 'class' => 'button--submit'));
                         }
                     ?>
