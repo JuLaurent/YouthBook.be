@@ -40,11 +40,14 @@
 
     }); */
 
-    $('.social-links').on( 'submit', '.ajax__book-collection', function( e ) {
+    $('.sheet__collection').on( 'submit', '.ajax__book-collection', function( e ) {
 
         e.preventDefault();
 
         var self = $( this );
+
+        console.log(self);
+
 
         var data = {
                 Book : {
@@ -65,13 +68,48 @@
             success: function( responseFromServer, textstatus, jqXHR ) {
                 if ( self.attr( 'action' ) == '/YouthBook.be/books/removeFromCollection' ) {
                     self.attr( 'action', '/YouthBook.be/books/addToCollection' );
-                    self.find('.user__action--input').val( '+' )
+                    self.find('.button--submit').val( 'Ajouter à ma collection' )
                                                      .attr( 'title', 'Ajouter à ma collection de livres' );
                 }
                 else {
                     self.attr( 'action', '/YouthBook.be/books/removeFromCollection' );
-                    self.find('.user__action--input').val( '-' )
+                    self.find('.button--submit').val( 'Enlever de ma collection' )
                                                      .attr( 'title', 'Enlever de ma collection de livres' );
+                }
+            }
+        });
+    });
+
+    $('.sheet__collection').on( 'submit', '.ajax__subscription', function( e ) {
+
+        e.preventDefault();
+
+        var self = $( this );
+
+        console.log(self);
+
+        var data = {
+                Subscription : {
+                    user_id : self.find('.ajax__subscription--user-id').val(),
+                    saga_id : self.find('.ajax__subscription--saga-id').val(),
+                }
+            },
+            url = self.attr( 'action' );
+
+        if(xhr) xhr.abort();
+
+        var xhr = $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            success: function( responseFromServer, textstatus, jqXHR ) {
+                if ( self.attr( 'action' ) == '/YouthBook.be/subscriptions/unsubscribe' ) {
+                    self.attr( 'action', '/YouthBook.be/subscriptions/subscribe' );
+                    self.find('.button--submit').val( 'S’abonner' );
+                }
+                else {
+                    self.attr( 'action', '/YouthBook.be/subscriptions/unsubscribe' );
+                    self.find('.button--submit').val( 'Se désabonner' );
                 }
             }
         });
@@ -101,6 +139,47 @@
                     },
                     User : {
                         id : self.find('.ajax__user-remove--user-id').val()
+                    }
+                };
+
+                var url = self.attr( 'action' );
+
+                if(xhr) xhr.abort();
+
+                var xhr = $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data,
+                    success: function( responseFromServer, textstatus, jqXHR ) {
+                        self.parents('.collection__item').hide('slow');
+                    }
+                });
+            }
+        });
+    });
+
+    $('.collection__item').on( 'submit', '.ajax__user-unsubscribe', function( e ) {
+
+        e.preventDefault();
+
+        var self = $( this );
+
+        $( '.popup-box--confirm' )
+            .find( '.popup-box__sentence' )
+                .html( 'Voulez-vous vous désabonner ?' )
+                .end()
+            .show('slow');
+
+        $( '.popup-box--confirm' ).on( 'click', '.popup-box__option', function( e ) {
+
+            $( '.popup-box--confirm' ).hide('slow');
+
+            if ( $( this ).attr( 'data-option' ) == 'true' ) {
+
+                var data = {
+                    Subscription : {
+                        user_id : self.find('.ajax__user-unsubscribe--user-id').val(),
+                        saga_id : self.find('.ajax__user-unsubscribe--saga-id').val(),
                     }
                 };
 
