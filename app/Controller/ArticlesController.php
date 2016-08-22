@@ -190,31 +190,67 @@ class ArticlesController extends AppController {
 
         $this->loadModel('Notification');
         $this->loadModel('Request');
+        $this->loadModel('Saga');
+        $this->loadModel('Subscription');
         $this->loadModel('User');
 
         $article = $this->Article->findById($this->request->data['Article']['id']);
 
         $request = $this->Request->findByBookId($article['Book'][0]['id']);
 
+        $sagas = $this->Saga->find(
+            'all',
+            array(
+                'joins' => $this->Saga->joinBookArticle,
+                'conditions' => array('Article.id' => $article['Article']['id'])
+            )
+        );
+
+        $sagasId = [];
+
+        foreach ( $sagas as $saga ) {
+            array_push( $sagasId, $saga['Saga']['id'] );
+        }
+
+        $subscriptions = $this->Subscription->find(
+            'all',
+            array(
+                'conditions' => array(
+                    array( 'Subscription.saga_id' => $sagasId )
+                )
+            )
+        );
+
+        $usersId = [];
+
+        foreach ( $subscriptions as $subscription ) {
+            array_push( $usersId, $subscription['User']['id'] );
+        }
+
         $users = $this->User->find(
             'all',
             array(
-                'conditions' => array('User.role' => 'administrateur')
+                'recursive' => 0,
+                'conditions' => array(
+                    'OR' => array(
+                        array( 'User.role' => 'administrateur' ),
+                        array( 'User.id' => $usersId ),
+                    )
+                )
             )
         );
 
         if ( $this->request->is('post') || $this->request->is('put') ) {
-          $notifications = array('Notification' => array(
-                  'article_id' => $article['Article']['id'],
-                  'User' => array()
-              )
-          );
+            $notifications = array('Notification' => array(
+                    'article_id' => $article['Article']['id'],
+                    'User' => array()
+                )
+            );
 
-          foreach($users as $user) {
-              array_push($notifications['Notification']['User'], $user['User']['id']);
-          }
+            foreach($users as $user) {
+                array_push($notifications['Notification']['User'], $user['User']['id']);
+            }
 
-          debug($notifications);
             if ( $this->Article->save($this->request->data) ) {
 
                 if ( !empty($request) ) {
@@ -233,8 +269,6 @@ class ArticlesController extends AppController {
         } else {
             $this->request->data = $this->Article->read(null, $article['Article']['id']);
         }
-
-
     }
 
     public function edit($slug1 = null, $slug2 = null) {

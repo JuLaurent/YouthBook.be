@@ -4,6 +4,10 @@ class Saga extends AppModel {
 
     public $name = 'Saga';
 
+    public $hasMany = array(
+        'Subscription'
+    );
+
     public $belongsTo = array(
         'User'
     );
@@ -43,6 +47,41 @@ class Saga extends AppModel {
             'type' => 'inner',
             'conditions' => array(
                 'BookUser.user_id = UserB.id'
+            )
+        )
+    );
+
+    public $joinBookArticle = array(
+        array(
+            'table' => 'yb_books_sagas',
+            'alias' => 'BookSaga',
+            'type' => 'inner',
+            'conditions' => array(
+                'Saga.id = BookSaga.saga_id'
+            )
+        ),
+        array(
+            'table' => 'yb_books',
+            'alias' => 'Book',
+            'type' => 'inner',
+            'conditions' => array(
+                'BookSaga.book_id = Book.id'
+            )
+        ),
+        array(
+            'table' => 'yb_articles_books',
+            'alias' => 'ArticleBookB',
+            'type' => 'inner',
+            'conditions' => array(
+                'Book.id = ArticleBookB.book_id'
+            )
+        ),
+        array(
+            'table' => 'yb_articles',
+            'alias' => 'Article',
+            'type' => 'inner',
+            'conditions' => array(
+                'ArticleBookB.article_id = Article.id'
             )
         )
     );

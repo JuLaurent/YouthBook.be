@@ -13,6 +13,7 @@ class User extends AppModel {
         'Like',
         'Notification',
         'Message',
+        'Subscription',
         'Saga'
     );
 
