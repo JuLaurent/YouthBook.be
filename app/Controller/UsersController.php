@@ -283,7 +283,7 @@ class UsersController extends AppController {
                     $Email->subject('Mot de passe oublié');
 
                     $Email->attachments(array(
-                        'logo.svg' => array(
+                        'logo.png' => array(
                             'file' => WWW_ROOT . '/img/icons/logo.png',
                             'mimetype' => 'image/png',
                             'contentId' => 'logo'

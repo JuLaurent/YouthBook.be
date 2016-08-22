@@ -158,9 +158,9 @@ class DynamicPagesController extends AppController {
                 $Email->subject($this->request->data['Contact']['subject']);
 
                 $Email->attachments(array(
-                    'logo.svg' => array(
-                        'file' => WWW_ROOT . '/img/icons/logoV1.1.2.svg',
-                        'mimetype' => 'image/svg+xml',
+                    'logo.png' => array(
+                        'file' => WWW_ROOT . '/img/icons/logo.png',
+                        'mimetype' => 'image/png',
                         'contentId' => 'logo'
                     )
                 ));
@@ -179,4 +179,29 @@ class DynamicPagesController extends AppController {
             }
         }
     }
+
+    /* public function mail() {
+        App::uses('CakeEmail', 'Network/Email');
+
+        $Email = new CakeEmail('smtp');
+        $Email->template('new', 'default');
+        $Email->emailFormat('html');
+        $Email->from(array('contact@youthbook.be' => 'YouthBook.be'));
+        $Email->to('');
+        $Email->subject('YouthBook.be a été mis à jour');
+
+        $Email->attachments(array(
+            'logo.png' => array(
+                'file' => WWW_ROOT . '/img/icons/logo.png',
+                'mimetype' => 'image/png',
+                'contentId' => 'logo'
+            )
+        ));
+
+        $Email->send();
+
+        return $this->redirect($this->referer());
+    } */
+
+
 }

@@ -253,7 +253,7 @@
                 <div class='bloc-title'><h3 class='delta'>Les livres évoqués</h3></div>
                 <ol>
                     <?php foreach($articlePage['Article']['Book'] as $book): ?>
-                        <li class='recent-article__item'>
+                        <li class='recent-article recent-article--article'>
                             <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['slug'] )) ?>' class='link'>
                                 <?php echo $book['title'] ?>
                             </a>
