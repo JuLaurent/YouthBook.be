@@ -23,7 +23,7 @@
                                 echo $this->Form->input('id', array('type' => 'hidden', 'value' => $book['Book']['id'], 'class' => 'ajax__user-remove--id'));
                             echo $this->Form->end( array('label' => '-', 'title' => 'Enlever de ma liste de livres', 'class' => 'user__action--input user__action--remove'));
                         ?>
-                        <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' class='link' itemprop='url'>
+                        <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' title="Aller à la fiche du livre <?php echo $book['Book']['title'] ?>" class='link' itemprop='url'>
                             <span itemprop='name'><?php echo $book['Book']['title'] ?></span>
                         </a>
                     </li>

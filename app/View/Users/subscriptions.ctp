@@ -23,7 +23,7 @@
                                 echo $this->Form->input('Saga.id', array('type' => 'hidden', 'value' => $subscription['Saga']['id'], 'class' => 'ajax__user-unsubscribe--saga-id'));
                             echo $this->Form->end( array('label' => '-', 'title' => 'Me désabonner', 'class' => 'user__action--input user__action--remove'));
                         ?>
-                        <a href='<?php echo $this->Html->url( array( 'controller'=>'sagas', 'action'=>'view', 'slug' => $subscription['Saga']['slug'] )) ?>' class='link' itemprop='url'>
+                        <a href='<?php echo $this->Html->url( array( 'controller'=>'sagas', 'action'=>'view', 'slug' => $subscription['Saga']['slug'] )) ?>' title="Aller à la fiche de la saga <?php echo $subscription['Saga']['title'] ?>" class='link' itemprop='url'>
                             <span itemprop='name'><?php echo $subscription['Saga']['title'] ?></span>
                         </a>
                     </li>

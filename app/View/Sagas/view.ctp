@@ -52,7 +52,7 @@
                 <ul itemscope itemtype='https://schema.org/ItemList'>
                     <?php foreach($main as $book): ?>
                         <li class='recent-article recent-article--book' itemprop='itemListElement' itemscope itemtype='https://schema.org/Book'>
-                            <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' class='link' itemprop='url'>
+                            <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' title="Aller à la fiche du livre <?php echo $book['Book']['title'] ?>" class='link' itemprop='url'>
                                 <span itemprop='name'><?php echo $book['Book']['title'] ?></span>
                             </a>
                         </li>
@@ -68,7 +68,7 @@
                 <ul itemscope itemtype='https://schema.org/ItemList'>
                     <?php foreach($spinoff as $book): ?>
                         <li class='recent-article recent-article--book' itemprop='itemListElement' itemscope itemtype='https://schema.org/Book'>
-                            <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' class='link' itemprop='url'>
+                            <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['Book']['slug'] )) ?>' title="Aller à la fiche du livre <?php echo $book['Book']['title'] ?>" class='link' itemprop='url'>
                                 <span itemprop='name'><?php echo $book['Book']['title'] ?></span>
                             </a>
                         </li>

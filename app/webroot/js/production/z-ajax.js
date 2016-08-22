@@ -2,7 +2,7 @@
 
 
     /* $.ajax({
-        url: '/YouthBook.be/dynamicPages/countNotSeenConversations',
+        url: '/dynamicPages/countNotSeenConversations',
         success: function( responseFromServer, textstatus, jqXHR ) {
             var number = JSON.parse( responseFromServer );
             if ( number > 0 ) {
@@ -63,12 +63,12 @@
             url: url,
             data: data,
             success: function( responseFromServer, textstatus, jqXHR ) {
-                if ( self.attr( 'action' ) == '/YouthBook.be/requests/delete' ) {
-                    self.attr( 'action', '/YouthBook.be/requests/add' );
+                if ( self.attr( 'action' ) == '/requests/delete' ) {
+                    self.attr( 'action', '/requests/add' );
                     self.find('.button--submit').val( 'Demander une critique' );
                 }
                 else {
-                    self.attr( 'action', '/YouthBook.be/requests/delete' );
+                    self.attr( 'action', '/requests/delete' );
                     self.find('.button--submit').val( 'Annuler la demande' );
                 }
             }
@@ -99,13 +99,13 @@
             url: url,
             data: data,
             success: function( responseFromServer, textstatus, jqXHR ) {
-                if ( self.attr( 'action' ) == '/YouthBook.be/books/removeFromCollection' ) {
-                    self.attr( 'action', '/YouthBook.be/books/addToCollection' );
+                if ( self.attr( 'action' ) == '/books/removeFromCollection' ) {
+                    self.attr( 'action', '/books/addToCollection' );
                     self.find('.button--submit').val( 'Ajouter à ma collection' )
                                                 .attr( 'title', 'Ajouter à ma collection de livres' );
                 }
                 else {
-                    self.attr( 'action', '/YouthBook.be/books/removeFromCollection' );
+                    self.attr( 'action', '/books/removeFromCollection' );
                     self.find('.button--submit').val( 'Enlever de ma collection' )
                                                 .attr( 'title', 'Enlever de ma collection de livres' );
                 }
@@ -134,12 +134,12 @@
             url: url,
             data: data,
             success: function( responseFromServer, textstatus, jqXHR ) {
-                if ( self.attr( 'action' ) == '/YouthBook.be/subscriptions/unsubscribe' ) {
-                    self.attr( 'action', '/YouthBook.be/subscriptions/subscribe' );
+                if ( self.attr( 'action' ) == '/subscriptions/unsubscribe' ) {
+                    self.attr( 'action', '/subscriptions/subscribe' );
                     self.find('.button--submit').val( 'S’abonner' );
                 }
                 else {
-                    self.attr( 'action', '/YouthBook.be/subscriptions/unsubscribe' );
+                    self.attr( 'action', '/subscriptions/unsubscribe' );
                     self.find('.button--submit').val( 'Se désabonner' );
                 }
             }
@@ -257,8 +257,8 @@
             url: url,
             data: data,
             success: function( responseFromServer, textstatus, jqXHR ) {
-                if ( self.attr( 'action' ) == '/YouthBook.be/comments/like' ) {
-                    self.attr( 'action', '/YouthBook.be/comments/dislike' );
+                if ( self.attr( 'action' ) == '/comments/like' ) {
+                    self.attr( 'action', '/comments/dislike' );
                     self
                         .find('.comment__icon')
                             .removeClass( 'comment__like' )
@@ -271,7 +271,7 @@
                                 .html( +self.parents('.comment').find('.comment__number').html() + 1 );
                 }
                 else {
-                    self.attr( 'action', '/YouthBook.be/comments/like' );
+                    self.attr( 'action', '/comments/like' );
                     self
                         .find('.comment__icon')
                             .removeClass( 'comment__dislike' )
@@ -365,7 +365,7 @@
                     url: url,
                     data: data,
                     success: function() {
-                        window.location = '/YouthBook.be/'
+                        window.location = '/'
                     }
                 });
             }
@@ -395,7 +395,7 @@
                     title : $( '.ajax__datalist--search' ).val(),
                 }
             },
-            url = '/YouthBook.be/dynamicPages/findBooks';
+            url = '/dynamicPages/findBooks';
 
         if(xhr) xhr.abort();
 

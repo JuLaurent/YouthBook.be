@@ -254,7 +254,7 @@
                 <ol>
                     <?php foreach($articlePage['Article']['Book'] as $book): ?>
                         <li class='recent-article recent-article--article'>
-                            <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['slug'] )) ?>' class='link'>
+                            <a href='<?php echo $this->Html->url( array( 'controller'=>'books', 'action'=>'view', 'slug' => $book['slug'] )) ?>' title="Aller à la fiche du livre <?php echo $book['title'] ?>" class='link'>
                                 <?php echo $book['title'] ?>
                             </a>
                         </li>

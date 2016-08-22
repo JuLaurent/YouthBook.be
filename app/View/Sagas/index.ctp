@@ -14,7 +14,7 @@
         <ul itemscope itemtype='https://schema.org/ItemList'>
             <?php foreach($sagas as $saga): ?>
                 <li class='recent-article recent-article--book' itemprop='itemListElement' itemscope itemtype='https://schema.org/Series'>
-                    <a href='<?php echo $this->Html->url( array( 'controller'=>'sagas', 'action'=>'view', 'slug' => $saga['Saga']['slug'] )) ?>' class='link' itemprop='url'>
+                    <a href='<?php echo $this->Html->url( array( 'controller'=>'sagas', 'action'=>'view', 'slug' => $saga['Saga']['slug'] )) ?>' title="Aller à la fiche de la saga <?php echo $saga['Saga']['title'] ?>" class='link' itemprop='url'>
                         <span itemprop='name'><?php echo $saga['Saga']['title'] ?></span>
                     </a>
                 </li>
