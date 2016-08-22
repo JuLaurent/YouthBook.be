@@ -30,7 +30,7 @@
                 <?php endforeach; ?>
             </ul>
         <?php else: ?>
-            <p>Vous n'avez aucun livre dans votre collection.</p>
+            <p>Vous êtes abonné à aucune saga.</p>
         <?php endif; ?>
     </div>
 

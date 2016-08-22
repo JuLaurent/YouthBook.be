@@ -37,6 +37,9 @@
 }
 
 @media screen and (max-width: 960px) {
+    .page-title {
+        margin-top: $gutter;
+    }
     .page-title__item {
         max-width: $mSeizeSeizieme;
     }
