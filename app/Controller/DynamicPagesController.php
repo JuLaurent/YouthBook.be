@@ -88,7 +88,9 @@ class DynamicPagesController extends AppController {
             $articles = null;
         }
 
-        $this->set(compact('books', 'articles' ));
+        $search = $this->request->query['search'];
+
+        $this->set(compact('search', 'books', 'articles'));
     }
 
     public function about() {
@@ -167,7 +169,7 @@ class DynamicPagesController extends AppController {
 
                 $Email->send();
 
-                $this->Flash->success(__('Votre message a bien été envoyé.'));
+                $this->Flash->success(__('Votre mail a bien été envoyé.'));
                 return $this->redirect($this->referer());
             }
             else {
