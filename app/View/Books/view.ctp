@@ -40,13 +40,13 @@
                     <?php
                         if($this->Session->check('Auth.User.id')) {
                             if($inUserCollection == false) {
-                                echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'books', 'action' => 'addToCollection'), 'class' => 'button'));
+                                echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'books', 'action' => 'addToCollection'), 'class' => 'button ajax__book-collection'));
                                     echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__book-collection--user-id'));
                                     echo $this->Form->input('id', array('type' => 'hidden', 'value' => $book['Book']['id'], 'class' => 'ajax__book-collection--id'));
                                 echo $this->Form->end( array('label' => 'Ajouter à ma collection', 'class' => 'button--submit'));
                             }
                             else {
-                                echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'books', 'action' => 'removeFromCollection'), 'class' => 'button'));
+                                echo $this->Form->create('Book', array('novalidate' => true, 'url' => array('controller' => 'books', 'action' => 'removeFromCollection'), 'class' => 'button ajax__book-collection'));
                                     echo $this->Form->input('User.id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__book-collection--user-id'));
                                     echo $this->Form->input('id', array('type' => 'hidden', 'value' => $book['Book']['id'], 'class' => 'ajax__book-collection--id'));
                                 echo $this->Form->end( array('label' => 'Enlever de ma collection', 'class' => 'button--submit'));

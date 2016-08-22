@@ -27,6 +27,7 @@ class SagasController extends AppController {
 
         $this->loadModel('Article');
         $this->loadModel('Book');
+        $this->loadModel('Subscription');
 
         if ( !$slug ) {
             throw new NotFoundException(__('Cette saga n’apparait pas dans la base de données.'));
@@ -65,7 +66,14 @@ class SagasController extends AppController {
             )
         );
 
-        $this->set(compact('saga', 'main', 'spinoff', 'articles'));
+        $subscription = $this->Subscription->find(
+            'first',
+            array(
+                'conditions' => array('Subscription.user_id' => $this->Session->read('Auth.User.id'), 'Subscription.saga_id' => $saga['Saga']['id'])
+            )
+        );
+
+        $this->set(compact('saga', 'main', 'spinoff', 'articles', 'subscription'));
     }
 
     public function add() {

@@ -10,20 +10,40 @@
     <div class='page-title' itemprop='name'><h2 class='beta page-title__item'><?php echo $saga['Saga']['title'] ?></h2></div>
 
     <div class='bloc bloc--padding'>
-        <div class='article__user message'>
-            <span class='user__avatar user__avatar--article article__avatar'>
-                  <?php
-                      if( $saga['User']['avatar'] ) {
-                          echo $this->Html->image('avatars/' . $saga['User']['id'] . '/small_' . $saga['User']['avatar'], array('alt' => 'Votre avatar', 'srcset' => $this->webroot . 'img/avatars/' . $saga['User']['id'] . '/small_' . $saga['User']['avatar'] . ' 1x, ' . $this->webroot . 'img/avatars/' . $saga['User']['id'] . '/smallHR_' . $saga['User']['avatar'] . ' 2x', 'width' => '48', 'height' => '48'));
-                      }
-                      else {
-                          echo $this->Html->image('avatars/small_noAvatar.png', array('alt' => 'Avatar de substitution', 'srcset' => $this->webroot . 'img/avatars/small_noAvatar.png 1x, ' . $this->webroot . 'img/avatars/smallHR_noAvatar.png 2x', 'width' => '48', 'height' => '48'));
-                      }
-                  ?>
-            </span>
-            <span class='article__username'>
-                Fiche créée par <?php echo $saga['User']['username'] ?> le <?php echo $this->Time->format('d/m/Y', $saga['Saga']['created']) ?>
-            </span>
+        <div class='clearfix'>
+            <div class='article__user article__user--sheet message'>
+                <span class='user__avatar user__avatar--article article__avatar'>
+                      <?php
+                          if( $saga['User']['avatar'] ) {
+                              echo $this->Html->image('avatars/' . $saga['User']['id'] . '/small_' . $saga['User']['avatar'], array('alt' => 'Votre avatar', 'srcset' => $this->webroot . 'img/avatars/' . $saga['User']['id'] . '/small_' . $saga['User']['avatar'] . ' 1x, ' . $this->webroot . 'img/avatars/' . $saga['User']['id'] . '/smallHR_' . $saga['User']['avatar'] . ' 2x', 'width' => '48', 'height' => '48'));
+                          }
+                          else {
+                              echo $this->Html->image('avatars/small_noAvatar.png', array('alt' => 'Avatar de substitution', 'srcset' => $this->webroot . 'img/avatars/small_noAvatar.png 1x, ' . $this->webroot . 'img/avatars/smallHR_noAvatar.png 2x', 'width' => '48', 'height' => '48'));
+                          }
+                      ?>
+                </span>
+                <span class='article__username'>
+                    Fiche créée par <?php echo $saga['User']['username'] ?> le <?php echo $this->Time->format('d/m/Y', $saga['Saga']['created']) ?>
+                </span>
+            </div>
+            <div class='sheet__collection'>
+                <?php
+                    if($this->Session->check('Auth.User.id')) {
+                        if ( empty($subscription) ) {
+                            echo $this->Form->create('Subscription', array('novalidate' => true, 'url' => array('controller' => 'subscriptions', 'action' => 'subscribe'), 'class' => 'button ajax__subscription'));
+                                echo $this->Form->input('Subscription.user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__subscription--user-id'));
+                                echo $this->Form->input('Subscription.saga_id', array('type' => 'hidden', 'value' => $saga['Saga']['id'], 'class' => 'ajax__subscription--saga-id'));
+                            echo $this->Form->end( array('label' => 'S’abonner', 'class' => 'button--submit'));
+                        }
+                        else {
+                            echo $this->Form->create('Subscription', array('novalidate' => true, 'url' => array('controller' => 'subscriptions', 'action' => 'unsubscribe'), 'class' => 'button ajax__subscription'));
+                                echo $this->Form->input('Subscription.user_id', array('type' => 'hidden', 'value' => $this->Session->read('Auth.User.id'), 'class' => 'ajax__subscription--user-id'));
+                                echo $this->Form->input('Subscription.saga_id', array('type' => 'hidden', 'value' => $saga['Saga']['id'], 'class' => 'ajax__subscription--saga-id'));
+                            echo $this->Form->end( array('label' => 'Se désabonner', 'class' => 'button--submit'));
+                        }
+                    }
+                ?>
+            </div>
         </div>
 
         <?php if( !empty( $main ) ): ?>
