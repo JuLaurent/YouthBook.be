@@ -89,7 +89,7 @@
 
                     <?php endif; ?>
 
-                    <?php if( $articlePage['ArticlePage']['page_number'] == $articlePage['Article']['number_of_pages'] && !empty($comments) ): ?>
+                    <?php if( !empty($comments) ): ?>
                         <div class='comments'>
                             <?php foreach( $comments as $comment ): ?>
                                 <div class='comment' itemprop='comment' itemscope itemtype='http://schema.org/Comment'>
@@ -170,7 +170,7 @@
                                 </span>
                             </div>
                         <?php endif; ?>
-                    <?php elseif( $articlePage['ArticlePage']['page_number'] == $articlePage['Article']['number_of_pages'] && empty($comments) ): ?>
+                    <?php elseif( empty($comments) ): ?>
                         <p>Aucun commentaire</p>
                     <?php endif; ?>
 
